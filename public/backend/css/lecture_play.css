@@ -1,0 +1,100 @@
+.chapter_div {
+    margin: 25px 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px #ccc;
+}
+.chapter {
+    /* min-height: 200px; */
+    line-height: 1;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #666;
+    font-weight: 600;
+    border-bottom: 1px solid #eee;
+    background: rgb(233,233,233);
+    background: -moz-linear-gradient(90deg, rgba(233,233,233,1) 0%, rgba(107,110,255,1) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(233,233,233,1) 0%, rgba(107,110,255,1) 100%);
+    background: linear-gradient(90deg, rgba(233,233,233,1) 0%, rgba(107,110,255,1) 100%);
+}
+
+.lecture {
+    padding: 8px 4px;
+    border-bottom: 1px solid rgb(194, 193, 193);
+    transition: .5s;
+}
+.lecture:hover{
+    background: rgb(236, 236, 236);
+}
+
+.lecture_active {
+    background: rgb(255,169,169);
+    background: -moz-linear-gradient(90deg, rgba(255,169,169,1) 0%, rgba(173,173,173,1) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(255,169,169,1) 0%, rgba(173,173,173,1) 100%);
+    background: linear-gradient(90deg, rgba(255,169,169,1) 0%, rgba(173,173,173,1) 100%);
+}
+.icon {
+    display: inline-block;
+    padding: 3px 6px;
+    /* border: 1px solid gray;
+    border-radius: 50%; */
+    color: gray;
+    margin-right: 5px;
+}
+.title {
+    width: 180px;
+    display: inline-block;
+    font-weight: 400;
+    color: black;
+    vertical-align: middle;
+    margin: 0;
+
+}
+.timeIcon{
+    width: 57px;
+    display: inline-block;
+    font-weight: 400;
+    color: black;
+    margin: 0;
+}
+.tIcon{
+    font-size: 20px;
+    padding: 2px;
+    border: 1px solid green;
+    border-radius:50%;
+}
+.tIconD{
+    color:green;
+}
+
+.title p {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.title i, .title span {
+    text-align: right;
+}
+.time, .icon {
+    text-align: right !important;
+    margin-right: 5px;
+    margin-top: 6px;
+}
+
+.course_about {
+    font-size: 25px;
+    padding:10px 0 15px 0;
+    border-top: 1px solid rgb(218, 218, 218);
+}
+.lec_active {
+    background-color: rgb(214, 214, 214);
+/* color: #fff; */
+/* background: linear-gradient(90deg, rgba(107,110,255,1) 0%, rgba(233,233,233,1) 100%);
+background: linear-gradient(90deg, rgba(107,110,255,1) 0%, rgba(233,233,233,1) 100%); */
+}
+
+/* .sidebar {
+    width: 370px !important;
+} */

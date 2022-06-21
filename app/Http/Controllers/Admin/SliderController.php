@@ -1,0 +1,126 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Models\Layout;
+use App\Models\Slider;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Intervention\Image\Facades\Image;
+
+class SliderController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $layout = Layout::where('user_id', auth()->user()->id)->first(['tbl','tbl_bg','tbl_text','create_btn']);
+        $sliders = Slider::all();
+        return view('admin.slider.index', compact('layout','sliders'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $layout = Layout::where('user_id', auth()->user()->id)->first(['submit_btn']);
+        return view('admin.slider.create', compact('layout'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $data = $this->validate($request, [
+            'title' => 'sometimes|max:80',
+            'text' => 'sometimes',
+            'link' => 'sometimes',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            // 'image' => 'required|dimensions:max_width=1920,max_height=718',
+        ]);
+        if($request->hasFile('image')){
+            $image = $request->file('image');
+            $imageName = "slider".rand(0, 10000).'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('uploads/images/slider/');
+            $img = Image::make($image->getRealPath());
+            $img->resize(1920, 1080)->save($destinationPath.'/'.$imageName);
+            $data['image'] = $imageName;
+        }
+
+        try {
+            Slider::create($data);
+            toast('Success!', 'success');
+            return redirect()->route('admin.slider.index');
+        } catch (\Exception $e) {
+            return $e->getMessage();
+            toast('error', 'Error');
+            return back();
+        }
+    }
+
+    public function edit($id)
+    {
+        $layout = Layout::where('user_id', auth()->user()->id)->first(['submit_btn']);
+        $slider = Slider::find($id);
+        return view('admin.slider.edit', compact('layout','slider'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $data = $this->validate($request, [
+            'title' => 'sometimes|max:80',
+            'text' => 'sometimes',
+            'link' => 'sometimes',
+            'image' => 'sometimes|image|mimes:jpeg,png,jpg|max:2048',
+            // 'image' => 'required|dimensions:max_width=1920,max_height=718',
+        ]);
+        if($request->hasFile('image')){
+            $files = Slider::where('id', $id)->first();
+            $path =  public_path('uploads/images/slider/'.$files->image);
+            file_exists($path)?unlink($path):false;
+
+            $image = $request->file('image');
+            $imageName = "slider".rand(0, 10000).'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('uploads/images/slider/');
+            $img = Image::make($image->getRealPath());
+            $img->resize(1920, 718)->save($destinationPath.'/'.$imageName);
+            $data['image'] = $imageName;
+        }
+
+        try {
+            Slider::find($id)->update($data);
+            toast('success', 'Success!');
+            return redirect()->route('admin.slider.index');
+        } catch (\Exception $e) {
+            return $e->getMessage();
+            toast('error', 'Error');
+            return back();
+        }
+    }
+
+    public function destroy($id)
+    {
+        $slider = Slider::find($id);
+        $path =  public_path('uploads/images/slider/'.$slider->image);
+        if(file_exists($path)){
+            unlink($path);
+            $slider->delete();
+            toast('Successfully Deleted','success');
+            return redirect()->back();
+        }else{
+            $slider->delete();
+            toast('Successfully Deleted','success');
+            return redirect()->back();
+        }
+    }
+}
