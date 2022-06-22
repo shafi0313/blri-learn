@@ -33,22 +33,6 @@
                         <li><i class="{{ $avgRating>=5?'fas':'far' }} fa-star text-warning"></i></li>
                     </ul>
                 </div>
-                {{-- <div><b class="me-2">Created by </b><a href="#">{{ $course->userName->name }}</a>
-            </div> --}}
-            {{-- <ul class="list-unstyled d-sm-flex mt-3 mb-4">
-                    <li class="d-inline"><a class="btn btn-outline-dark-hover btn-sm me-3 mb-sm-0 mb-3"
-                            href="#">Wishlist</a></li>
-                    <li class="d-inline social-share">
-                        <a class="btn btn-outline-primary-hover btn-sm me-3 mb-sm-0 mb-3" href="#">Share</a>
-                        <ul>
-                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                            <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
-                        </ul>
-                    </li>
-                    <li class="d-inline"><a class="btn btn-outline-dark-hover btn-sm" href="#">Gift this course</a></li>
-                </ul> --}}
             <ul class="list-unstyled d-flex flex-wrap mb-4">
                 <li class="course-d-Teacher me-3 me-lg-5 mb-2 mb-lg-0">
                     <div class="d-flex">
@@ -80,12 +64,7 @@
                     </div>
                 </li>
             </ul>
-            <style>
-                .iframe iframe {
-                    width: 100% !important;
-                    height: 465px !important;
-                }
-            </style>
+            
             <div class="iframe">
                 {!! $course->video_des !!}
             </div>

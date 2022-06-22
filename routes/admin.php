@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\QuizController;
@@ -18,15 +17,6 @@ use App\Http\Controllers\Admin\StudentHistoryController;
 use App\Http\Controllers\Admin\MyProfile\LayoutController;
 use App\Http\Controllers\Admin\MyProfile\ProfileController;
 use App\Http\Controllers\Auth\Permission\PermissionController;
-
-
-
-Route::get('/t', function () {
-    return User::with('permissionn')->get();
-
-});
-
-
 
 Route::prefix('my-profile')->group(function(){
     Route::prefix('layout')->group(function(){
@@ -121,14 +111,12 @@ Route::middleware(['auth','admin','permission:access-dashboard'])->prefix('admin
         ]
     ]);
 
-
     Route::prefix('admin-user')->group(function(){
         Route::get('/', [AdminUserController::class, 'index'])->name('admin.adminUser.index');
         Route::get('/create', [AdminUserController::class, 'create'])->name('admin.adminUser.create');
         Route::get('/edit/{id}', [AdminUserController::class, 'edit'])->name('admin.adminUser.edit');
         Route::post('/store', [AdminUserController::class, 'store'])->name('admin.adminUser.store');
     });
-
 
     Route::resource('/slider', SliderController::class, [
         'names'=>[

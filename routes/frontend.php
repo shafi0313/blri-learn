@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Frontend\CourseByCatController;
 use App\Http\Controllers\Frontend\CourseReviewController;
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +19,7 @@ use App\Http\Controllers\Frontend\CourseReviewController;
 Route::get('/', [IndexController::class, 'index'])->name('index');
 Route::get('/course-details/{id}', [IndexController::class, 'courseDetails'])->name('courseDetails');
 Route::resource('/course-review', CourseReviewController::class);
+
+Route::controller(CourseByCatController::class)->prefix('course-by-cat')->group(function(){
+    Route::get('/{id}','index')->name('courseByCat');
+});

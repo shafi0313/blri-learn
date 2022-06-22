@@ -12,10 +12,10 @@
              <div class="search-category ms-auto">
                  <div class="form-group select-border course-category">
                      <i class="fa fa-th text-primary me-2" aria-hidden="true"></i>
-                     <select class=" basic-select">
+                     <select class= basic-select" onchange="location = this.value">
                          <option selected="selected">{{ __('index.mCategory') }}</option>
                          @foreach (App\Models\CourseCat::all(['id','name']) as $courseCat)
-                         <option value="{{ $courseCat->id }}">{{ $courseCat->name }}</option>
+                            <option value="{{ route('courseByCat',$courseCat->id) }}">{{ $courseCat->name }}</option>
                          @endforeach
                      </select>
                  </div>
@@ -175,54 +175,6 @@
                 </div>
                  @endauth
              </div>
-             <style>
-
-                ._user{
-                    float: right;
-                    position: relative;
-                    padding: 10px;
-
-                }
-                ._user>i{
-                    font-size: 25px;
-                    padding: 10px;
-                    background: white;
-                    border-radius: 50px;
-
-                }
-                ._user ul{
-                    display: none;
-                    position: absolute;
-                    top: 55px;
-                    right: 0;
-                    z-index: 9999999;
-                    background: rgb(243, 243, 243);
-                    list-style: none;
-                    padding: 10px 10px;
-                    border-radius: 5px;
-                }
-
-                ._user:hover ul{
-                    display: block;
-
-                }
-                ._user .name{
-                    display: flex;
-                    align-items: center;
-                }
-
-                ._user .name i{
-                    font-size: 20px;
-                    padding-right: 8px;
-                }
-                ._user .name h5{
-                    margin: 0 !important;
-                    line-height: 14px;
-                }
-                ._user .name p{
-                    margin: 0 !important;
-                }
-             </style>
 
              <div class="woo-action">
                  <ul class="list-unstyled _dropdown">
@@ -233,26 +185,6 @@
                                 href="#">{{__('global.register')}}<i class="fas fa-user-plus ps-2 text-primary"></i></a>
                         </li>
                      @endguest
-{{--
-                     @auth
-                         <li>sdf
-                             <ul>
-                                 <li>
-                                    <a href="">
-                                        <div>
-                                            <div>
-                                                <i class="fas fa-user"></i>
-                                            </div>
-                                            <div>
-                                                <h3>{{ auth()->user()->name }}</h3>
-                                            </div>
-                                        </div>
-                                    </a>
-                                 </li>
-                             </ul>
-                         </li>
-                     @endauth --}}
-
 
                      @if (config('app.locale')=='en')
                      <li><a class="btn btn-primary" style="color: white !important" href="/locale/bn">বাংলা <i

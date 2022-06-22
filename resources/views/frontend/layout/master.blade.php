@@ -2,9 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="HTML5 Template" />
-    <meta name="description" content="Guruma - Online Course & Education HTML Template" />
-    <meta name="author" content="potenzaglobalsolutions.com" />
+    <meta name="keywords" content="BLRI, eLearning, e-learning" />
+    <meta name="description" content="BLRI e-Learning Platform" />
+    <meta name="author" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@yield('title')  {{config('app.name')}}</title>
 
@@ -34,11 +34,7 @@
   <body>
 
    @include('frontend.layout.navigation')
-
-
    @yield('content')
-
-
    @include('frontend.layout.footer')
           <!--=================================
           Back To Top -->
@@ -54,7 +50,6 @@
           <script src="{{ asset('frontend/js/jquery-3.6.0.min.js') }}"></script>
           <script src="{{ asset('frontend/js/popper/popper.min.js') }}"></script>
           <script src="{{ asset('frontend/js/bootstrap/bootstrap.min.js') }}"></script>
-
           {{-- <!-- Page JS Implementing Plugins (Remove the plugin script here if site does not use that feature)--> --}}
           <script src="{{ asset('frontend/js/select2/select2.full.js') }}"></script>
           <script src="{{ asset('frontend/js/owl-carousel/owl.carousel.min.js') }}"></script>
@@ -63,7 +58,6 @@
           <script src="{{ asset('frontend/js/shuffle/shuffle.min.js') }}"></script>
           <script src="{{ asset('frontend/js/jarallax/jarallax.min.js') }}"></script>
           <script src="{{ asset('frontend/js/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
-
           {{-- <!-- Template Scripts (Do not remove)--> --}}
           <script src="{{ asset('frontend/js/custom.js') }}"></script>
           <script>
