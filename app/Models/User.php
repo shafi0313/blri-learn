@@ -70,6 +70,13 @@ class User extends Authenticatable
     {
         return $this->hasOne(ModelHasRole::class, 'model_id','id');
     }
+
+    public function courseEnrolls(){
+        return $this->hasMany(CourseEnroll::class, );
+    }
+    public function district(){
+        return $this->belongsTo(District::class, );
+    }
 }
 
 

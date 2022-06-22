@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\CourseCatController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\VisitorInfoController;
+use App\Http\Controllers\Admin\StudentHistoryController;
 use App\Http\Controllers\Admin\MyProfile\LayoutController;
 use App\Http\Controllers\Admin\MyProfile\ProfileController;
 use App\Http\Controllers\Auth\Permission\PermissionController;
@@ -165,4 +166,9 @@ Route::middleware(['auth','admin','permission:access-dashboard'])->prefix('admin
         Route::post('/option/store', 'optionStore')->name('admin.quiz.optionStore');
         Route::post('/option/update/{optionId}/{quizId}', 'optionUpdate')->name('admin.quiz.optionUpdate');
     });
+    Route::controller(StudentHistoryController::class)->prefix('student-history')->group(function () {
+        Route::get('/', 'index')->name('admin.studentHistory.index');
+    });
+
+
 });

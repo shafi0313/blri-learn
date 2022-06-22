@@ -94,6 +94,15 @@
                 </li>
                 @endcan
 
+                @can('student-history-manage')
+                <li class="nav-item {{ activeNav('admin.studentHistory.*') }}">
+                    <a href="{{ route('admin.studentHistory.index') }}">
+                        <i class="fas fa-book-open"></i>
+                        <p>Student History</p>
+                    </a>
+                </li>
+                @endcan
+
                 <li class="nav-item {{ activeNav(['admin.role.*','admin.backup.*','admin.visitorInfo.*','admin.permission.*']) }}">
                     <a data-toggle="collapse" href="#settings">
                         <i class="fa-solid fa-gears"></i>

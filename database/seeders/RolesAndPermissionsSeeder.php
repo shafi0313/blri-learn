@@ -94,6 +94,11 @@ class RolesAndPermissionsSeeder extends Seeder
                 'quiz-edit',
                 'quiz-delete'
             ],
+            'student-history'=>[
+                'student-history-manage',
+                'student-history-show',
+                'student-history-delete'
+            ],
         ];
         foreach ($pers as $per => $val) {
             foreach ($val as $name) {
