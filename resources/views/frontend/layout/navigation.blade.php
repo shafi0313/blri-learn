@@ -343,6 +343,9 @@
  </div>
  {{-- <!--=================================
       Modal login --> --}}
+      @php
+          $districts = App\Models\District::get(['id','name','bn_name']);
+      @endphp
 
  <div class="modal login fade" id="registerMo" tabindex="-1" role="dialog" aria-labelledby="registerMoLabel"
      aria-hidden="true">
@@ -369,12 +372,6 @@
                                     <div class="alert alert-danger">{{ $errors->first('name') }}</div>
                                 @endif
                              </div>
-
-                             {{-- <div class="mb-3 col-sm-12">
-                                 <select name="profession" class="form-control" id="">
-                                     <option value="">{{__('login_register.profession')}} </option>
-                                 </select>
-                             </div> --}}
                              <div class="mb-3 col-sm-12">
                                  <select name="gender" class="form-control" required>
                                      <option value="">{{__('login_register.gender')}}  *</option>
@@ -391,6 +388,17 @@
                                 @if ($errors->has('email'))
                                     <div class="alert alert-danger">{{ $errors->first('email') }}</div>
                                 @endif
+                            </div>
+                            <div class="mb-3 col-sm-12 district_id">
+                                <select name="district_id" class="form-control single-select2" required>
+                                    <option value="">{{__('login_register.district')}}  *</option>
+                                    @foreach ($districts as $district)
+                                        <option value="{{ $district->id }}">{{ config('app.locale')=='en' ? $district->name : $district->bn_name }}</option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('district_id'))
+                                   <div class="alert alert-danger">{{ $errors->first('district_id') }}</div>
+                               @endif
                             </div>
                              <div class="mb-3 col-sm-12">
                                  <input type="Password" name="password" class="form-control" placeholder="{{__('login_register.password')}}  *" required>

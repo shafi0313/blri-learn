@@ -101,6 +101,7 @@ class AuthController extends Controller
             'email' => $request->email,
             'profession' => $request->profession,
             'gender' => $request->gender,
+            'district_id' => $request->district_id,
             'permission' => 2,
             'remember_token' => Str::random(30),
             'password' => bcrypt($request->password),
@@ -138,6 +139,7 @@ class AuthController extends Controller
             'name' => 'required|max:100',
             'email' => 'required|email|unique:users,email',
             'profession' => 'sometimes',
+            'district_id' => 'required',
             'gender' => 'required',
             'password' => ['required', 'confirmed', Password::min(8)
                                                             // ->letters()
@@ -153,6 +155,7 @@ class AuthController extends Controller
             'email' => $request->email,
             'profession' => $request->profession,
             'gender' => $request->gender,
+            'district_id' => $request->district_id,
             'permission' => '2',
             'remember_token' => Str::random(30),
             'password' => bcrypt($request->password),
@@ -162,7 +165,7 @@ class AuthController extends Controller
 
         try{
             // return redirect()->route('verifyNotification');
-            Alert::success(trans('global.login'));
+            Alert::success(trans('global.success'));
             return redirect()->back();
         }catch(\Exception $ex){
             return redirect()->back();

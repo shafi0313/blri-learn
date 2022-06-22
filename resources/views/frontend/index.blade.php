@@ -66,12 +66,12 @@
             <div class="col-sm-4 py-4 text-center">
                 <i class="fa fa-book-open fa-3x text-white"></i>
                 <h4 class="fw-5 mt-3 mb-0 text-white">{{ $courses->count() }}</h4>
-                <p class="mb-0 text-white">মোট কোর্স</p>
+                <p class="mb-0 text-white">@lang('index.totalCourse')</p>
             </div>
             <div class="col-sm-4 py-4 text-center">
                 <i class="fa fa-running fa-3x mt-2 text-white"></i>
                 <h4 class="fw-5 mt-3 mb-0 text-white">{{ $courses->where('status',0)->count() }}</h4>
-                <p class="mb-0 text-white">চলমান কোর্স</p>
+                <p class="mb-0 text-white">@lang('index.runningCourse')</p>
             </div>
         </div>
     </div>
@@ -110,7 +110,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="section-title text-center">
-                    <h2>ফিচার্ড কোর্সসমূহ</h2>
+                    <h2>@lang('index.featuredCourse')</h2>
                     {{-- <p>We know this in our gut, but what can we do about it? How can we motivate ourselves? One of the most difficult aspects of achieving success is staying motivated over the long haul.</p> --}}
                 </div>
             </div>
@@ -322,9 +322,9 @@
                       <div class="col-lg-8 position-relative">
                           <div class="section-title text-center mb-5">
                               <h2 class="text-white">@lang('index.topCategories')</h2>
-                              <p class="lead text-white">I truly believe Augustine’s words are true and if you look at
+                              {{-- <p class="lead text-white">I truly believe Augustine’s words are true and if you look at
                                   history you know it is true. There are many people in the world with amazing talents
-                                  who realize.</p>
+                                  who realize.</p> --}}
                           </div>
                       </div>
                   </div>

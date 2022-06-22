@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->boolean('gender',80)->nullable();
             $table->string('address')->nullable();
             $table->string('blood')->nullable();
+            $table->string('district_id')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

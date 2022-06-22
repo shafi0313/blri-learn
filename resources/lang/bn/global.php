@@ -1,7 +1,7 @@
 <?php
     return [
         'signIn' => 'সাইন ইন',
-        'register' => 'রেজিস্টার',
+        'register' => 'নিবন্ধন',
         'signUp' => 'সাইন আপ',
         'login' => 'লগইন',
         'logout' => 'লগ-আউট',
@@ -18,4 +18,6 @@
         'userMyCourse' => 'আমার কোর্স',
         'userProfile' => 'প্রোফাইল',
         'userCertificate' => 'সার্টিফিকেট',
+        'success' => 'সম্পন্ন হয়েছে!',
+
     ];

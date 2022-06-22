@@ -31,6 +31,7 @@ class User extends Authenticatable
         'd_o_b',
         'address',
         'blood',
+        'district_id',
         'fa_name',
         'mo_name',
         'nid',

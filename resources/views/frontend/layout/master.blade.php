@@ -28,6 +28,7 @@
 
     {{-- <!-- Template Style --> --}}
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}" />
+    <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}" />
 
   </head>
   <body>
@@ -65,8 +66,13 @@
 
           {{-- <!-- Template Scripts (Do not remove)--> --}}
           <script src="{{ asset('frontend/js/custom.js') }}"></script>
-
+          <script>
+           $(document).ready(function() {
+                $('.single-select2').select2();
+            });
+          </script>
+          @include('sweetalert::alert')
+          @stack('custom_scripts')
         </body>
       </html>
-      @include('sweetalert::alert')
-      @stack('custom_scripts')
+

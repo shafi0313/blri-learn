@@ -378,6 +378,9 @@
 
                 <!--=================================
     Modal login -->
+    @php
+          $districts = App\Models\District::get(['id','name','bn_name']);
+      @endphp
                 <div class="modal login fade" id="courseLoginModal" tabindex="-1" role="dialog"
                     aria-labelledby="loginModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -433,55 +436,54 @@
                                             @csrf
                                             <input type="hidden" name="course_id" value="{{$course->id}}">
                                             <div class="mb-3 col-sm-12">
-                                                <input type="text" name="name" class="form-control"
-                                                    placeholder="Full Name *" required>
+                                                <input type="text" name="name" class="form-control" placeholder="{{__('login_register.name')}} *" required>
                                                 @if ($errors->has('name'))
-                                                <div class="alert alert-danger">{{ $errors->first('name') }}</div>
+                                                    <div class="alert alert-danger">{{ $errors->first('name') }}</div>
                                                 @endif
-                                            </div>
-
-                                            <div class="mb-3 col-sm-12">
-                                                <select name="profession" class="form-control" id="">
-                                                    <option value="">Select Profession</option>
-                                                </select>
-                                            </div>
-                                            <div class="mb-3 col-sm-12">
-                                                <select name="gender" class="form-control" required>
-                                                    <option value="">Select Gender *</option>
-                                                    <option value="1">Male</option>
-                                                    <option value="2">Female</option>
-                                                    <option value="3">Common</option>
-                                                </select>
-                                                @if ($errors->has('gender'))
-                                                <div class="alert alert-danger">{{ $errors->first('gender') }}</div>
+                                             </div>
+                                             <div class="mb-3 col-sm-12">
+                                                 <select name="gender" class="form-control" required>
+                                                     <option value="">{{__('login_register.gender')}}  *</option>
+                                                     <option value="1">{{__('login_register.male')}} </option>
+                                                     <option value="2">{{__('login_register.female')}} </option>
+                                                     <option value="3">{{__('login_register.other')}} </option>
+                                                 </select>
+                                                 @if ($errors->has('gender'))
+                                                    <div class="alert alert-danger">{{ $errors->first('gender') }}</div>
                                                 @endif
-                                            </div>
-                                            <div class="mb-3 col-sm-12">
-                                                <input type="email" name="email" class="form-control"
-                                                    placeholder="Email Address *" required>
+                                             </div>
+                                             <div class="mb-3 col-sm-12">
+                                                <input type="email" name="email" class="form-control" placeholder="{{__('login_register.email')}}  *" required>
                                                 @if ($errors->has('email'))
-                                                <div class="alert alert-danger">{{ $errors->first('email') }}</div>
+                                                    <div class="alert alert-danger">{{ $errors->first('email') }}</div>
                                                 @endif
                                             </div>
-                                            <div class="mb-3 col-sm-12">
-                                                <input type="Password" name="password" class="form-control"
-                                                    placeholder="Password *" required>
-                                                @if ($errors->has('password'))
-                                                <div class="alert alert-danger">{{ $errors->first('password') }}</div>
+                                            <div class="mb-3 col-sm-12 district_id">
+                                                <select name="district_id" class="form-control single-select2" required>
+                                                    <option value="">{{__('login_register.district')}}  *</option>
+                                                    @foreach ($districts as $district)
+                                                        <option value="{{ $district->id }}">{{ config('app.locale')=='en' ? $district->name : $district->bn_name }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @if ($errors->has('district_id'))
+                                                   <div class="alert alert-danger">{{ $errors->first('district_id') }}</div>
+                                               @endif
+                                            </div>
+                                             <div class="mb-3 col-sm-12">
+                                                 <input type="Password" name="password" class="form-control" placeholder="{{__('login_register.password')}}  *" required>
+                                                 @if ($errors->has('password'))
+                                                    <div class="alert alert-danger">{{ $errors->first('password') }}</div>
                                                 @endif
-                                            </div>
-                                            <div class="mb-3 col-sm-12">
-                                                <input type="Password" name="password_confirmation" class="form-control"
-                                                    placeholder="Confirm Password *" required>
-                                                @if ($errors->has('password_confirmation'))
-                                                <div class="alert alert-danger">
-                                                    {{ $errors->first('password_confirmation') }}</div>
+                                             </div>
+                                             <div class="mb-3 col-sm-12">
+                                                 <input type="Password" name="password_confirmation" class="form-control" placeholder="{{__('login_register.rePassword')}}  *" required>
+                                                 @if ($errors->has('password_confirmation'))
+                                                    <div class="alert alert-danger">{{ $errors->first('password_confirmation') }}</div>
                                                 @endif
-                                            </div>
-                                            <div class="col-sm-6 d-grid">
-                                                <button type="submit"
-                                                    class="btn btn-primary">{{ __('global.signUp') }}</button>
-                                            </div>
+                                             </div>
+                                             <div class="col-sm-12 d-grid">
+                                                 <button type="submit" class="btn btn-primary">{{__('login_register.registerBtn')}} </button>
+                                             </div>
                                         </form>
                                     </div>
                                 </div>
