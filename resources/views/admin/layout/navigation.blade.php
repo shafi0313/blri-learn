@@ -68,7 +68,7 @@
                 @endcan
 
                 @can('course-manage')
-                <li class="nav-item {{ activeNav('admin.course.*') }}">
+                <li class="nav-item {{ activeNav('course.*') }}">
                     <a href="{{ route('course.index') }}">
                         <i class="fas fa-book"></i>
                         <p>Course</p>

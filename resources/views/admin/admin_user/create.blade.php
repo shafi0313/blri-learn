@@ -26,15 +26,18 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="exampleFormControlSelect1">Permissions <span class="t_r">*</span></label>
-                                            <select class="form-control" name="permission">
-                                                <option selected value disabled>Select</option>
-                                                {{-- <option>No Login Permission</option> --}}
-                                                <option value="1">Admin</option>
-                                                <option value="3">Teacher</option>
-                                                <option value="2">Student</option>
-                                                {{-- <option value="4">Viewer</option> --}}
-                                            </select>
+                                            <div id="permissionShow">
+                                                <label for="role_permission">Permission <span class="t_r">*</span></label>
+                                                <select name="role_permission" id="" class="form-control @error('role_permission') is-invalid @enderror">
+                                                    <option selected >Select</option>
+                                                    @foreach ($roles as $role)
+                                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('role_permission')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">

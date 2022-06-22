@@ -10,26 +10,36 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
-
+use Spatie\Permission\Models\Role;
 class AdminUserController extends Controller
 {
     public function index()
     {
+        if ($error = $this->authorize('user-manage')) {
+            return $error;
+        }
         $users = User::all();
         return view('admin.admin_user.index', compact('users'));
     }
 
     public function create()
     {
-        return view('admin.admin_user.create');
+        if ($error = $this->authorize('user-add')) {
+            return $error;
+        }
+        $roles = Role::all();
+        return view('admin.admin_user.create', compact('roles'));
     }
 
     public function store(Request $request)
     {
+        if ($error = $this->authorize('user-add')) {
+            return $error;
+        }
         $data = $request->validate([
             'name' => 'required|max:100',
             'designation' => 'nullable',
-            'permission' => 'required',
+            'role_permission' => 'required',
             'phone' => 'required|max:100',
             'email' => 'required|email|unique:users,email',
             'address' => 'required',
@@ -52,16 +62,17 @@ class AdminUserController extends Controller
             $request->image->move('uploads/images/users/',$image_name);
             $data['image'] = $image_name;
         }
+        $data['permission'] = '1';
         $data['password'] = bcrypt($request->password);
         $user = User::create($data);
 
-        if($request->permission){
-            $permissionData = [
+        if($request->role_permission){
+            $permission = [
                 'role_id' =>  $request->permission,
                 'model_type' => "App\Models\User",
                 'model_id' =>  $user->id,
             ];
-            ModelHasRole::create($permissionData);
+            ModelHasRole::create($permission);
         }
 
         try{

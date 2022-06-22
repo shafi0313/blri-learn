@@ -12,6 +12,9 @@ class CourseController extends Controller
 {
     public function index()
     {
+        if ($error = $this->authorize('course-manage')) {
+            return $error;
+        }
         $layout = Layout::where('user_id', auth()->user()->id)->first(['tbl','tbl_bg','tbl_text','create_btn']);
         $courses = Course::whereUser_id(auth()->user()->id)->get();
         return view('admin.course.index', compact('layout','courses'));
@@ -19,6 +22,9 @@ class CourseController extends Controller
 
     public function create()
     {
+        if ($error = $this->authorize('course-add')) {
+            return $error;
+        }
         $user = auth()->user();
         $layout = Layout::where('user_id', $user->id)->first(['create_btn']);
         $courseCats = CourseCat::all();
@@ -27,6 +33,9 @@ class CourseController extends Controller
 
     public function store(Request $request)
     {
+        if ($error = $this->authorize('course-add')) {
+            return $error;
+        }
         $data = $this->validate($request, [
             'course_cat_id' => 'required',
             'name' => 'required',
@@ -34,7 +43,7 @@ class CourseController extends Controller
             'video_des' => 'nullable',
             'skill_level' => 'required',
             'language' => 'required',
-            'instructor' => 'nullable',
+            'status' => 'nullable',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:1000',
         ]);
         if($request->hasFile('image')){
@@ -69,6 +78,9 @@ class CourseController extends Controller
 
     public function destroy($id)
     {
+        if ($error = $this->authorize('course-delete')) {
+            return $error;
+        }
         $course = Course::find($id);
         $path =  public_path('uploads/images/course/'.$course->image);
         try {

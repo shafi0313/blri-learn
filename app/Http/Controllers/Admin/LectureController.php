@@ -14,6 +14,9 @@ class LectureController extends Controller
 {
     public function index()
     {
+        if ($error = $this->authorize('lecture-manage')) {
+            return $error;
+        }
         $user = auth()->user();
         $layout = Layout::where('user_id', $user->id)->first(['tbl','tbl_bg','tbl_text','create_btn']);
         $lectures = Lecture::whereUser_id($user->id)->get();
@@ -22,6 +25,9 @@ class LectureController extends Controller
 
     public function create()
     {
+        if ($error = $this->authorize('lecture-add')) {
+            return $error;
+        }
         $user = auth()->user();
         $layout = Layout::whereUser_id($user->id)->first(['submit_btn']);
         $courses = Course::whereUser_id($user->id)->get();
@@ -30,6 +36,9 @@ class LectureController extends Controller
 
     public function store(Request $request)
     {
+        if ($error = $this->authorize('lecture-add')) {
+            return $error;
+        }
         $data = $this->validate($request, [
             'course_id' => 'required',
             'chapter_id' => 'required',

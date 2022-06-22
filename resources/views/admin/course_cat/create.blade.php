@@ -20,16 +20,25 @@
                         <div class="card-header">
                             <div class="card-title">Add Course Categories</div>
                         </div>
-                        <form action="{{ route('admin.courseCat.store') }}" method="post">
+                        <form action="{{ route('admin.courseCat.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="name">Name </label>
-                                            <input type="text" name="name" class="form-control" value="{{ old('name') }}" placeholder="Enter name">
+                                            <label for="name">Name <span class="t_r">*</span></label>
+                                            <input type="text" name="name" class="form-control" value="{{ old('name') }}" placeholder="Enter name" required>
                                             @if ($errors->has('name'))
                                                 <div class="alert alert-danger">{{ $errors->first('name') }}</div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="image">Icon <span class="t_r">* Format: PNG, Max Size: 500KB</span></label>
+                                            <input type="file" name="image" class="form-control">
+                                            @if ($errors->has('image'))
+                                                <div class="alert alert-danger">{{ $errors->first('image') }}</div>
                                             @endif
                                         </div>
                                     </div>

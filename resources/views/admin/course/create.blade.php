@@ -28,11 +28,10 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="course_cat_id">Course Categories <span class="t_r">*</span></label>
-                                            {{-- <input type="text" course_cat_id="course_cat_id" class="form-control" value="{{ old('course_cat_id') }}" placeholder="Enter course_cat_id" required> --}}
                                             <select name="course_cat_id" class="form-control">
                                                 <option value="">Select</option>
                                                 @foreach ($courseCats as $courseCat)
-                                                <option value="{{ $courseCat->id }}">{{ $courseCat->name }}</option>
+                                                <option value="{{ $courseCat->id }}" @selected(old('course_cat_id') == $courseCat->id)>{{ $courseCat->name }}</option>
                                                 @endforeach
                                             </select>
                                             @if ($errors->has('course_cat_id'))
@@ -56,8 +55,8 @@
                                             <label for="language">Language <span class="t_r">*</span></label>
                                             <select class="form-control" name="language">
                                                 <option selected value disabled>Select</option>
-                                                <option value="Bangle">Bangle</option>
-                                                <option value="English">English</option>
+                                                <option value="Bangle" @selected(old('language') == 'Bangle')>Bangle</option>
+                                                <option value="English" @selected(old('language') == 'English')>English</option>
                                             </select>
                                             @if ($errors->has('language'))
                                                 <div class="alert alert-danger">{{ $errors->first('language') }}</div>
@@ -75,7 +74,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="image">Image <span class="t_r">* (Height: 310px, Width: 580px)</span></label>
                                             <input type="file" name="image" class="form-control">
@@ -86,6 +85,20 @@
                                     </div>
 
                                     <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="status" title="When all lectures are uploaded then edit this course and select completed and click on the update button">Status</label>
+                                            <select class="form-control" name="status" title="When all lectures are uploaded then edit this course and select completed and click on the update button">
+                                                <option selected value disabled>Select</option>
+                                                <option value="0">Uncompleted</option>
+                                                <option value="1">Completed</option>
+                                            </select>
+                                            @if ($errors->has('status'))
+                                                <div class="alert alert-danger">{{ $errors->first('status') }}</div>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="video_dis">Video Description  <span class="t_r">Put youtube iframe code</span></label>
                                             <input type="text" name="video_dis" class="form-control" value="{{ old('video_dis') }}" placeholder="Enter Video Description">

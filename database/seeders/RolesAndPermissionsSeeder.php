@@ -76,6 +76,12 @@ class RolesAndPermissionsSeeder extends Seeder
                 'course-cat-edit',
                 'course-cat-delete'
             ],
+            'course'=>[
+                'course-manage',
+                'course-add',
+                'course-edit',
+                'course-delete'
+            ],
             'lecture'=>[
                 'lecture-manage',
                 'lecture-add',

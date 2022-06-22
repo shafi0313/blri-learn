@@ -47,6 +47,8 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/frontend.php'));
 
             Route::middleware(['web'])
+                // ->prefix('dashboard')
+                // ->as('admin.')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/admin.php'));
         });

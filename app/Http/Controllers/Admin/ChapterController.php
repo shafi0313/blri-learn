@@ -10,6 +10,9 @@ class ChapterController extends Controller
 {
     public function store(Request $request)
     {
+        if ($error = $this->authorize('chapter-add')) {
+            return $error;
+        }
         $data = $this->validate($request, [
             'course_id' => 'required',
             'name' => 'required',

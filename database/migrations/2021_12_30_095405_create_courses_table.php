@@ -24,7 +24,8 @@ class CreateCoursesTable extends Migration
             // $table->string('alt',100);
             $table->string('video_des',255)->nullable();
             $table->text('description')->nullable();
-            $table->text('instructor')->nullable();
+            $table->boolean('status')->comment('0=running,1=complete')->default(0);
+            // $table->text('instructor')->nullable();
             $table->timestamps();
         });
     }

@@ -6,10 +6,11 @@ use App\Models\User;
 use App\Models\Course;
 use App\Models\Slider;
 use App\Models\Chapter;
+use App\Models\Lecture;
+use App\Models\CourseCat;
 use App\Models\CourseReview;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Lecture;
 
 class IndexController extends Controller
 {
@@ -18,7 +19,8 @@ class IndexController extends Controller
         $courses = Course::with(['user','courseReviews'])->get();
         $sliders = Slider::whereStatus(1)->get();
         $student = User::wherePermission(2)->count();
-        return view('frontend.index', compact('courses','sliders','student'));
+        $categories = CourseCat::all();
+        return view('frontend.index', compact('courses','sliders','student','categories'));
     }
 
     public function courseDetails($id)

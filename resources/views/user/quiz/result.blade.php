@@ -29,7 +29,7 @@
                             <div class="row justify-content-center">
                                 <div class="col-md-12">
                                     <div class="table-responsive">
-                                        <table class="table table-{{$layout->tbl}} table-striped table-hover" >
+                                        <table class="table table-striped table-hover" >
                                                 <tr>
                                                     <th>মোট প্রশ্ন: </th>
                                                     <th>১০ টি</th>

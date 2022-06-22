@@ -32,6 +32,7 @@
                                         <tr>
                                             <th>SL</th>
                                             <th>Name</th>
+                                            <th>Icon</th>
                                             <th class="no-sort" width="40px">Action</th>
                                         </tr>
                                     </thead>
@@ -47,6 +48,7 @@
                                         <tr>
                                             <td>{{ $x++ }}</td>
                                             <td>{{ $courseCat->name }}</td>
+                                            <td><img src="{{ asset('uploads/images/course/'.$courseCat->image) }}" alt="" width="100px"></td>
                                             <td>
                                                 <div class="form-button-action">
                                                     <a href="{{ route('admin.courseCat.edit', $courseCat->id) }}" title="Edit" class="btn btn-link btn-primary btn-lg">

@@ -16,6 +16,7 @@ class CreateCourseCatsTable extends Migration
         Schema::create('course_cats', function (Blueprint $table) {
             $table->id();
             $table->string('name',191);
+            $table->string('image',191)->nullable();
             $table->timestamps();
         });
     }

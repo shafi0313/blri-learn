@@ -137,7 +137,7 @@
                  </ul>
                  @auth
                  @php
-                     $dashboard = match(auth()->user()->permission) {
+                     $dashboard = match(user()->permission) {
                         '1' => route('admin.dashboard'),
                         '2' => route('user.dashboard'),
                     };
@@ -152,8 +152,8 @@
                                        <i class="fas fa-user"></i>
                                    </div>
                                    <div>
-                                       <h5>{{ auth()->user()->name }}</h5>
-                                       <p>{{ auth()->user()->email }}</p>
+                                       <h5>{{ user()->name }}</h5>
+                                       <p>{{ user()->email }}</p>
                                    </div>
                                </div>
                            </a>

@@ -35,7 +35,7 @@
                                     <div class="lecture ">
                                         <div class="icon"><i class="fab fa-youtube"></i></div>
                                         <div class="title">{{ $lecture->name }}</div>
-                                        <div class="time">time</div>
+                                        {{-- <div class="time">{{ $lecture->times }}</div> --}}
                                     </div>
                                 </a>
                                 @elseif($lecture->type == 3)

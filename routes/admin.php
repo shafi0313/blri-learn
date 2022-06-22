@@ -25,24 +25,7 @@ Route::get('/t', function () {
 
 });
 
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-// Route::get('/register', [AuthController::class, 'register'])->name('register');
-Route::post('/register-store', [AuthController::class, 'registerStore'])->name('registerStore');
-Route::post('/enrollRegisterStore', [AuthController::class, 'enrollRegisterStore'])->name('enrollRegisterStore');
-Route::get('/register-verify/{token}', [AuthController::class, 'registerVerify'])->name('registerVerify');
-Route::get('/verify-notification', [AuthController::class, 'verifyNotification'])->name('verifyNotification');
 
-Route::post('/verify-resend', [AuthController::class, 'verifyResend'])->name('verifyResend');
-
-Route::get('/forget-password', [AuthController::class, 'forgetPassword'])->name('forgetPassword');
-Route::post('/forget-password-process', [AuthController::class, 'forgetPasswordProcess'])->name('forgetPasswordProcess');
-Route::get('/reset-password/{token}', [AuthController::class, 'resetPassword'])->name('resetPassword');
-Route::post('/reset-password-process', [AuthController::class, 'resetPasswordProcess'])->name('resetPasswordProcess');
-Route::get('/reset-verify-notification', [AuthController::class, 'resetVerifyNotification'])->name('resetVerifyNotification');
-
-Route::post('/enrol-login-process', [AuthController::class, 'enrollLoginProcess'])->name('enrollLoginProcess');
-Route::post('/login-process', [AuthController::class, 'loginProcess'])->name('loginProcess');
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::prefix('my-profile')->group(function(){
     Route::prefix('layout')->group(function(){
@@ -66,6 +49,25 @@ Route::prefix('my-profile')->group(function(){
         Route::post('/update', [ProfileController::class, 'update'])->name('admin.myProfile.profile.update');
     });
 });
+
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+// Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/register-store', [AuthController::class, 'registerStore'])->name('registerStore');
+Route::post('/enrollRegisterStore', [AuthController::class, 'enrollRegisterStore'])->name('enrollRegisterStore');
+Route::get('/register-verify/{token}', [AuthController::class, 'registerVerify'])->name('registerVerify');
+Route::get('/verify-notification', [AuthController::class, 'verifyNotification'])->name('verifyNotification');
+
+Route::post('/verify-resend', [AuthController::class, 'verifyResend'])->name('verifyResend');
+
+Route::get('/forget-password', [AuthController::class, 'forgetPassword'])->name('forgetPassword');
+Route::post('/forget-password-process', [AuthController::class, 'forgetPasswordProcess'])->name('forgetPasswordProcess');
+Route::get('/reset-password/{token}', [AuthController::class, 'resetPassword'])->name('resetPassword');
+Route::post('/reset-password-process', [AuthController::class, 'resetPasswordProcess'])->name('resetPasswordProcess');
+Route::get('/reset-verify-notification', [AuthController::class, 'resetVerifyNotification'])->name('resetVerifyNotification');
+
+Route::post('/enrol-login-process', [AuthController::class, 'enrollLoginProcess'])->name('enrollLoginProcess');
+Route::post('/login-process', [AuthController::class, 'loginProcess'])->name('loginProcess');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth','admin','permission:access-dashboard'])->prefix('admin')->group(function(){
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('admin.dashboard');
@@ -95,9 +97,27 @@ Route::middleware(['auth','admin','permission:access-dashboard'])->prefix('admin
     // Route::post('web-backup/setpass', 'WebBackupController@setPass')->name('backup.setPass');
     // Route::get('web-backup/', 'WebBackupController@index')->name('backup.index');
 
-    Route::post('role/permission/{role}', [RoleController::class, 'assignPermission'])->name('role.permission');
-    Route::resource('role', RoleController::class);
-    Route::resource('permission', PermissionController::class);
+    Route::post('role/permission/{role}', [RoleController::class, 'assignPermission'])->name('admin.role.permission');
+    Route::resource('role', RoleController::class, [
+        'names'=>[
+            'index'=> 'admin.role.index',
+            'create'=> 'admin.role.create',
+            'store'=> 'admin.role.store',
+            'edit'=> 'admin.role.edit',
+            'update'=> 'admin.role.update',
+            'destroy'=> 'admin.role.destroy',
+        ]
+    ]);
+    Route::resource('permission', PermissionController::class, [
+        'names'=>[
+            'index'=> 'admin.permission.index',
+            'create'=> 'admin.permission.create',
+            'store'=> 'admin.permission.store',
+            'edit'=> 'admin.permission.edit',
+            'update'=> 'admin.permission.update',
+            'destroy'=> 'admin.permission.destroy',
+        ]
+    ]);
 
 
     Route::prefix('admin-user')->group(function(){

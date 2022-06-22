@@ -27,7 +27,7 @@
                         </div> --}}
                         <style>
                             .certificate {
-                                width: 1113px;
+                                max-width: 1113px;
                                 border: 2px solid rgb(184, 182, 182);
                                 text-align: center;
                             }

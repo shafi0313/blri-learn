@@ -75,9 +75,12 @@ class QuizController extends Controller
         //     }
         // }
 
-        if(AnsSheet::whereUser_id(auth()->user()->id)->whereCourse_id($request->course_id)->first()->times > 3){
-            Alert::info('You have tried three times');
-            return back();
+        if(AnsSheet::whereUser_id(user()->id)->whereCourse_id($request->course_id)->first()){
+            $time = AnsSheet::whereUser_id(user()->id)->whereCourse_id($request->course_id)->first()->times;
+            if($time && $time > 3){
+                Alert::info('You have tried three times');
+                return back();
+            }
         }
 
         $quizzes = Quiz::with(['options' => function ($q) {

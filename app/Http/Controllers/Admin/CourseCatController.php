@@ -11,6 +11,9 @@ class CourseCatController extends Controller
 {
     public function index()
     {
+        if ($error = $this->authorize('course-cat-manage')) {
+            return $error;
+        }
         $layout = Layout::where('user_id', auth()->user()->id)->first(['tbl','tbl_bg','tbl_text','create_btn']);
         $courseCats = CourseCat::all();
         return view('admin.course_cat.index', compact('layout','courseCats'));
@@ -18,15 +21,24 @@ class CourseCatController extends Controller
 
     public function create()
     {
+        if ($error = $this->authorize('course-cat-add')) {
+            return $error;
+        }
         $layout = Layout::where('user_id', auth()->user()->id)->first(['submit_btn']);
         return view('admin.course_cat.create', compact('layout'));
     }
 
     public function store(Request $request)
     {
+        if ($error = $this->authorize('course-cat-add')) {
+            return $error;
+        }
         $data = $request->validate([
-            'name' => 'sometimes|max:191',
+            'name' => 'required|max:191',
+            'image' => 'nullable|image|mimes:png|max:500',
         ]);
+
+        $data['image'] = imageStore($request, 'course_cat', 'uploads/images/course/');
 
         try {
             CourseCat::create($data);
@@ -41,6 +53,9 @@ class CourseCatController extends Controller
 
     public function edit($id)
     {
+        if ($error = $this->authorize('course-cat-edit')) {
+            return $error;
+        }
         $layout = Layout::where('user_id', auth()->user()->id)->first(['submit_btn']);
         $slider = CourseCat::find($id);
         return view('admin.course_cat.edit', compact('layout','slider'));
@@ -48,6 +63,9 @@ class CourseCatController extends Controller
 
     public function update(Request $request, $id)
     {
+        if ($error = $this->authorize('course-cat-edit')) {
+            return $error;
+        }
         $data = $this->validate($request, [
             'title' => 'sometimes|max:80',
             'text' => 'sometimes',
@@ -81,6 +99,9 @@ class CourseCatController extends Controller
 
     public function destroy($id)
     {
+        if ($error = $this->authorize('chapter-delete')) {
+            return $error;
+        }
         $slider = Slider::find($id);
         $path =  public_path('uploads/images/slider/'.$slider->image);
         if(file_exists($path)){

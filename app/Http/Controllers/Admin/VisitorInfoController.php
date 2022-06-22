@@ -14,6 +14,9 @@ class VisitorInfoController extends Controller
 {
     public function index()
     {
+        if ($error = $this->authorize('visitor-manage')) {
+            return $error;
+        }
         $visitors = VisitorInfo::all();
         $layout = Layout::where('user_id', Auth::user()->id)->first(['tbl','tbl_bg','tbl_text','create_btn']);
         return view('admin.visitor_info.index', compact('visitors','layout'));
@@ -21,6 +24,9 @@ class VisitorInfoController extends Controller
 
     public function destroySelected(Request $request)
     {
+        if ($error = $this->authorize('visitor-delete')) {
+            return $error;
+        }
         try {
             VisitorInfo::whereIn('id', $request->id)->delete();
             Alert::success('Visitor Information Deleted');
@@ -31,6 +37,9 @@ class VisitorInfoController extends Controller
     }
     public function destroyAll()
     {
+        if ($error = $this->authorize('visitor-delete')) {
+            return $error;
+        }
         try {
             DB::table('visitor_infos')->delete();
             Alert::success('All Visitor Information Deleted');

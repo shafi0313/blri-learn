@@ -17,6 +17,9 @@ class SliderController extends Controller
      */
     public function index()
     {
+        if ($error = $this->authorize('slider-manage')) {
+            return $error;
+        }
         $layout = Layout::where('user_id', auth()->user()->id)->first(['tbl','tbl_bg','tbl_text','create_btn']);
         $sliders = Slider::all();
         return view('admin.slider.index', compact('layout','sliders'));
@@ -29,6 +32,9 @@ class SliderController extends Controller
      */
     public function create()
     {
+        if ($error = $this->authorize('slider-add')) {
+            return $error;
+        }
         $layout = Layout::where('user_id', auth()->user()->id)->first(['submit_btn']);
         return view('admin.slider.create', compact('layout'));
     }
@@ -41,6 +47,9 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
+        if ($error = $this->authorize('slider-add')) {
+            return $error;
+        }
         $data = $this->validate($request, [
             'title' => 'sometimes|max:80',
             'text' => 'sometimes',
@@ -70,6 +79,9 @@ class SliderController extends Controller
 
     public function edit($id)
     {
+        if ($error = $this->authorize('slider-edit')) {
+            return $error;
+        }
         $layout = Layout::where('user_id', auth()->user()->id)->first(['submit_btn']);
         $slider = Slider::find($id);
         return view('admin.slider.edit', compact('layout','slider'));
@@ -77,6 +89,9 @@ class SliderController extends Controller
 
     public function update(Request $request, $id)
     {
+        if ($error = $this->authorize('slider-edit')) {
+            return $error;
+        }
         $data = $this->validate($request, [
             'title' => 'sometimes|max:80',
             'text' => 'sometimes',
@@ -110,6 +125,9 @@ class SliderController extends Controller
 
     public function destroy($id)
     {
+        if ($error = $this->authorize('slider-delete')) {
+            return $error;
+        }
         $slider = Slider::find($id);
         $path =  public_path('uploads/images/slider/'.$slider->image);
         if(file_exists($path)){

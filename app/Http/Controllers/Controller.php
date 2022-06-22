@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Controller extends BaseController
 {
@@ -15,7 +16,9 @@ class Controller extends BaseController
         $error_message = 'Don\'t have permission to perform this action',
     ) {
         if (!user()->can($permission)) {
-            return redirect()->back()->withInput()->withErrors($error_message);
+            Alert::error($error_message);
+            return redirect()->back()->withInput();
+            // return redirect()->back()->withInput()->withErrors($error_message);
         }
     }
 }
