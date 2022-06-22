@@ -28,28 +28,37 @@
                         <div class="card-body">
                             @foreach ($chapters as $chapter)
                             <div class="chapter_div">
-                                <div class="chapter">{{ $chapter->name }}</div>
+                                <p class="chapter">{{ $chapter->name }}</p>
                                 @foreach ($chapter->lectures as $lecture)
                                 @if ($lecture->type == 1)
+
                                 <a href="{{ route('admin.lecture.lecturePlay',[$lecture->course_id, $lecture->id]) }}">
                                     <div class="lecture">
-                                        <div class="icon"><i class="fas fa-file"></i></div>
-                                        <div class="title">{{ $lecture->name }}</div>
+                                        <p class="title"><i class="fas fa-file icon"></i> {{ $lecture->name }}</p>
+                                        <p class="timeIcon">
+                                            <i class="{{$lecture->enroll->status==0?'far fa-circle':'far fa-check-circle tIconD'}} tIcon"></i> </span>
+                                        </p>
                                     </div>
                                 </a>
                                 @elseif ($lecture->type == 2)
                                 <a href="{{ route('admin.lecture.lecturePlay',[$lecture->course_id, $lecture->id]) }}">
-                                    <div class="lecture ">
-                                        <div class="icon"><i class="fab fa-youtube"></i></div>
-                                        <div class="title">{{ $lecture->name }}</div>
-                                        <div class="time">{{ $lecture->time }}</div>
+                                    <div class="lecture">
+                                        <p class="title"><i class="icon fab fa-youtube"></i>{{ $lecture->name }}</p>
+                                        <p class="timeIcon">
+                                            <span class="time riT">{{ $lecture->time }}
+                                            <i class="{{$lecture->enroll->status==0?'far fa-circle':'far fa-check-circle tIconD'}} tIcon"></i> </span>
+                                        </p>
+
                                     </div>
                                 </a>
                                 @else
                                 <a href="{{ route('admin.lecture.lecturePlay',[$lecture->course_id, $lecture->id]) }}">
-                                    <div class="lecture ">
-                                        <div class="icon"><i class="fas fa-file-pdf"></i></div>
-                                        <div class="title">{{ $lecture->name }}</div>
+                                    <div class="lecture">
+                                        <p class="title"><i class="fas fa-file-pdf icon"></i> {{ $lecture->name }}
+                                        </p>
+                                        <p class="timeIcon">
+                                            <i class="{{$lecture->enroll->status==0?'far fa-circle':'far fa-check-circle tIconD'}} tIcon"></i> </span>
+                                        </p>
                                     </div>
                                 </a>
                                 @endif

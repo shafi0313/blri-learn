@@ -1,3 +1,9 @@
+@media(min-width:991px){
+    .sidebar {width:350px !important}
+    .content {margin-left:0;padding-left:265px;width:100%;}
+  }
+
+
 .chapter_div {
     margin: 25px 0;
     background-color: #fff;
@@ -7,6 +13,7 @@
 }
 .chapter {
     /* min-height: 200px; */
+    margin-bottom: 0 !important;
     line-height: 1;
     padding: 10px;
     font-weight: bold;
@@ -44,7 +51,7 @@
     margin-right: 5px;
 }
 .title {
-    width: 180px;
+    width: 297px;
     display: inline-block;
     font-weight: 400;
     color: black;
@@ -95,6 +102,13 @@
 background: linear-gradient(90deg, rgba(107,110,255,1) 0%, rgba(233,233,233,1) 100%); */
 }
 
-/* .sidebar {
+.sidebar {
     width: 370px !important;
-} */
+}
+@media screen and (max-width: 991px){
+.sidebar {
+    transform: translate3d(-369px,0,0)!important;
+}}
+.logo-header{
+    width: 370px;
+}

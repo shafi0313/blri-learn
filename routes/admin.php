@@ -106,6 +106,7 @@ Route::middleware(['auth','admin','permission:access-dashboard'])->prefix('admin
             'store'=> 'admin.role.store',
             'edit'=> 'admin.role.edit',
             'update'=> 'admin.role.update',
+            'show'=> 'admin.role.show',
             'destroy'=> 'admin.role.destroy',
         ]
     ]);

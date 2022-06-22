@@ -29,6 +29,15 @@
                         <form action="{{ route('lecture.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -80,6 +89,16 @@
                                     </div>
 
                                     <div class="col-md-5 video_div" style="display: none">
+                                        <div class="form-group">
+                                            <label for="time">Time </label>
+                                            <input type="text" name="time" class="form-control video" placeholder="1:30">
+                                            @if ($errors->has('time'))
+                                                <div class="alert alert-danger">{{ $errors->first('time') }}</div>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 video_div" style="display: none">
                                         <div class="form-group">
                                             <label for="text">Video link </label>
                                             <input type="text" name="text" class="form-control" id="video">

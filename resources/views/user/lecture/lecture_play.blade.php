@@ -5,47 +5,9 @@
 <link rel="stylesheet" href="{{ asset('backend/css/lecture_play.css') }}">
 
 @php $user = auth()->user(); @endphp
-<div class="sidebar"  data-background-color="{{App\Models\Layout::where('user_id',$user->id)->first()->sidebar ?? 'white'}}">
+<div class="sidebar"  data-background-color="white">
     <div class="sidebar-wrapper scrollbar scrollbar-inner">
         <div class="sidebar-content">
-            {{-- <div class="user">
-                @if ($user->email == devAdminEmail())
-                    @php $profileImg =  asset('uploads/images/users/shafi.jpg') @endphp
-                @elseif($user->images == null)
-                    @php $profileImg =  asset('uploads/images/users/company_logo.jpg') @endphp
-                @else
-                    @php $profileImg =  asset('uploads/images/users/'.$user->image) @endphp
-                @endif
-                <div class="avatar-sm float-left mr-2">
-                    <img src="{{$profileImg}}" alt="..." class="avatar-img rounded-circle">
-                </div>
-
-                <div class="info">
-                    <a data-toggle="collapse" href="#myProfile" aria-expanded="true">
-                        <span>
-                            {{ $user->name }}
-                            <span class="user-level">{{ $user->designation }}</span>
-                            <span class="caret"></span>
-                        </span>
-                    </a>
-                    <div class="clearfix"></div>
-
-                    <div class="collapse {{$m=='myProfile'?'show':''}} in" id="myProfile">
-                        <ul class="nav">
-                            <li class="{{$sm=='profile'?'activeSub':''}}">
-                                <a href="{{ route('admin.myProfile.profile.index') }}">
-                                    <span class="link-collapse">My Profile</span>
-                                </a>
-                            </li>
-                            <li class="{{$sm=='layout'?'activeSub':''}}">
-                                <a href="{{ route('admin.layout.create') }}">
-                                    <span class="link-collapse">Layout</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div> --}}
             <ul class="nav nav-primary">
                 <li class="nav-item {{$m=='dashboard'?'active':''}}">
                     <a href="{{ route('user.dashboard') }}">
@@ -108,12 +70,6 @@
                         </div>
                     </a>
                 </div>
-                {{-- <li class="nav-item {{$m=='visitor'?'active':''}}">
-                    <a href="{{ route('admin.visitorInfo.index') }}">
-                        <i class="fas fa-user-secret"></i>
-                        <p>Visitor Info</p>
-                    </a>
-                </li> --}}
                 <li class="nav-item">
                     <a href="{{ route('logout') }}">
                         <i class="fas fa-sign-out-alt"></i>
@@ -126,21 +82,10 @@
 </div>
 
 
-
-
 <div class="main-panel">
     <div class="content">
-        <div class="page-inner">
-            <div class="page-header">
-                <ul class="breadcrumbs">
-                    <li class="nav-home"><a href="{{ route('user.dashboard') }}"><i class="flaticon-home"></i></a></li>
-                    <li class="separator"><i class="flaticon-right-arrow"></i></li>
-                    <li class="nav-item">Lecture</li>
-                </ul>
-            </div>
-<script src="https://cdn.jsdelivr.net/npm/pdfobject@2.2.7/pdfobject.min.js"></script>
             <div class="row justify-content-end">
-                <div class="col-md-12">
+                <div class="col-md-11">
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex align-items-center">

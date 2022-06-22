@@ -25,28 +25,37 @@
 
                 @foreach ($chapters as $chapter)
                 <div class="chapter_div">
-                    <div class="chapter">{{ $chapter->name }}</div>
+                    <p class="chapter">{{ $chapter->name }}</p>
                     @foreach ($chapter->lectures as $lecture)
                     @if ($lecture->type == 1)
+
                     <a href="{{ route('admin.lecture.lecturePlay',[$lecture->course_id, $lecture->id]) }}">
                         <div class="lecture {{$lecturePlay->id==$lecture->id?'lec_active':''}}">
-                            <div class="icon"><i class="fas fa-file"></i></div>
-                            <div class="title">{{ $lecture->name }}</div>
+                            <p class="title"><i class="fas fa-file icon"></i> {{ $lecture->name }}</p>
+                            <p class="timeIcon">
+                                <i class="{{$lecture->enroll->status==0?'far fa-circle':'far fa-check-circle tIconD'}} tIcon"></i> </span>
+                            </p>
                         </div>
                     </a>
                     @elseif ($lecture->type == 2)
                     <a href="{{ route('admin.lecture.lecturePlay',[$lecture->course_id, $lecture->id]) }}">
                         <div class="lecture {{$lecturePlay->id==$lecture->id?'lec_active':''}}">
-                            <div class="icon"><i class="fab fa-youtube"></i></div>
-                            <div class="title">{{ $lecture->name }}</div>
-                            <div class="time">{{ $lecture->time }}</div>
+                            <p class="title"><i class="icon fab fa-youtube"></i>{{ $lecture->name }}</p>
+                            <p class="timeIcon">
+                                <span class="time riT">{{ $lecture->time }}
+                                <i class="{{$lecture->enroll->status==0?'far fa-circle':'far fa-check-circle tIconD'}} tIcon"></i> </span>
+                            </p>
+
                         </div>
                     </a>
                     @else
                     <a href="{{ route('admin.lecture.lecturePlay',[$lecture->course_id, $lecture->id]) }}">
                         <div class="lecture {{$lecturePlay->id==$lecture->id?'lec_active':''}}">
-                            <div class="icon"><i class="fas fa-file-pdf"></i></div>
-                            <div class="title">{{ $lecture->name }}</div>
+                            <p class="title"><i class="fas fa-file-pdf icon"></i> {{ $lecture->name }}
+                            </p>
+                            <p class="timeIcon">
+                                <i class="{{$lecture->enroll->status==0?'far fa-circle':'far fa-check-circle tIconD'}} tIcon"></i> </span>
+                            </p>
                         </div>
                     </a>
                     @endif
@@ -54,15 +63,6 @@
                 </div>
                 @endforeach
 
-                {{-- <li class="nav-item {{$m=='visitor'?'active':''}}">
-                    <a href="{{ route('admin.visitorInfo.index') }}">
-                        <i class="fas fa-user-secret"></i>
-                        <p>Visitor Info</p>
-                    </a>
-                </li> --}}
-                <br>
-                <br>
-                <br>
                 <li class="nav-item">
                     <a href="{{ route('logout') }}">
                         <i class="fas fa-sign-out-alt"></i>
@@ -78,13 +78,6 @@
 <div class="main-panel">
     <div class="content">
         <div class="page-inner">
-            <div class="page-header">
-                <ul class="breadcrumbs">
-                    <li class="nav-home"><a href="{{ route('admin.dashboard') }}"><i class="flaticon-home"></i></a></li>
-                    <li class="separator"><i class="flaticon-right-arrow"></i></li>
-                    <li class="nav-item">Lecture</li>
-                </ul>
-            </div>
             <div class="row justify-content-end">
                 <div class="col-md-11">
                     <div class="card">

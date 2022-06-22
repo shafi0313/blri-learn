@@ -45,6 +45,7 @@ class LectureController extends Controller
             'type' => 'required',
             'name' => 'required',
             'text' => 'required',
+            'time' => 'required_if:type,==,2|required',
         ]);
         $data['user_id'] = auth()->user()->id;
         $data['type'] = $request->type;

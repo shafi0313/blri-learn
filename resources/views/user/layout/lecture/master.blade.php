@@ -39,11 +39,11 @@
     <link rel="stylesheet" href="{{ asset('backend/css/demo.css') }}">
 </head>
 
-<body data-background-color="{{$layout->background ?? 'bg1'}}">
+<body data-background-color="bg1">
     <div class="wrapper">
         <div class="main-header">
             <!-- Logo Header -->
-            <div class="logo-header" data-background-color="{{$layout->logo_header ?? 'blue'}}">
+            <div class="logo-header" data-background-color="purple2">
                 <a href="{{ route('index') }}" class="logo"> <h4 class="display:4 text-light" style="margin-top: 20px">BLRI e-Learning</h4>
 				</a>
                 {{-- <a href="index.html" class="logo">
@@ -76,93 +76,7 @@
 
         @yield('content')
 
-        <!-- Custom template | don't include it in your project! -->
-        {{-- <div class="custom-template">
-            <div class="title">Settings</div>
-            <div class="custom-content">
-                <div class="switcher">
-                    <div class="switch-block">
-                        <h4>Logo Header</h4>
-                        <form action="{{ route('admin.logoHeaderStore') }}" method="post">
-                            @csrf
-                            <input type="hidden" name="user_id" value="{{$user->id}}">
-                            <div class="btnSwitch">
-                                <button name="logo_header" value="dark" class="{{$layout->logo_header=='dark'?'selected':''}} changeLogoHeaderColor" data-color="dark"></button>
-                                <button name="logo_header" value="blue" class="{{$layout->logo_header=='blue'?'selected':''}} changeLogoHeaderColor" data-color="blue"></button>
-                                <button name="logo_header" value="purple" class="{{$layout->logo_header=='purple'?'selected':''}} changeLogoHeaderColor" data-color="purple"></button>
-                                <button name="logo_header" value="light-blue" class="{{$layout->logo_header=='light-blue'?'selected':''}} changeLogoHeaderColor" data-color="light-blue"></button>
-                                <button name="logo_header" value="green" class="{{$layout->logo_header=='green'?'selected':''}} changeLogoHeaderColor" data-color="green"></button>
-                                <button name="logo_header" value="orange" class="{{$layout->logo_header=='orange'?'selected':''}} changeLogoHeaderColor" data-color="orange"></button>
-                                <button name="logo_header" value="red" class="{{$layout->logo_header=='red'?'selected':''}} changeLogoHeaderColor" data-color="red"></button>
-                                <button name="logo_header" value="white" class="{{$layout->logo_header=='white'?'selected':''}} changeLogoHeaderColor" data-color="white"></button>
-                                <br />
-                                <button name="logo_header" value="dark2" class="{{$layout->logo_header=='dark2'?'selected':''}} changeLogoHeaderColor" data-color="dark2"></button>
-                                <button name="logo_header" value="blue2" class="{{$layout->logo_header=='blue2'?'selected':''}} changeLogoHeaderColor" data-color="blue2"></button>
-                                <button name="logo_header" value="purple2" class="{{$layout->logo_header=='purple2'?'selected':''}} changeLogoHeaderColor" data-color="purple2"></button>
-                                <button name="logo_header" value="light-blue2" class="{{$layout->logo_header=='light-blue2'?'selected':''}} changeLogoHeaderColor" data-color="light-blue2"></button>
-                                <button name="logo_header" value="green2" class="{{$layout->logo_header=='green2'?'selected':''}} changeLogoHeaderColor" data-color="green2"></button>
-                                <button name="logo_header" value="orange2" class="{{$layout->logo_header=='orange2'?'selected':''}} changeLogoHeaderColor" data-color="orange2"></button>
-                                <button name="logo_header" value="red2" class="{{$layout->logo_header=='red2'?'selected':''}} changeLogoHeaderColor" data-color="red2"></button>
-                            </div>
-                        </form>
 
-                    </div>
-                    <div class="switch-block">
-                        <h4>Navbar Header</h4>
-                        <form action="{{route('admin.navbarHeaderStore')}}" method="post">
-                            @csrf
-                            <input type="hidden" name="user_id" value="{{$user->id}}">
-                            <div class="btnSwitch">
-                                <button name="navbar_header" value="dark" class="{{$layout->navbar_header=='dark'?'selected':''}} changeTopBarColor" data-color="dark"></button>
-                                <button name="navbar_header" value="blue" class="{{$layout->navbar_header=='blue'?'selected':''}} changeTopBarColor" data-color="blue"></button>
-                                <button name="navbar_header" value="purple" class="{{$layout->navbar_header=='purple'?'selected':''}} changeTopBarColor" data-color="purple"></button>
-                                <button name="navbar_header" value="light-blue" class="{{$layout->navbar_header=='light-blue'?'selected':''}} changeTopBarColor" data-color="light-blue"></button>
-                                <button name="navbar_header" value="orange" class="{{$layout->navbar_header=='orange'?'selected':''}} changeTopBarColor" data-color="orange"></button>
-                                <button name="navbar_header" value="red" class="{{$layout->navbar_header=='red'?'selected':''}} changeTopBarColor" data-color="red"></button>
-                                <button name="navbar_header" value="white" class="{{$layout->navbar_header=='white'?'selected':''}} changeTopBarColor" data-color="white"></button>
-                                <br />
-                                <button name="navbar_header" value="dark2" class="{{$layout->navbar_header=='dark2'?'selected':''}} changeTopBarColor" data-color="dark2"></button>
-                                <button name="navbar_header" value="blue2" class="{{$layout->navbar_header=='blue2'?'selected':''}} changeTopBarColor" data-color="blue2"></button>
-                                <button name="navbar_header" value="purple2" class="{{$layout->navbar_header=='purple2'?'selected':''}} changeTopBarColor" data-color="purple2"></button>
-                                <button name="navbar_header" value="light-blue2" class="{{$layout->navbar_header=='light-blue2'?'selected':''}} changeTopBarColor" data-color="light-blue2"></button>
-                                <button name="navbar_header" value="green2" class="{{$layout->navbar_header=='green2'?'selected':''}} changeTopBarColor" data-color="green2"></button>
-                                <button name="navbar_header" value="orange2" class="{{$layout->navbar_header=='orange2'?'selected':''}} changeTopBarColor" data-color="orange2"></button>
-                                <button name="navbar_header" value="red2" class="{{$layout->navbar_header=='red2'?'selected':''}} changeTopBarColor" data-color="red2"></button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="switch-block">
-                        <h4>Sidebar</h4>
-                        <form action="{{route('admin.sidebarStore')}}" method="post">
-                            @csrf
-                            <input type="hidden" name="user_id" value="{{$user->id}}">
-                            <div class="btnSwitch">
-                                <button name="sidebar" value="white" class="{{$layout->sidebar=='white'?'selected':''}} changeSideBarColor" data-color="white"></button>
-                                <button name="sidebar" value="dark" class="{{$layout->sidebar=='dark'?'selected':''}} changeSideBarColor" data-color="dark"></button>
-                                <button name="sidebar" value="dark2" class="{{$layout->sidebar=='dark2'?'selected':''}} changeSideBarColor" data-color="dark2"></button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="switch-block">
-                        <h4>Background</h4>
-                        <form action="{{route('admin.backgroundStore')}}" method="post">
-                            @csrf
-                            <input type="hidden" name="user_id" value="{{$user->id}}">
-                            <div class="btnSwitch">
-                                <button name="background" value="bg2" class="{{$layout->sidebar=='bg2'?'selected':''}} changeBackgroundColor" data-color="bg2"></button>
-                                <button name="background" value="bg1"  class="{{$layout->sidebar=='bg1'?'selected':''}} changeBackgroundColor" data-color="bg1"></button>
-                                <button name="background" value="bg3" class="{{$layout->sidebar=='bg3'?'selected':''}} changeBackgroundColor" data-color="bg3"></button>
-                                <button name="background" value="dark" class="{{$layout->sidebar=='dark'?'selected':''}} changeBackgroundColor" data-color="dark"></button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="custom-toggle">
-                <i class="flaticon-settings"></i>
-            </div>
-        </div> --}}
-        <!-- End Custom template -->
     </div>
     <!--   Core JS Files   -->
     <script src="{{ asset('backend/js/core/jquery.3.2.1.min.js') }}"></script>
@@ -193,11 +107,6 @@
 
     <!-- Atlantis JS -->
     <script src="{{ asset('backend/js/atlantis.min.js') }}"></script>
-
-
-    {{-- Atlantis DEMO methods, don't include it in your project! --}}
-    {{-- <script src="{{ asset('backend/js/setting-demo.js') }}"></script>
-    <script src="{{ asset('backend/js/demo.js') }}"></script> --}}
 
     <script>
         $("form").on('submit', function(e){
