@@ -89,7 +89,10 @@ class QuizController extends Controller
             ->inRandomOrder()
             ->take(10)
             ->get();
-
+        if($quizzes->count() < 1){
+            Alert::info('No Data Found');
+            return back();
+        }
         return view('user.quiz.index', compact('quizzes'));
     }
 

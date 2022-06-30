@@ -88,7 +88,7 @@
                 @can('quiz-manage')
                 <li class="nav-item {{ activeNav('admin.quiz.*') }}">
                     <a href="{{ route('admin.quiz.course') }}">
-                        <i class="fas fa-book-open"></i>
+                        <i class="fa-solid fa-clipboard-question"></i>
                         <p>Quiz</p>
                     </a>
                 </li>
@@ -97,7 +97,7 @@
                 @can('student-history-manage')
                 <li class="nav-item {{ activeNav('admin.studentHistory.*') }}">
                     <a href="{{ route('admin.studentHistory.index') }}">
-                        <i class="fas fa-book-open"></i>
+                        <i class="fa-solid fa-users"></i>
                         <p>Student History</p>
                     </a>
                 </li>
@@ -143,68 +143,6 @@
                     </a>
                 </li>
 
-
-{{--
-                <li class="nav-item">
-                    <a href="widgets.html">
-                        <i class="fas fa-desktop"></i>
-                        <p>Widgets</p>
-                        <span class="badge badge-success">4</span>
-                    </a>
-                </li> --}}
-
-
-                {{-- <li class="nav-item">
-                    <a data-toggle="collapse" href="#submenu">
-                        <i class="fas fa-bars"></i>
-                        <p>Menu Levels</p>
-                        <span class="caret"></span>
-                    </a>
-                    <div class="collapse" id="submenu">
-                        <ul class="nav nav-collapse">
-                            <li>
-                                <a data-toggle="collapse" href="#subnav1">
-                                    <span class="sub-item">Level 1</span>
-                                    <span class="caret"></span>
-                                </a>
-                                <div class="collapse" id="subnav1">
-                                    <ul class="nav nav-collapse subnav">
-                                        <li>
-                                            <a href="#">
-                                                <span class="sub-item">Level 2</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="sub-item">Level 2</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li>
-                                <a data-toggle="collapse" href="#subnav2">
-                                    <span class="sub-item">Level 1</span>
-                                    <span class="caret"></span>
-                                </a>
-                                <div class="collapse" id="subnav2">
-                                    <ul class="nav nav-collapse subnav">
-                                        <li>
-                                            <a href="#">
-                                                <span class="sub-item">Level 2</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="sub-item">Level 1</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li> --}}
             </ul>
         </div>
     </div>
