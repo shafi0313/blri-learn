@@ -141,7 +141,7 @@
   .navbar {
     .nav-item.active {
       .nav-link {
-        color: $gray-7;        
+        color: $gray-7;
       }
     }
     .navbar-nav {
@@ -596,7 +596,7 @@
           right:0;
           left: inherit;
           border-radius: 0;
-          
+
           li {
             margin-right: 0;
             padding: 15px 40px 15px 15px;
@@ -866,7 +866,7 @@
           }
         }
       }
-    }    
+    }
   }
   .woo-action {
     ul {
@@ -999,7 +999,7 @@
 
   .header .navbar .dropdown-menu.dropdown-menu-lg {
     min-width: 600px;
-  }  
+  }
 }
 
 @media (max-width:1800px) {
@@ -1034,7 +1034,7 @@
     width: 120px !important;
   }
 
-  
+
 
   .navbar {
     .dropdown {
@@ -1050,7 +1050,7 @@
 
     }
 
-  } 
+  }
 
 }
 
@@ -1065,16 +1065,20 @@
       }
     }
     .search-category {
-      margin-right: 20px;
-      .course-category {
-        display: none;
+        margin-right: 20px;
+        .form-control {
+          width: 230px;
+        }
       }
-      .form-control {
-        width: 230px;
-      }
-    }
-
-   
+    // .search-category {
+    //   margin-right: 20px;
+    //   .course-category {
+    //     display: none;
+    //   }
+    //   .form-control {
+    //     width: 230px;
+    //   }
+    // }
   }
 
   .course-category .select2-container {
@@ -1102,7 +1106,7 @@
         max-height: 350px;
         overflow-x: hidden;
         overflow-y: scroll;
-        
+
       }
 
     }
@@ -1200,7 +1204,7 @@
       img {
         height: 40px;
       }
-    }    
+    }
   }
 
   .header.default-transparent {
@@ -1218,7 +1222,7 @@
       padding: 15px 0px;
     }
   }
-  
+
   /* Header Style 01 */
   .header {
     .navbar {
@@ -1228,7 +1232,7 @@
       .navbar-nav {
         .nav-item {
           margin-right: 0;
-          border-bottom: 1px solid $gray-6;        
+          border-bottom: 1px solid $gray-6;
         }
 
         .nav-link {
@@ -1240,7 +1244,7 @@
 
     }
 
-  } 
+  }
 
   /* Header Style 02 */
   .header.header-style-02 {
@@ -1338,7 +1342,7 @@
       .woo-action {
         margin-right: 30px;
         ul {
-          li > {    
+          li > {
             line-height: 1;
             a {
               font-size: 0px;
@@ -1360,9 +1364,9 @@
               }
              }
           }
-  
+
         }
-  
+
       }
 
     }

@@ -7,6 +7,7 @@ use App\Http\Controllers\User\MyCourseController;
 use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\User\MyProfileController;
 use App\Http\Controllers\User\CertificateController;
+use App\Http\Controllers\User\CourseByCatController;
 use App\Http\Controllers\User\CourseEnrollController;
 
 /*
@@ -79,6 +80,7 @@ Route::middleware(['auth','user'])->prefix('user')->group(function(){
         Route::get('/edit', 'edit')->name('user.myProfile.edit');
         Route::post('/update', 'update')->name('user.myProfile.update');
     });
+   
 
     // Route::get('/lecture-play/{course_id}/{lecture_id}', [LectureController::class, 'lecturePlay'])->name('user.lecture.lecturePlay');
     // Route::post('/lectureComplete', [LectureController::class, 'lectureComplete'])->name('user.lecture.lectureComplete');

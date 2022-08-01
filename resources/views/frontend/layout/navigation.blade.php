@@ -12,7 +12,7 @@
              <div class="search-category ms-auto">
                  <div class="form-group select-border course-category">
                      <i class="fa fa-th text-primary me-2" aria-hidden="true"></i>
-                     <select class= basic-select" onchange="location = this.value">
+                     <select class="basic-select" onchange="location = this.value">
                          <option selected="selected">{{ __('index.mCategory') }}</option>
                          @foreach (App\Models\CourseCat::all(['id','name']) as $courseCat)
                             <option value="{{ route('courseByCat',$courseCat->id) }}">{{ $courseCat->name }}</option>

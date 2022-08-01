@@ -77,7 +77,7 @@
 
                                     <div class="form-group col-md-3">
                                         <label for="type">Lecture Type <span class="t_r">*</span></label>
-                                        <select name="type" class="form-control @error('type') is-invalid @enderror" id="type">
+                                        <select name="type" class="form-control @error('type') is-invalid @enderror" id="type" @selected('type' == old('type'))>
                                             <option value="">Select</option>
                                             <option value="1">Text</option>
                                             <option value="2">Video</option>
@@ -90,7 +90,7 @@
 
                                     <div class="col-md-5 video_div" style="display: none">
                                         <div class="form-group">
-                                            <label for="time">Time </label>
+                                            <label for="time">Time <span class="t_r">*</span></label>
                                             <input type="text" name="time" class="form-control video" placeholder="1:30">
                                             @if ($errors->has('time'))
                                                 <div class="alert alert-danger">{{ $errors->first('time') }}</div>
@@ -100,7 +100,7 @@
 
                                     <div class="col-md-12 video_div" style="display: none">
                                         <div class="form-group">
-                                            <label for="text">Video link </label>
+                                            <label for="text">Video link <span class="t_r">*</span></label>
                                             <input type="text" name="text" class="form-control" id="video">
                                             @if ($errors->has('text'))
                                                 <div class="alert alert-danger">{{ $errors->first('text') }}</div>
@@ -110,8 +110,8 @@
 
                                     <div class="col-md-5" style="display: none" id="pdf_div">
                                         <div class="form-group">
-                                            <label for="text">PDF </label>
-                                            <input type="text" name="text" class="form-control" id="pdf">
+                                            <label for="text">PDF <span class="t_r">*</span></label>
+                                            <input type="text" name="text" class="form-control" id="pdf" placeholder="https://drive.google.com/file/d/1MkmX8AcvT7lv-_ljlN4zQ0wpL2yM-mJD/view?usp=sharing">
                                             @if ($errors->has('text'))
                                                 <div class="alert alert-danger">{{ $errors->first('text') }}</div>
                                             @endif

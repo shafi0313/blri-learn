@@ -121,18 +121,7 @@ return [
     "tc"                 => "Terms & Conditions",
     "pp"                 => "Privacy & Policy",
 
-    'total_users'         => 'Total Users',
-    'new_users'           => 'New Users',
-    'total_income'        => 'Total Income',
-    'reg_history'         => 'Registration History',
-    'recent_subscription' => 'Recent Subscription',
 
-    "income_record"    => "Income Record",
-    "income_history"   => "Income History",
-    "date_of_payment"  => "Date of payment",
-    "payer"            => "Payer",
-    "overral_income"   => "Overrall Income",
-    "subscribed_users" => "Subscribed Users",
 
 
     "manage"      => "Manage",

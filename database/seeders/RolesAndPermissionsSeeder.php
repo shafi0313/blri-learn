@@ -88,6 +88,12 @@ class RolesAndPermissionsSeeder extends Seeder
                 'lecture-edit',
                 'lecture-delete'
             ],
+            'chapter'=>[
+                'chapter-manage',
+                'chapter-add',
+                'chapter-edit',
+                'chapter-delete'
+            ],
             'quiz'=>[
                 'quiz-manage',
                 'quiz-add',

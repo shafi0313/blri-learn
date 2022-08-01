@@ -35,19 +35,19 @@
                                 <a href="{{ route('admin.lecture.lecturePlay',[$lecture->course_id, $lecture->id]) }}">
                                     <div class="lecture">
                                         <p class="title"><i class="fas fa-file icon"></i> {{ $lecture->name }}</p>
-                                        <p class="timeIcon">
+                                        {{-- <p class="timeIcon">
                                             <i class="{{$lecture->enroll->status==0?'far fa-circle':'far fa-check-circle tIconD'}} tIcon"></i> </span>
-                                        </p>
+                                        </p> --}}
                                     </div>
                                 </a>
                                 @elseif ($lecture->type == 2)
                                 <a href="{{ route('admin.lecture.lecturePlay',[$lecture->course_id, $lecture->id]) }}">
                                     <div class="lecture">
                                         <p class="title"><i class="icon fab fa-youtube"></i>{{ $lecture->name }}</p>
-                                        <p class="timeIcon">
+                                        {{-- <p class="timeIcon">
                                             <span class="time riT">{{ $lecture->time }}
                                             <i class="{{$lecture->enroll->status==0?'far fa-circle':'far fa-check-circle tIconD'}} tIcon"></i> </span>
-                                        </p>
+                                        </p> --}}
 
                                     </div>
                                 </a>
@@ -56,9 +56,9 @@
                                     <div class="lecture">
                                         <p class="title"><i class="fas fa-file-pdf icon"></i> {{ $lecture->name }}
                                         </p>
-                                        <p class="timeIcon">
+                                        {{-- <p class="timeIcon">
                                             <i class="{{$lecture->enroll->status==0?'far fa-circle':'far fa-check-circle tIconD'}} tIcon"></i> </span>
-                                        </p>
+                                        </p> --}}
                                     </div>
                                 </a>
                                 @endif

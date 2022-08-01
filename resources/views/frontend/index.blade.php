@@ -15,16 +15,6 @@
                         <div class="row">
                             <div class="col-md-12 position-relative">
                                 <div class="banner-content">
-                                    <style>
-                                        .content h1 {
-                                            font-size: 40px;
-                                            line-height: 1.3;
-                                        }
-                                        .content h6 {
-                                            font-size: 30px;
-                                            line-height: 1.3;
-                                        }
-                                    </style>
                                     <div class="content text-center">
                                         <h1 class="animated text-white mb-3" data-swiper-animation="fadeInUp"
                                             data-duration="2.0s" data-delay="1.0s">{{ $slider->title }}</h1>
