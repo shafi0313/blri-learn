@@ -63,11 +63,11 @@ if(!function_exists('permissionText')){
 }
 
 if(!function_exists('profileImg')){
-    function profileImg(){
-        if(file_exists(asset('files/images/user/'.user()->image))){
-            return asset('uploads/images/user/'.user()->image);
+    function profileImg($img){
+        if(file_exists(asset('uploads/images/users/'.$img))){
+            return asset('uploads/images/users/'.$img);
         }else{
-            return asset('uploads/images/user/logo.jpg');
+            return asset('uploads/images/users/logo.png');
         }
     }
 }

@@ -36,7 +36,7 @@
             <ul class="list-unstyled d-flex flex-wrap mb-4">
                 <li class="course-d-Teacher me-3 me-lg-5 mb-2 mb-lg-0">
                     <div class="d-flex">
-                        <img class="me-2 me-lg-3 mt-2" src="{{ asset('uploads/images/users/'.$course->user->image) }}"
+                        <img class="me-2 me-lg-3 mt-2" src="{{ profileImg($course->user->image) }}"
                             alt="">
                         <div class="d-block">
                             <p class="mb-0">Teacher</p>
@@ -64,7 +64,7 @@
                     </div>
                 </li>
             </ul>
-            
+
             <div class="iframe">
                 {!! $course->video_des !!}
             </div>
