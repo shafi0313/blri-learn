@@ -95,10 +95,10 @@
                             <i class="flaticon-list-1 fa-sm me-2 text-primary"></i>
                             <span class="me-4">Lecture {{$x++}} :</span>
                             <span>{{ $lecture->name }}</span>
-                            <div class="ms-auto">
+                            {{-- <div class="ms-auto">
                                 <i class="far fa-clock text-primary me-2"></i>
                                 <span>45 min</span>
-                            </div>
+                            </div> --}}
                         </li>
                         @endforeach
                     </ul>
