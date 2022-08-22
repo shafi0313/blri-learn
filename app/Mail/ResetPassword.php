@@ -7,6 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Support\HtmlString;
 
 class ResetPassword extends Mailable
 {
@@ -30,14 +31,15 @@ class ResetPassword extends Mailable
      */
     public function build()
     {
-        return $this->subject('Reset Password')
-            ->html(
-                (new MailMessage)
-                ->mailer('noReply')
-                ->line('Click the Reset Password button to set a new password')
-                ->action('Reset Password', route('resetPassword', $this->forgetData->token))
-                ->line('Thank you for using our application!')
-                ->render()
-            );
+        return $this->subject('Reset Password')->markdown('emails.reset_password');
+        // return $this->subject('Reset Password')->markdown('emails.reset_password');
+            // ->html(
+            //     (new MailMessage)
+            //     ->mailer('noReply')
+            //     ->line('Click the Reset Password button to set a new password')
+            //     ->action('Reset Password', route('resetPassword', $this->forgetData->token))
+            //     ->line('Thank you for using our application!')
+            //     ->render()
+            // );
     }
 }
