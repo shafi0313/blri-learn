@@ -107,13 +107,11 @@
 <!-- Datatables -->
 {{-- @include('include.data_table_js') --}}
 <meta name="csrf-token" content="{{ csrf_token() }}" />
-
-
 <script>
     window.onload = function () {
     //    var hour = 4;
-       let minute = 0;
-       let sec = 10;
+       let minute = 10;
+       let sec = 00;
        setInterval(function () {
           document.getElementById("timer").innerHTML = minute + " : " + sec;
           if(minute >=0 && sec >= 1) {
@@ -175,67 +173,7 @@ function lectureComplete() {
             })
         }
     });
-    // });
 }
-
-
-    // function lectureComplete() {
-    //     let quiz_id = $("input[name=quiz_id]").val();
-    //     let course_id = $("input[name=course_id]").val();
-    //     let _token = $('meta[name="csrf-token"]').attr('content');
-    //     $.ajax({
-    //         url: "{{ route('user.quiz.ans') }}",
-    //         type: "POST",
-    //         data: {
-    //             course_id: course_id,
-    //             lecture_id: lecture_id,
-    //             _token: _token
-    //         },
-    //         success: function (response) {
-    //             console.log(response);
-    //             if (response) {
-    //                 $('.success').text(response.success);
-    //                 $("#lectureComplete")[0].reset();
-    //             }
-    //         },
-    //         error: function (error) {
-    //             console.log(error);
-    //         }
-    //     });
-    // };
-
-
-    // $(".save-data").click(function(event){
-    //     event.preventDefault();
-
-    //     let name = $("input[name=name]").val();
-    //     let email = $("input[name=email]").val();
-    //     let mobile_number = $("input[name=mobile_number]").val();
-    //     let message = $("input[name=message]").val();
-    //     let _token   = $('meta[name="csrf-token"]').attr('content');
-
-    //     $.ajax({
-    //       url: "{{ route('user.lecture.lectureComplete') }}",
-    //       type:"POST",
-    //       data:{
-    //         name:name,
-    //         email:email,
-    //         mobile_number:mobile_number,
-    //         message:message,
-    //         _token: _token
-    //       },
-    //       success:function(response){
-    //         console.log(response);
-    //         if(response) {
-    //           $('.success').text(response.success);
-    //           $("#lectureComplete")[0].reset();
-    //         }
-    //       },
-    //       error: function(error) {
-    //        console.log(error);
-    //       }
-    //      });
-    // });
   </script>
 @endpush
 @endsection

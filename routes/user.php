@@ -73,14 +73,15 @@ Route::middleware(['auth','user'])->prefix('user')->group(function(){
 
     Route::prefix('/certificate')->controller(CertificateController::class)->group(function (){
         Route::get('/', 'index')->name('user.certificate.index');
-        Route::get('/certificate/{courseId}', 'show')->name('user.certificate.show');
+        Route::get('/show/{courseId}', 'show')->name('user.certificate.show');
+        Route::get('/pdf/{courseId}', 'pdf')->name('user.certificate.pdf');
     });
 
     Route::prefix('/my-profile')->controller(MyProfileController::class)->group(function (){
         Route::get('/edit', 'edit')->name('user.myProfile.edit');
         Route::post('/update', 'update')->name('user.myProfile.update');
     });
-   
+
 
     // Route::get('/lecture-play/{course_id}/{lecture_id}', [LectureController::class, 'lecturePlay'])->name('user.lecture.lecturePlay');
     // Route::post('/lectureComplete', [LectureController::class, 'lectureComplete'])->name('user.lecture.lectureComplete');

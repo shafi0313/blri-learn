@@ -53,7 +53,10 @@
                                             <td>{{ $ansSheet->course->name }}</td>
                                             <td>{{ $ansSheet->mark }}</td>
                                             <td>{{ $ansSheet->times }}</td>
-                                            <td><a href="{{ route('user.certificate.show', $ansSheet->course_id) }}">Certificate</a></td>
+                                            <td>
+                                                <a href="{{ route('user.certificate.show', $ansSheet->course_id) }}">Certificate</a>
+                                                <a href="{{ route('user.certificate.pdf', $ansSheet->course_id) }}">Download</a>
+                                            </td>
                                             {{-- <td>
                                                 <div class="form-button-action">
                                                     <a href="{{ route('course.edit', $course->id) }}" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
