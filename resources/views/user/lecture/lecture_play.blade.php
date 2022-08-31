@@ -112,8 +112,13 @@
                             </div>
                             @else
                             <div>
+                                @if (substr($lecturePlay->text, -1) == 'g')
+                                    @php $pdf = str_replace("view?usp=sharing", "preview", $lecturePlay->text) @endphp
+                                @else
+                                    @php $pdf = str_replace("view", "preview", $lecturePlay->text) @endphp
+                                @endif
                                 {{-- <iframe src="http://docs.google.com/gview?url=http://infolab.stanford.edu/pub/papers/google.pdf&embedded=true" style="width:100%; height:500px;" frameborder="0"></iframe> --}}
-                                <iframe src="https://docs.google.com/gview?url={{ asset('uploads/pdf/lecture/'.$lecturePlay->text) }}&embedded=true" style="width:100%; height:500px;" frameborder="0"></iframe>
+                                <iframe src="{{ $pdf }}" style="width:100%; height:500px;" frameborder="0"></iframe>
                             </div>
                             @endif
                             @if ( $lecturePlay->lectureText )
