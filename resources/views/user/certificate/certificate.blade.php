@@ -26,20 +26,40 @@
                             </div>
                         </div> --}}
                         @include('user.certificate.css')
+
                         <div class="card-body m-auto">
                             <div class="certificate">
-                                <div class="certificate_2">
+                                <img class="bg_image" src="{{ asset('uploads/images/icon/breeding_logo.png') }}" alt="">
+                                <div class="certificate_2" style="">
                                     <div class="img">
-                                        <img src="{{ asset('uploads/images/icon/blri_learning_logo.png') }}" alt="">
+                                        <img src="{{ asset('uploads/images/icon/mojib.jpg') }}" alt="">
+                                        <img src="{{ asset('uploads/images/icon/breeding_logo.png') }}" alt="">
+                                        <img src="{{ asset('uploads/images/icon/bangladeshs.jpg') }}" alt="">
                                     </div>
-                                    <div class="title">CERTIFICATE OF COMPLETION</div>
+                                    <div class="title">বাংলাদেশ প্রাণিসম্পদ গবেষণা ইনস্টিটিউট</div>
                                     <div style="padding: 0 40px">
-                                        <p class="presented_to">This certificate is proudly presented to</p>
+                                        <p class="presented_to">সাভার, ঢাকা।</p>
+                                        <p class="presented_to">সনদপত্র</p>
                                         <p class="student">{{ auth()->user()->name_cer }}</p>
-                                        <p class="course">To commemorate her successful completion of {{ $ansSheet->course->name }} on BLRI e-Learning platform</p>
-                                        <img src="{{ asset('uploads/images/icon/breeding_logo.png') }}" width="80px"><br>
-                                        <p class="signature">name</p>
-                                        <p class="signature_deg">Chief Executive Officer (CEO)</p>
+                                        <p class="student">{{ auth()->user()->fa_name }}</p>
+                                        <p class="student">{{ auth()->user()->mo_name }}</p>
+                                        <p class="student">{{ auth()->user()->text }}</p>
+                                        {{-- <p class="course">To commemorate her successful completion of {{ $ansSheet->course->name }} on BLRI e-Learning platform</p> --}}
+                                        <p class="course">বাংলাদেশ প্রাণিসম্পদ গবেষণা ইনস্টিটিউট এর উদ্যোগে ২০-২২ ডিসেম্বর, ২০২১ খ্রিঃ মেয়াদে অনুষ্ঠিত “ গরু হৃষ্টপুষ্টকরণে বিএলআরআই এর উন্নত প্রযুক্তির ব্যবহার” শীর্ষক প্রশিক্ষণ কোর্স সাফল্যের সহিত সম্পন্ন করিয়াছেন। <br>আমি তার উত্তোরোত্তর সমৃদ্ধি কামনা করছি</p>
+
+                                    </div>
+                                    <div class="signature">
+                                        <div class="sig_left">
+                                            <img src="{{ asset('uploads/images/signature/s.png') }}" alt="">
+                                            <p>Test</p>
+                                            <p>Test</p>
+                                        </div>
+                                        <div class="sig_rig">
+                                            <img src="{{ asset('uploads/images/signature/s.png') }}" alt="">
+                                            <p>Test</p>
+                                            <p>Test</p>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
