@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\User;
 
-use PDF;
+
 use App\Models\AnsSheet;
+use PDF;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -24,9 +25,18 @@ class CertificateController extends Controller
     public function pdf($courseId)
     {
         $ansSheet = AnsSheet::whereUser_id(auth()->user()->id)->whereCourse_id($courseId)->first();
-
-        $pdf = PDF::loadView('user.certificate.pdf', compact('ansSheet'))->setPaper('a4', 'landscape');
-        return $pdf->download('certificate.pdf');
+        $pdf = PDF::loadView('user.certificate.pdf', compact('ansSheet'),[],[
+            'title' => 'Certificate',
+            'format' => 'A4-L',
+            'orientation' => 'L'
+          ]);
+        $pdf->mpdf->SetWatermarkImage(
+            public_path('uploads/images/icon/breeding_logo.png'),
+            0.1,
+            180,180,
+        );
+        $pdf->mpdf->showWatermarkImage = true;
+        return $pdf->stream('certificate.pdf');
         // return view('user.certificate.pdf', compact('ansSheet'));
     }
 }

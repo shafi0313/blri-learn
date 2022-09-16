@@ -44,8 +44,7 @@
                                         <p class="student">{{ auth()->user()->fa_name }}</p>
                                         <p class="student">{{ auth()->user()->mo_name }}</p>
                                         <p class="student">{{ auth()->user()->text }}</p>
-                                        {{-- <p class="course">To commemorate her successful completion of {{ $ansSheet->course->name }} on BLRI e-Learning platform</p> --}}
-                                        <p class="course">বাংলাদেশ প্রাণিসম্পদ গবেষণা ইনস্টিটিউট এর উদ্যোগে ২০-২২ ডিসেম্বর, ২০২১ খ্রিঃ মেয়াদে অনুষ্ঠিত “ গরু হৃষ্টপুষ্টকরণে বিএলআরআই এর উন্নত প্রযুক্তির ব্যবহার” শীর্ষক প্রশিক্ষণ কোর্স সাফল্যের সহিত সম্পন্ন করিয়াছেন। <br>আমি তার উত্তোরোত্তর সমৃদ্ধি কামনা করছি</p>
+                                        <p class="course">বাংলাদেশ প্রাণিসম্পদ গবেষণা ইনস্টিটিউট এর উদ্যোগে ২০-২২ ডিসেম্বর, ২০২১ খ্রিঃ মেয়াদে অনুষ্ঠিত “{{ $ansSheet->course->name }}” শীর্ষক প্রশিক্ষণ কোর্স সাফল্যের সহিত সম্পন্ন করিয়াছেন। <br>আমি তার উত্তোরোত্তর সমৃদ্ধি কামনা করছি</p>
 
                                     </div>
                                     <div class="signature">
