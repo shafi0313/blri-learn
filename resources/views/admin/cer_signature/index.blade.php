@@ -52,7 +52,7 @@
                                             <td class="text-center">{{ $x++ }}</td>
                                             <td>{{ $cerSignature->name }}</td>
                                             <td>{{ $cerSignature->designation }}</td>
-                                            <td><img src="{{ asset('uploads/images/signature/'.$cerSignature->image) }}" alt="" height="80px"></td>
+                                            <td><img src="{{ asset('uploads/images/signature/'.$cerSignature->image) }}" alt="" height="50px"></td>
                                             <td>
                                                 <div class="form-button-action">
                                                     <a href="{{ route('certificate-signature.edit', $cerSignature->id) }}" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">

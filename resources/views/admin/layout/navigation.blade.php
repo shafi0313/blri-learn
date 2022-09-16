@@ -101,9 +101,9 @@
                 </li>
                 @endcan
 
-                <li class="nav-item">
+                <li class="nav-item {{ activeNav(['certificate-signature.*']) }}">
                     <a href="{{ route('certificate-signature.index') }}">
-                        <i class="fas fa-sign-out-alt"></i>
+                        <i class="fa-solid fa-file-signature"></i>
                         <p>Certificate Signature</p>
                     </a>
                 </li>

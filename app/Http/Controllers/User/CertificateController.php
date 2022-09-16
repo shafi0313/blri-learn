@@ -5,8 +5,10 @@ namespace App\Http\Controllers\User;
 
 use PDF;
 use App\Models\AnsSheet;
+use App\Models\CerSignature;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CertificateController extends Controller
 {
@@ -19,13 +21,28 @@ class CertificateController extends Controller
     public function show($courseId)
     {
         $ansSheet = AnsSheet::whereUser_id(auth()->user()->id)->whereCourse_id($courseId)->first();
-        return view('user.certificate.certificate', compact('ansSheet'));
+        $signatures = CerSignature::all();
+        return view('user.certificate.certificate', compact('ansSheet','signatures'));
     }
 
     public function pdf($courseId)
     {
         $ansSheet = AnsSheet::whereUser_id(auth()->user()->id)->whereCourse_id($courseId)->first();
-        $pdf = PDF::loadView('user.certificate.pdf', compact('ansSheet'),[],[
+        if(!$ansSheet->name_cer){
+            Alert::info('Goto profile and input certificate name');
+            return back();
+        }else if(!$ansSheet->fa_name){
+            Alert::info('Goto profile and input father name');
+            return back();
+        }else if(!$ansSheet->mo_name){
+            Alert::info('Goto profile and input mother name');
+            return back();
+        }else if(!$ansSheet->text){
+            Alert::info('Goto profile and input address');
+            return back();
+        }
+        $signatures = CerSignature::all();
+        $pdf = PDF::loadView('user.certificate.pdf', compact('ansSheet','signatures'),[],[
             'title' => 'Certificate',
             'format' => 'A4-L',
             'orientation' => 'L'

@@ -40,16 +40,15 @@
                                     </div>
                                     <div class="signature">
                                         <div class="sig_left">
-                                            <img src="{{ asset('uploads/images/signature/s.png') }}" alt="">
-                                            <p>Test</p>
-                                            <p>Test</p>
+                                            <img src="{{ asset('uploads/images/signature/'.$signatures->where('id',1)->first()->image) }}" alt="" height="50px">
+                                            <p>{{ $signatures->where('id',1)->first()->name }}</p>
+                                            <p>{{ $signatures->where('id',1)->first()->designation }}</p>
                                         </div>
                                         <div class="sig_rig">
-                                            <img src="{{ asset('uploads/images/signature/s.png') }}" alt="">
-                                            <p>Test</p>
-                                            <p>Test</p>
+                                            <img src="{{ asset('uploads/images/signature/'.$signatures->where('id',2)->first()->image) }}" alt="" height="50px">
+                                            <p>{{ $signatures->where('id',2)->first()->name }}</p>
+                                            <p>{{ $signatures->where('id',2)->first()->designation }}</p>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>

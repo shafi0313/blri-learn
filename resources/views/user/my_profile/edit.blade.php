@@ -124,7 +124,7 @@
 
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="text">About me </label>
+                                            <label for="text">Address </label>
                                             <textarea name="text" class="form-control" id="text" rows="2">{{ $user->text }}</textarea>
                                             @if ($errors->has('text'))
                                                 <div class="alert alert-danger">{{ $errors->first('text') }}</div>
