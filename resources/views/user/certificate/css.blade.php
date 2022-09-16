@@ -52,12 +52,12 @@
         border-top: 2px solid black;
         margin-top: 5px;
     }
-    /* .signature {
+    .signature {
         display: flex;
         padding: 0 60px;
         margin-bottom: 10px;
         justify-content: space-between;
-    } */
+    }
 
     .signature p {
         margin: 0;

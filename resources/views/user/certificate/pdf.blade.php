@@ -9,60 +9,33 @@
 </head>
 <body>
     <style>
-        /* @font-face {
-            font-family: 'SolaimanLipi';
-            src: url("{{ asset('backend/fonts/Nikosh.ttf') }}") format('truetype');
-        } */
         body{
             font-family: 'SolaimanLipi', serif;
         }
         p{
             margin-bottom: 0 !important;
         }
-        /* .certificate_2 .img {
-            width: 100%;
-            display: block;
-        } */
-
         .certificate_2 img {
             width: 80px !important;
             margin: 10px 0;
         }
-
-        /* .img .top_img_1 {
-            height: 80px;
-            margin: 10px 0;
-        }
-        .img .top_img_2 {
-            height: 80px;
-            margin: 10px 0;
-        }
-        .img .top_img_3 {
-            height: 80px;
-            margin: 10px 0;
-        } */
         .signature {
             display: block;
         }
 
         .sig_left {
             width:49%;
-            /* display: inline-block; */
             float: left;
-            /* text-align: left; */
         }
 
         .sig_rig {
             width:49%;
-            /* display: inline-block; */
             float: right;
-            /* text-align:  */
         }
 
     </style>
     @include('user.certificate.css')
     <div class="certificate">
-        {{-- <img class="bg_image" src="{{ asset('uploads/images/icon/breeding_logo.png') }}" alt="" style=""> --}}
         <div class="certificate_2" style="">
             <div class="img">
                 <img class="top_img_1" src="{{ asset('uploads/images/icon/mojib.jpg') }}" alt="" height="80px" style="float:left;margin: 10px 0;">

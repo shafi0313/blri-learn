@@ -1,7 +1,6 @@
 <div class="sidebar"  data-background-color="white">
     <div class="sidebar-wrapper scrollbar scrollbar-inner">
         <div class="sidebar-content">
-
             <ul class="nav nav-primary">
                 <li class="nav-item {{ activeNav('admin.dashboard') }}">
                     <a href="{{ route('admin.dashboard') }}">
@@ -9,7 +8,6 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-
                 <li class="nav-section">
                     <span class="sidebar-mini-icon">
                         <i class="fa fa-ellipsis-h"></i>
@@ -102,6 +100,13 @@
                     </a>
                 </li>
                 @endcan
+
+                <li class="nav-item">
+                    <a href="{{ route('certificate-signature.index') }}">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <p>Certificate Signature</p>
+                    </a>
+                </li>
 
                 <li class="nav-item {{ activeNav(['admin.role.*','admin.backup.*','admin.visitorInfo.*','admin.permission.*']) }}">
                     <a data-toggle="collapse" href="#settings">

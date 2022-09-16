@@ -197,12 +197,12 @@ if (!function_exists('uniqueId')) {
 if (!function_exists('imageStore')) {
     function imageStore(Request $request, string $name, string $path)
     {
-        if($request->hasFile('image')){
+        if($request->hasFile('image')){ // next time dinamic this
             $pathCreate = public_path().$path;
             !file_exists($pathCreate) ?? File::makeDirectory($pathCreate, 0777, true, true);
 
             $image = $request->file('image');
-            $image_name = $name . uniqueId(20).'.'.$image->getClientOriginalExtension();
+            $image_name = $name . uniqueId(10).'.'.$image->getClientOriginalExtension();
             if ($image->isValid()) {
                 $request->image->move($path,$image_name);
                 return $image_name;
@@ -212,15 +212,14 @@ if (!function_exists('imageStore')) {
 }
 
 if (!function_exists('imageUpdate')) {
-    function imageUpdate(Request $request, string $name, string $path, $model)
+    function imageUpdate(Request $request, string $name, string $path, $image)
     {
         if($request->hasFile('image')){
-            $deletePath = public_path().$path.$model->first()->image;
-            // $path =  public_path('uploads/images/users/'.$files->image);
+            $deletePath =  public_path($path.$image);
             file_exists($deletePath) ? unlink($deletePath) : false;
-
-            $pathCreate = public_path().$path;
-            !file_exists($pathCreate) ?? File::makeDirectory($pathCreate, 0777, true, true);
+            
+            $createPath = public_path().$path;
+            !file_exists($createPath) ?? File::makeDirectory($createPath, 0777, true, true);
 
             $image = $request->file('image');
             $image_name = $name . uniqueId(20).'.'.$image->getClientOriginalExtension();
@@ -231,6 +230,7 @@ if (!function_exists('imageUpdate')) {
         }
     }
 }
+
 
 
 

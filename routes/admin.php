@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\CourseCatController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\VisitorInfoController;
+use App\Http\Controllers\Admin\CerSignatureController;
 use App\Http\Controllers\Admin\StudentHistoryController;
 use App\Http\Controllers\Admin\MyProfile\LayoutController;
 use App\Http\Controllers\Admin\MyProfile\ProfileController;
@@ -141,6 +142,7 @@ Route::middleware(['auth','admin','permission:access-dashboard'])->prefix('admin
     ]);
 
     Route::resource('/course', CourseController::class);
+    Route::resource('/certificate-signature', CerSignatureController::class);
     Route::resource('/chapter', ChapterController::class)->only(['store']);
     Route::resource('/lecture', LectureController::class);
     Route::get('/get-chapter', [LectureController::class, 'chapter'])->name('get.chapter');

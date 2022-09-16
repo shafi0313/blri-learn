@@ -17,16 +17,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        {{-- <div class="card-header">
-                            <div class="d-flex align-items-center">
-                                <h4 class="card-title">Add Row</h4>
-                                <a href="{{ route('course.create') }}" class="btn btn-{{$layout->create_btn??'primary'}} btn-round ml-auto text-light" style="min-width: 200px">
-                                    <i class="fa fa-plus"></i> Add New
-                                </a>
-                            </div>
-                        </div> --}}
                         @include('user.certificate.css')
-
                         <div class="card-body m-auto">
                             <div class="certificate">
                                 <img class="bg_image" src="{{ asset('uploads/images/icon/breeding_logo.png') }}" alt="">
