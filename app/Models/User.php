@@ -66,7 +66,7 @@ class User extends Authenticatable
         return $date->format('d/m/Y');
     }
 
-    public function accessPermission()
+    public function modelHasRole()
     {
         return $this->hasOne(ModelHasRole::class, 'model_id','id');
     }

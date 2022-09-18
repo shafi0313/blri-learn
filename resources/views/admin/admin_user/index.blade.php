@@ -56,7 +56,7 @@
                                         <tr>
                                             <td>{{ $x++ }}</td>
                                             <td>{{ $user->name }}</td>
-                                            <td>{{ permissionText($user->permission) }}</td>
+                                            <td>{{ $user->modelHasRole? ucfirst($user->modelHasRole->role->name) : '' }}</td>
                                             <td>{{ $user->email }}</td>
                                             <td>{{ $user->phone }}</td>
                                             <td>{{ ageWithMonths($user->d_o_b) }}</td>

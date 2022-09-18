@@ -18,7 +18,8 @@ class AdminUserController extends Controller
         if ($error = $this->authorize('user-manage')) {
             return $error;
         }
-        $users = User::all();
+        $users = User::with(['modelHasRole','modelHasRole.role'])->wherePermission('1')->get();
+
         return view('admin.admin_user.index', compact('users'));
     }
 
