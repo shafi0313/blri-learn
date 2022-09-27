@@ -55,7 +55,7 @@
                                                         <i class="fa fa-edit"></i>
                                                     </a>
                                                     <form action="{{ route('admin.courseCat.destroy', $courseCat->id) }}" method="post">
-                                                        @csrf @method('PUT')
+                                                        @csrf @method('DELETE')
                                                         <button type="submit" title="Delete" class="btn btn-link btn-danger">
                                                             <i class="fa fa-times"></i>
                                                         </button>

@@ -3,6 +3,7 @@
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use RealRashid\SweetAlert\Facades\Alert;
 
 if (!function_exists('devAdminEmail')) {
     function devAdminEmail()
@@ -216,8 +217,10 @@ if (!function_exists('imageUpdate')) {
     {
         if($request->hasFile('image')){
             $deletePath =  public_path($path.$image);
-            file_exists($deletePath) ? unlink($deletePath) : false;
-            
+            if(file_exists($deletePath) && $image != ''){
+                unlink($deletePath);
+            }
+            // file_exists($deletePath) ? unlink($deletePath) : false;
             $createPath = public_path().$path;
             !file_exists($createPath) ?? File::makeDirectory($createPath, 0777, true, true);
 
@@ -227,6 +230,24 @@ if (!function_exists('imageUpdate')) {
                 $request->image->move($path,$image_name);
                 return $image_name;
             }
+        }
+    }
+}
+
+if (!function_exists('destroy')) {
+    function destroy(string $path, $data)
+    {
+        $checkPath =  public_path($path.$data->image);
+        try{
+            if(file_exists($checkPath)){
+                unlink($checkPath);
+            }
+            $data->delete();
+            Alert::success('Success','Successfully Deleted');
+            return redirect()->back();
+        }catch (\Exception $ex) {
+            Alert::error('Oops...','Delete Failed');
+            return back();
         }
     }
 }

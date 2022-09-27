@@ -28,19 +28,19 @@ class CertificateController extends Controller
     public function pdf($courseId)
     {
         $ansSheet = AnsSheet::whereUser_id(auth()->user()->id)->whereCourse_id($courseId)->first();
-        if(!$ansSheet->name_cer){
-            Alert::info('Goto profile and input certificate name');
-            return back();
-        }else if(!$ansSheet->fa_name){
-            Alert::info('Goto profile and input father name');
-            return back();
-        }else if(!$ansSheet->mo_name){
-            Alert::info('Goto profile and input mother name');
-            return back();
-        }else if(!$ansSheet->text){
-            Alert::info('Goto profile and input address');
-            return back();
-        }
+        // if(!$ansSheet->name_cer){
+        //     Alert::info('Goto profile and input certificate name');
+        //     return back();
+        // }else if(!$ansSheet->fa_name){
+        //     Alert::info('Goto profile and input father name');
+        //     return back();
+        // }else if(!$ansSheet->mo_name){
+        //     Alert::info('Goto profile and input mother name');
+        //     return back();
+        // }else if(!$ansSheet->text){
+        //     Alert::info('Goto profile and input address');
+        //     return back();
+        // }
         $signatures = CerSignature::all();
         $pdf = PDF::loadView('user.certificate.pdf', compact('ansSheet','signatures'),[],[
             'title' => 'Certificate',

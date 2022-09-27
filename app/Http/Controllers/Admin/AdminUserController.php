@@ -69,7 +69,7 @@ class AdminUserController extends Controller
 
         if($request->role_permission){
             $permission = [
-                'role_id' =>  $request->permission,
+                'role_id' =>  $request->role_permission,
                 'model_type' => "App\Models\User",
                 'model_id' =>  $user->id,
             ];
@@ -90,7 +90,8 @@ class AdminUserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        return view('admin.admin_user.edit', compact('user'));
+        $roles = Role::all();
+        return view('admin.admin_user.edit', compact('user','roles'));
     }
 
     public function update(Request $request)

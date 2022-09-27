@@ -65,9 +65,13 @@
                                                     <a href="{{ route('admin.slider.edit', $slider->id) }}" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
-                                                    <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove">
-                                                        <i class="fa fa-times"></i>
-                                                    </button>
+                                                    <form action="{{ route('admin.slider.destroy', $slider->id) }}" method="post">
+                                                        @csrf @method('DELETE')
+                                                        <button type="submit" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove" onclick="return confirm('Are you sure?')">
+                                                            <i class="fa fa-times"></i>
+                                                        </button>
+                                                    </form>
+
                                                 </div>
                                             </td>
                                         </tr>

@@ -7,14 +7,10 @@ use App\Models\Slider;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Intervention\Image\Facades\Image;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class SliderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         if ($error = $this->authorize('slider-manage')) {
@@ -25,11 +21,6 @@ class SliderController extends Controller
         return view('admin.slider.index', compact('layout','sliders'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         if ($error = $this->authorize('slider-add')) {
@@ -39,12 +30,6 @@ class SliderController extends Controller
         return view('admin.slider.create', compact('layout'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         if ($error = $this->authorize('slider-add')) {
@@ -114,11 +99,11 @@ class SliderController extends Controller
 
         try {
             Slider::find($id)->update($data);
-            toast('success', 'Success!');
+            toast('Success!', 'success');
             return redirect()->route('admin.slider.index');
         } catch (\Exception $e) {
             return $e->getMessage();
-            toast('error', 'Error');
+            toast('Error', 'error');
             return back();
         }
     }
@@ -130,15 +115,16 @@ class SliderController extends Controller
         }
         $slider = Slider::find($id);
         $path =  public_path('uploads/images/slider/'.$slider->image);
-        if(file_exists($path)){
-            unlink($path);
+        try{
+            if(file_exists($path)){
+                unlink($path);
+            }
             $slider->delete();
-            toast('Successfully Deleted','success');
+            Alert::success('Success','Successfully Deleted');
             return redirect()->back();
-        }else{
-            $slider->delete();
-            toast('Successfully Deleted','success');
-            return redirect()->back();
+        }catch (\Exception $ex) {
+            Alert::error('Oops...','Delete Failed');
+            return back();
         }
     }
 }
