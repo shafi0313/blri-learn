@@ -28,7 +28,6 @@
                     <p class="chapter">{{ $chapter->name }}</p>
                     @foreach ($chapter->lectures as $lecture)
                     @if ($lecture->type == 1)
-
                     <a href="{{ route('admin.lecture.lecturePlay',[$lecture->course_id, $lecture->id]) }}">
                         <div class="lecture {{$lecturePlay->id==$lecture->id?'lec_active':''}}">
                             <p class="title"><i class="fas fa-file icon"></i> {{ $lecture->name }}</p>

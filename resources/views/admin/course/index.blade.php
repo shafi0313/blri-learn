@@ -20,15 +20,15 @@
                         <div class="card-header">
                             <div class="d-flex align-items-center">
                                 <h4 class="card-title">Add Row</h4>
-                                <a href="{{ route('course.create') }}" class="btn btn-{{$layout->create_btn??'primary'}} btn-round ml-auto text-light" style="min-width: 200px">
+                                <a href="{{ route('course.create') }}" class="btn btn-primary btn-round ml-auto text-light" style="min-width: 200px">
                                     <i class="fa fa-plus"></i> Add New
                                 </a>
                             </div>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="multi-filter-select" class="display table table-{{$layout->tbl}} table-striped table-hover" >
-                                    <thead class="bg-{{$layout->tbl_bg}} text-{{$layout->tbl_text}}">
+                                <table id="multi-filter-select" class="display table table-striped table-hover" >
+                                    <thead class="bg-secondary thw">
                                         <tr>
                                             <th>SL</th>
                                             <th>Name</th>
