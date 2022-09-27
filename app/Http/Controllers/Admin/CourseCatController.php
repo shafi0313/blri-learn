@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Layout;
 use App\Models\CourseCat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;

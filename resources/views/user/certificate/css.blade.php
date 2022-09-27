@@ -23,6 +23,7 @@
     .certificate_2 {
         border: 2px solid rgb(184, 182, 182);
         margin: 10px;
+        height: 640px;
     }
 
     .certificate_2 .img {
@@ -38,7 +39,7 @@
     }
     .certificate .presented_to {
         font-size: 30px;
-        margin-bottom: 0 !important;
+        margin: 0 !important;
     }
     .certificate .student {
         font-size: 30px;

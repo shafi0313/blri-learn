@@ -84,6 +84,7 @@ class QuizController extends Controller
         $quizzes = Quiz::with(['options' => function ($q) {
                 return $q->select(['id','quiz_id','option','correct']);
             }])
+            ->whereCourse_id($request->course_id)
             ->inRandomOrder()
             ->take(10)
             ->get();

@@ -53,7 +53,7 @@ class CertificateController extends Controller
             180,180,
         );
         $pdf->mpdf->showWatermarkImage = true;
-        return $pdf->stream('certificate.pdf');
-        // return view('user.certificate.pdf', compact('ansSheet'));
+        return $pdf->stream($ansSheet->course->name.'-certificate.pdf');
+        // return view('user.certificate.pdf', compact('ansSheet','signatures'));
     }
 }
