@@ -23,12 +23,10 @@
                                 Add Quiz
                               </button>
                         </div>
-                        <form action="{{ route('course.store') }}" method="post" enctype="multipart/form-data">
-                            @csrf
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table id="multi-filter-select" class="display table table-{{$layout->tbl}} table-striped table-hover" >
-                                        <thead class="bg-{{$layout->tbl_bg}} text-{{$layout->tbl_text}}">
+                                    <table id="multi-filter-select" class="display table table-striped table-hover" >
+                                        <thead class="bg-secondary thw">
                                             {{-- <tr>
                                                 <th>Name</th>
                                                 <th>Skill level</th>
@@ -46,13 +44,12 @@
                                                     <div class="form-button-action">
                                                         <span class="btn btn-danger btn-sm quesAns" data-toggle="modal" data-target="#quesAns" data-id="{{$quiz->id}}" data-qusAns="{{ $quiz->ques }}">Add Option</span>
                                                         <span class="btn btn-info btn-sm quesEdit" data-toggle="modal" data-target="#quesEdit" data-url="{{route('admin.quiz.quesUpdate', $quiz->id)}}" data-ques="{{$quiz->ques}}"><i class="fa fa-edit"></i></span>
-                                                        {{-- <form action="" method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
+                                                        <form action="{{ route('admin.quiz.quesDestroy', $quiz->id) }}" method="post">
+                                                            @csrf @method('DELETE')
                                                             <button type="submit" title="Delete" class="btn btn-link btn-danger" data-original-title="Remove" onclick="return confirm('Are you sure?')">
                                                                 <i class="fa fa-times"></i>
                                                             </button>
-                                                        </form> --}}
+                                                        </form>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -66,13 +63,12 @@
                                                     <div class="form-button-action">
                                                         {{-- <span class="btn btn-danger btn-sm quesAns" data-toggle="modal" data-target="#quesAns" data-id="{{$quiz->id}}" data-qusAns="{{ $quiz->ques }}">Add Option</span> --}}
                                                         <span class="btn btn-link btn-info btn-sm optionEdit" data-toggle="modal" data-target="#optionEdit" data-url="{{route('admin.quiz.optionUpdate', [$option->id, $quiz->id])}}" data-option="{{$option->option}}" data-correct="{{$option->correct}}"><i class="fa fa-edit"></i></span>
-                                                        {{-- <form action="" method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
+                                                        <form action="{{ route('admin.quiz.optionDestroy', $option->id) }}" method="POST">
+                                                            @csrf @method('DELETE')
                                                             <button type="submit" title="Delete" class="btn btn-link btn-danger" data-original-title="Remove" onclick="return confirm('Are you sure?')">
                                                                 <i class="fa fa-times"></i>
                                                             </button>
-                                                        </form> --}}
+                                                        </form>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -87,7 +83,6 @@
                                 <button type="submit" class="btn btn-primary">Submit</button>
                                 <button type="reset" class="btn btn-danger">Cancel</button>
                             </div> --}}
-                        </form>
                     </div>
                 </div>
             </div>

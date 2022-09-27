@@ -14,18 +14,16 @@ class QuizController extends Controller
 {
     public function course()
     {
-        $layout = Layout::where('user_id', auth()->user()->id)->first(['tbl','tbl_bg','tbl_text','create_btn']);
         $courses = Course::whereUser_id(auth()->user()->id)->get();
-        return view('admin.quiz.course', compact('layout','courses'));
+        return view('admin.quiz.course', compact('courses'));
     }
 
     public function addQuiz($course_id)
     {
-        $layout = Layout::where('user_id', auth()->user()->id)->first(['create_btn']);
         $quizzes = Quiz::with(['options' => function($q){
             return $q->select(['id','quiz_id','option','correct']);
-        }])->get(['id','ques']);
-        return view('admin.quiz.create', compact('layout','course_id','quizzes'));
+        }])->whereCourse_id($course_id)->get(['id','ques']);
+        return view('admin.quiz.create', compact('course_id','quizzes'));
     }
 
     public function quesStore(Request $request)
@@ -62,6 +60,14 @@ class QuizController extends Controller
         }
     }
 
+    public function quesDestroy($quizId)
+    {
+        $data = Quiz::find($quizId);
+        QuizOption::whereQuiz_id($quizId)->delete();
+        destroy($data);
+        return back();
+    }
+
     public function optionStore(Request $request)
     {
         $optionCheck = QuizOption::whereQuiz_id($request->quiz_id);
@@ -70,21 +76,16 @@ class QuizController extends Controller
             Alert::info("You can add maximum 4 options");
             return back();
         }
-
         if($request->correct && $optionCheck->whereCorrect(1)->count() > 0){
             Alert::info("You can add maximum 1 correct answer");
             return back();
         }
-
-
         $data = $request->validate([
             'quiz_id' => 'required',
             'option' => 'required',
             'correct' => 'sometimes',
         ]);
         $data['user_id'] = auth()->user()->id;
-
-
         try{
             QuizOption::create($data);
             toast('Success!', 'success');
@@ -127,5 +128,12 @@ class QuizController extends Controller
             toast('Failed', 'error!');
             return back();
         }
+    }
+
+    public function optionDestroy($id)
+    {
+        $data = QuizOption::find($id);
+        destroy($data);
+        return back();
     }
 }

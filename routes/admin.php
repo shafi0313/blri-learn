@@ -154,8 +154,10 @@ Route::middleware(['auth','admin','permission:access-dashboard'])->prefix('admin
         Route::get('/quiz/{course_id}', 'addQuiz')->name('admin.quiz.quiz');
         Route::post('/question/store', 'quesStore')->name('admin.quiz.quesStore');
         Route::post('/question/update/{quesId}', 'quesUpdate')->name('admin.quiz.quesUpdate');
+        Route::delete('/question/destroy/{quesId}', 'quesDestroy')->name('admin.quiz.quesDestroy');
         Route::post('/option/store', 'optionStore')->name('admin.quiz.optionStore');
         Route::post('/option/update/{optionId}/{quizId}', 'optionUpdate')->name('admin.quiz.optionUpdate');
+        Route::delete('/option/destroy/{optionId}', 'optionDestroy')->name('admin.quiz.optionDestroy');
     });
     Route::controller(StudentHistoryController::class)->prefix('student-history')->group(function () {
         Route::get('/', 'index')->name('admin.studentHistory.index');

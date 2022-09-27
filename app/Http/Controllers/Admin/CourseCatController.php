@@ -90,6 +90,7 @@ class CourseCatController extends Controller
             return $error;
         }
         $data = CourseCat::find($id);
-        destroy('uploads/images/course/', $data);
+        fileDestroy('uploads/images/course/', $data);
+        return back();
     }
 }

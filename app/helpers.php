@@ -235,7 +235,19 @@ if (!function_exists('imageUpdate')) {
 }
 
 if (!function_exists('destroy')) {
-    function destroy(string $path, $data)
+    function destroy($data)
+    {
+        try{
+            $data->delete();
+            Alert::success('Success','Successfully Deleted');
+        }catch (\Exception $ex) {
+            Alert::error('Oops...','Delete Failed');
+        }
+    }
+}
+
+if (!function_exists('fileDestroy')) {
+    function fileDestroy(string $path, $data)
     {
         $checkPath =  public_path($path.$data->image);
         try{
@@ -244,10 +256,8 @@ if (!function_exists('destroy')) {
             }
             $data->delete();
             Alert::success('Success','Successfully Deleted');
-            return redirect()->back();
         }catch (\Exception $ex) {
             Alert::error('Oops...','Delete Failed');
-            return back();
         }
     }
 }

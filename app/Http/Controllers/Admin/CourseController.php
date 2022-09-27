@@ -111,6 +111,7 @@ class CourseController extends Controller
             return $error;
         }
         $data = Course::find($id);
-        destroy('uploads/images/course/', $data);
+        fileDestroy('uploads/images/course/', $data);
+        return back();
     }
 }
