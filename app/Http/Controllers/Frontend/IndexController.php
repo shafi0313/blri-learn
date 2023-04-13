@@ -16,7 +16,7 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $courses = Course::with(['user','courseReviews'])->get();
+        $courses = Course::with(['user','courseReviews','enrollCounts'])->get();
         $sliders = Slider::whereStatus(1)->get();
         $student = User::wherePermission(2)->count();
         $categories = CourseCat::all();

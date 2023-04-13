@@ -23,8 +23,8 @@
 
              <div class="navbar-collapse  collapse">
                  <ul class="nav navbar-nav m-auto">
-                     <form class="d-flex search-category">
-                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                     <form method="get" class="d-flex search-category" action="{{ route('search') }}">
+                         <input class="form-control me-2" type="search" name="search" value="{{ request()->get('search') }}" placeholder="Search" aria-label="Search" autocomplete="off">
                          <button class="search-button" type="submit"><i class="fa fa-search"></i></button>
                      </form>
                      {{-- <div class="search-category">

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Frontend\SearchController;
 use App\Http\Controllers\Frontend\CourseByCatController;
 use App\Http\Controllers\Frontend\CourseReviewController;
 /*
@@ -23,3 +24,5 @@ Route::resource('/course-review', CourseReviewController::class);
 Route::controller(CourseByCatController::class)->prefix('course-by-cat')->group(function(){
     Route::get('/{id}','index')->name('courseByCat');
 });
+
+Route::get('/search', [SearchController::class, 'search'])->name('search');
