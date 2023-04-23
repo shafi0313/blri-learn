@@ -14,10 +14,10 @@
 .chapter {
     /* min-height: 200px; */
     margin-bottom: 0 !important;
-    line-height: 1;
-    padding: 10px;
+    line-height: 20px;
+    padding: 5px;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 14px;
     color: #666;
     font-weight: 600;
     border-bottom: 1px solid #eee;
@@ -60,11 +60,12 @@
 
 }
 .timeIcon{
-    width: 57px;
-    display: inline-block;
+    /* width: 57px; */
+    /* display: inline-block; */
     font-weight: 400;
     color: black;
     margin: 0;
+    float: right;
 }
 .tIcon{
     font-size: 15px;
@@ -103,12 +104,12 @@ background: linear-gradient(90deg, rgba(107,110,255,1) 0%, rgba(233,233,233,1) 1
 }
 
 .sidebar {
-    width: 370px !important;
+    width: 348px !important;
 }
 @media screen and (max-width: 991px){
 .sidebar {
     transform: translate3d(-369px,0,0)!important;
 }}
 .logo-header{
-    width: 370px;
+    width: 348px;
 }

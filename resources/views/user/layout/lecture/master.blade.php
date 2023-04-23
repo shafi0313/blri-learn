@@ -43,7 +43,7 @@
     <div class="wrapper">
         <div class="main-header">
             <!-- Logo Header -->
-            <div class="logo-header" data-background-color="purple2">
+            <div class="logo-header" data-background-color="blue">
                 <a href="{{ route('index') }}" class="logo"> <h4 class="display:4 text-light" style="margin-top: 20px">BLRI e-Learning</h4>
 				</a>
                 {{-- <a href="index.html" class="logo">

@@ -29,23 +29,23 @@ class LectureController extends Controller
     public function store(Request $request)
     {
         $data = $this->validate($request, [
-            'course_id' => 'required',
+            'course_id'  => 'required',
             'chapter_id' => 'required',
-            'type' => 'required',
-            'name' => 'required',
-            'text' => 'required',
+            'type'       => 'required',
+            'name'       => 'required',
+            'text'       => 'required',
             // 'video' => 'sometimes',
             // 'text' => 'sometimes|mimes:pdf|max:4096',
         ]);
 
         if($request->hasFile('text')){
-            $pdf = $request->file('text');
+            $pdf     = $request->file('text');
             $pdfName = "lecture".rand(0, 1000000).'.'.$pdf->getClientOriginalExtension();
             $request->text->move('uploads/pdf/lecture', $pdfName);
             $data['text'] = $pdfName;
         }
         $data['user_id'] = auth()->user()->id;
-        $data['type'] = $request->type;
+        $data['type']    = $request->type;
 
 
         try {
@@ -61,37 +61,34 @@ class LectureController extends Controller
 
     public function show($id)
     {
-        $user = auth()->user();
-        $layout = Layout::whereUser_id($user->id)->first(['submit_btn']);
-        $chapters = Chapter::with('lectures')->whereCourse_id($id)->get();
-        return view('user.lecture.show', compact('layout','chapters'));
+        $chapters = Chapter::with('lectures','lectures.enroll')->whereCourse_id($id)->get();
+        return view('user.lecture.show', compact('chapters'));
     }
 
     public function lecturePlay($course_id, $lecture_id)
     {
-        $user = auth()->user();
-        $layout = Layout::whereUser_id($user->id)->first(['submit_btn']);
-        $chapters = Chapter::whereCourse_id($course_id)->get();
-        $lecturePlay = Lecture::with(['enroll', 'lectureText'])->whereId($lecture_id)->first();
+        $user         = auth()->user();
+        $chapters     = Chapter::with('lectures','lectures.enroll')->whereCourse_id($course_id)->get();
+        $lecturePlay  = Lecture::with(['enroll', 'lectureText'])->whereId($lecture_id)->first();
         $courseEnroll = CourseEnroll::whereUser_id($user->id)->whereCourse_id($course_id)->whereLecture_id($lecture_id)->first();
-        return view('user.lecture.lecture_play', compact('layout','chapters','lecturePlay','courseEnroll'));
+        return view('user.lecture.lecture_play', compact('chapters','lecturePlay','courseEnroll'));
     }
 
     public function lectureComplete(Request $request)
     {
         // return $request;
-        $userId = auth()->user()->id;
-        $courseId = $request->course_id;
-        $lectureId = $request->lecture_id;
+        $userId       = auth()->user()->id;
+        $courseId     = $request->course_id;
+        $lectureId    = $request->lecture_id;
         $courseEnroll = CourseEnroll::whereUser_id($userId)->whereCourse_id($courseId)->whereLecture_id($lectureId)->first();
         if($courseEnroll != null){
             $courseEnroll->update(['status' => 1]); // complete
         }else{
             $data = [
-                'user_id' => $userId,
-                'course_id' => $courseId,
+                'user_id'    => $userId,
+                'course_id'  => $courseId,
                 'lecture_id' => $lectureId,
-                'status' => 1,
+                'status'     => 1,
             ];
             CourseEnroll::create($data);
         }
@@ -99,9 +96,9 @@ class LectureController extends Controller
         $courseComplete = CourseEnroll::whereUser_id($userId)->whereCourse_id($courseId)->whereStatus(0)->get();
         if($courseComplete->count() < 1){
             $complete = [
-                'user_id' => $userId,
+                'user_id'   => $userId,
                 'course_id' => $courseId,
-                'complete' => 1,
+                'complete'  => 1,
             ];
             CompletedCourse::updateOrCreate($complete);
         }
@@ -113,8 +110,8 @@ class LectureController extends Controller
 
     public function chapter(Request $request)
     {
-        $chapters = Chapter::where('course_id', $request->courseId)->get();
-        $chapterName = '';
+        $chapters     = Chapter::where('course_id', $request->courseId)->get();
+        $chapterName  = '';
         $chapterName .= '<option selected value disable>Select</option>';
         foreach ($chapters as $chapter) {
             $chapterName .= '<option value="'.$chapter->id.'">'.$chapter->name.'</option>';

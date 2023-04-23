@@ -15,13 +15,6 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-
-                <li class="nav-section">
-                    <span class="sidebar-mini-icon">
-                        <i class="fa fa-ellipsis-h"></i>
-                    </span>
-                    <h4 class="text-section">Components</h4>
-                </li>
                 @foreach ($chapters as $chapter)
                 <div class="chapter_div">
                     <p class="chapter">{{ $chapter->name }}</p>
@@ -70,12 +63,6 @@
                         </div>
                     </a>
                 </div>
-                <li class="nav-item">
-                    <a href="{{ route('logout') }}">
-                        <i class="fas fa-sign-out-alt"></i>
-                        <p>Logout</p>
-                    </a>
-                </li>
             </ul>
         </div>
     </div>
@@ -90,7 +77,7 @@
                         <div class="card-header">
                             <div class="d-flex align-items-center">
                                 <h4 class="card-title">Lectures</h4>
-                                {{-- <a href="{{ route('lecture.create') }}" class="btn btn-{{$layout->create_btn??'primary'}} btn-round ml-auto text-light" style="min-width: 200px">
+                                {{-- <a href="{{ route('lecture.create') }}" class="btn btn-primary' btn-round ml-auto text-light" style="min-width: 200px">
                                     <i class="fa fa-plus"></i> Add New Lecture
                                 </a> --}}
                             </div>
