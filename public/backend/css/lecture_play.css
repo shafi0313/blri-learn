@@ -3,6 +3,10 @@
     .content {margin-left:0;padding-left:265px;width:100%;}
   }
 
+  .sidebar .nav>.nav-item a, .sidebar[data-background-color=white] .nav>.nav-item a {
+    padding: 5px !important;
+  }
+
 
 .chapter_div {
     margin: 25px 0;
@@ -15,7 +19,7 @@
     /* min-height: 200px; */
     margin-bottom: 0 !important;
     line-height: 20px;
-    padding: 5px;
+    padding: 10px 5px;
     font-weight: bold;
     font-size: 14px;
     color: #666;
