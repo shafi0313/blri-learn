@@ -10,6 +10,7 @@ use App\Models\CourseEnroll;
 use Illuminate\Http\Request;
 use App\Models\CompletedCourse;
 use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class LectureController extends Controller
 {
@@ -104,12 +105,13 @@ class LectureController extends Controller
             CompletedCourse::updateOrCreate($complete);
         }
         
-        $nextLectureId  = Lecture::where('id','>',$lectureId)->orderBy('id')->first(['id','course_id']);
+        $nextLectureId = Lecture::where('id','>',$lectureId)->orderBy('id')->first(['id','course_id']);
         if($nextLectureId){
             toast('Success','success');
             return redirect()->route('user.lecture.lecturePlay',[$nextLectureId->course_id, $nextLectureId->id]);
         }else{
-            toast('Success','success');
+            Alert::success('Success', 'Course Completed');
+            // toast('Success','success');
             return back();
         }
     }
