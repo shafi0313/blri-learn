@@ -69,7 +69,7 @@ class LectureController extends Controller
     {
         $user         = auth()->user();
         $chapters     = Chapter::with('lectures','lectures.enroll')->whereCourse_id($course_id)->get();
-        $lecturePlay  = Lecture::with(['enroll', 'lectureText'])->whereId($lecture_id)->first();
+        $lecturePlay  = Lecture::with(['enroll', 'lectureText'])->whereId($lecture_id)->whereCourse_id($course_id)->first();
         $courseEnroll = CourseEnroll::whereUser_id($user->id)->whereCourse_id($course_id)->whereLecture_id($lecture_id)->first();
         return view('user.lecture.lecture_play', compact('chapters','lecturePlay','courseEnroll'));
     }
@@ -82,6 +82,7 @@ class LectureController extends Controller
         $lectureId    = $request->lecture_id;
         $courseEnroll = CourseEnroll::whereUser_id($userId)->whereCourse_id($courseId)->whereLecture_id($lectureId)->first();
         if($courseEnroll != null){
+            // return 'd';
             $courseEnroll->update(['status' => 1]); // complete
         }else{
             $data = [
@@ -102,10 +103,15 @@ class LectureController extends Controller
             ];
             CompletedCourse::updateOrCreate($complete);
         }
-
-        toast('Success','success');
-        return back();
-        // return response()->json(['success'=>'Got Simple Ajax Request.']);
+        
+        $nextLectureId  = Lecture::where('id','>',$lectureId)->orderBy('id')->first(['id','course_id']);
+        if($nextLectureId){
+            toast('Success','success');
+            return redirect()->route('user.lecture.lecturePlay',[$nextLectureId->course_id, $nextLectureId->id]);
+        }else{
+            toast('Success','success');
+            return back();
+        }
     }
 
     public function chapter(Request $request)

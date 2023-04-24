@@ -21,10 +21,15 @@ class Lecture extends Model
     }
     public function enroll()
     {
-        return $this->hasOne(CourseEnroll::class, 'lecture_id','id');
+        return $this->hasOne(CourseEnroll::class, 'lecture_id','id')->whereUser_id(auth()->user()->id);
     }
     public function lectureText()
     {
         return $this->hasOne(LectureText::class, 'lecture_id','id');
     }
+
+    // public function next()
+    // {
+    //     return Lecture::where('id','>',$this->id)->orderBy('id')->first();
+    // }
 }
