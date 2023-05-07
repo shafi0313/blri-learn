@@ -89,9 +89,6 @@
                                             @endif
                                         </div>
                                     </div>
-
-
-
                                 </div>
                             </div>
                             <div class="text-center card-action">

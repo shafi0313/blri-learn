@@ -1,7 +1,8 @@
 <style>
     body {
-    font-family: 'bangla', sans-serif;
-}
+        font-family: 'bangla', sans-serif;
+    }
+
     .certificate {
         max-width: 1113px;
         border: 2px solid rgb(184, 182, 182);
@@ -9,6 +10,7 @@
         position: relative;
         color: black;
     }
+
     .certificate .bg_image {
         content: ' ';
         position: absolute;
@@ -30,10 +32,12 @@
         display: inline-block;
         justify-content: center;
     }
-    .certificate .img img{
+
+    .certificate .img img {
         height: 90px;
         margin: 10px 0 3px 158px;
     }
+
     .serial_no {
         width: 160px;
         float: right;
@@ -41,29 +45,36 @@
         padding: 6px 9px;
         margin: 10px
     }
+
     .certificate .title {
         font-size: 45px;
     }
+
     .certificate .presented_to {
         font-size: 30px;
         margin: 0 !important;
         font-weight: bold;
     }
+
     .presented_to_cert {
         color: rgb(221, 14, 240);
         text-decoration: underline;
     }
+
     table {
         width: 80%;
         font-size: 20px;
     }
+
     table .tr {
         text-align: right;
         padding-right: 8px
     }
+
     table .tl {
         text-align: left;
     }
+
     .certificate .student {
         font-size: 20px;
         margin: 0;
@@ -71,11 +82,13 @@
         line-height: 30px;
         font-weight: bold;
     }
+
     .certificate .course {
         font-size: 20px;
         border-top: 2px solid black;
         margin-top: 5px;
     }
+
     .signature {
         display: flex;
         padding: 0 60px;
@@ -86,22 +99,4 @@
     .signature p {
         margin: 0;
     }
-
-    /* .certificate .signature {
-        border-top: 1px solid black;
-        font-size: 25px;
-        display: inline-block;
-        line-height: 0.82;
-        margin-top: 40px;
-    }
-    .certificate .signature_deg {
-        font-size: 25px;
-    } */
-
 </style>
-
-
-
-
-
-
