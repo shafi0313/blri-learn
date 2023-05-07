@@ -262,6 +262,54 @@ if (!function_exists('fileDestroy')) {
     }
 }
 
+if (!function_exists('monthInBangla')) {
+    function monthInBangla($month)
+    {
+        return match($month) {
+            '1'  => 'জানুয়ারি',
+            '2'  => 'ফেব্রুয়ারি',
+            '3'  => 'মার্চ',
+            '4'  => 'এপ্রিল',
+            '5'  => 'মে',
+            '6'  => 'জুন',
+            '7'  => 'জুলাই',
+            '8'  => 'আগস্ট',
+            '9'  => 'সেপ্টেম্বর',
+            '10' => 'অক্টোবর',
+            '11' => 'নভেম্বর ',
+            '12' => 'ডিসেম্বর',
+        };
+    }
+}
+
+if (!function_exists('carbon')) {
+    function carbon($date)
+    {
+        return \Carbon\Carbon::parse($date);
+    }
+}
+
+if (!function_exists('digitInBangla')) {
+    function digitInBangla($data)
+    {
+        for ($i = 0; $i < strlen($data); $i++) {             
+            $datum = match($data[$i]) {
+                '0' => '০',
+                '1' => '১',
+                '2' => '২',
+                '3' => '৩',
+                '4' => '৪',
+                '5' => '৫',
+                '6' => '৬',
+                '7' => '৭',
+                '8' => '৮',
+                '9' => '৯',
+            };
+            print_r($datum);
+        }
+    }
+}
+
 
 
 

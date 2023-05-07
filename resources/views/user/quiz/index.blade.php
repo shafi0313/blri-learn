@@ -35,11 +35,7 @@
                     .option .form-check-label {
                         padding-left: 5px !important;
                         font-weight: 400 !important;
-                    }
-
-
-
-                    
+                    }                    
                 </style>
 
                 <div class="row justify-content-center">
