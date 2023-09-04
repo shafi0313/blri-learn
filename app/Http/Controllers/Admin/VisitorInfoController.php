@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Layout;
 use App\Models\VisitorInfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -18,8 +17,7 @@ class VisitorInfoController extends Controller
             return $error;
         }
         $visitors = VisitorInfo::all();
-        $layout = Layout::where('user_id', Auth::user()->id)->first(['tbl','tbl_bg','tbl_text','create_btn']);
-        return view('admin.visitor_info.index', compact('visitors','layout'));
+        return view('admin.visitor_info.index', compact('visitors'));
     }
 
     public function destroySelected(Request $request)

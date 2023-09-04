@@ -296,7 +296,7 @@
                 <button name="submit_btn"  value="warning" class="bg-warning"></button>
             </div>
         </form>
-        <button class="btn btn-{{$layout->submit_btn??'primary'}} btn-sm">Submit</button>
+        <button class="btn btn-primary btn-sm">Submit</button>
     </div>
     <div class="col-md-6">
         <form action="{{ route('layout.createBtn')}}" method="post">
@@ -314,7 +314,7 @@
                 <button name="create_btn" value="warning" class="bg-warning"></button>
             </div>
         </form>
-        <button class="btn btn-{{$layout->create_btn??'primary'}} btn-sm btn-round ml-auto" data-toggle="modal" data-target="#addRowModal">
+        <button class="btn btn-primary btn-sm btn-round ml-auto" data-toggle="modal" data-target="#addRowModal">
             <i class="fa fa-plus"></i>Add Row
         </button>
     </div>

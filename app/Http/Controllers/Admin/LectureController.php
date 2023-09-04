@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Course;
-use App\Models\Layout;
 use App\Models\Chapter;
 use App\Models\Lecture;
 use App\Models\LectureText;
@@ -17,10 +16,9 @@ class LectureController extends Controller
         if ($error = $this->authorize('lecture-manage')) {
             return $error;
         }
-        $user = auth()->user();
-        $layout = Layout::where('user_id', $user->id)->first(['tbl','tbl_bg','tbl_text','create_btn']);
+        $user     = auth()->user();
         $lectures = Lecture::whereUser_id($user->id)->get();
-        return view('admin.lecture.index', compact('layout','lectures'));
+        return view('admin.lecture.index', compact('lectures'));
     }
 
     public function create()
@@ -28,10 +26,9 @@ class LectureController extends Controller
         if ($error = $this->authorize('lecture-add')) {
             return $error;
         }
-        $user = auth()->user();
-        $layout = Layout::whereUser_id($user->id)->first(['submit_btn']);
+        $user    = auth()->user();
         $courses = Course::whereUser_id($user->id)->get();
-        return view('admin.lecture.create', compact('layout','courses'));
+        return view('admin.lecture.create', compact('courses'));
     }
 
     public function store(Request $request)
@@ -40,12 +37,12 @@ class LectureController extends Controller
             return $error;
         }
         $data = $this->validate($request, [
-            'course_id' => 'required',
+            'course_id'  => 'required',
             'chapter_id' => 'required',
-            'type' => 'required',
-            'name' => 'required',
-            'text' => 'required',
-            'time' => 'required_if:type,==,2',
+            'type'       => 'required',
+            'name'       => 'required',
+            'text'       => 'required',
+            'time'       => 'required_if:type,==,2',
         ]);
         $data['user_id'] = auth()->user()->id;
         $data['type'] = $request->type;
@@ -68,49 +65,17 @@ class LectureController extends Controller
 
     public function show($id)
     {
-        // return $id;
-        $user = auth()->user();
-        $layout = Layout::whereUser_id($user->id)->first(['submit_btn']);
+        $user     = auth()->user();
         $chapters = Chapter::with('lectures')->whereCourse_id($id)->get();
-        // $chapters = Lect::whereCourse_id($id)->get();
-        return view('admin.lecture.show', compact('layout','chapters'));
+        return view('admin.lecture.show', compact('chapters'));
     }
 
     public function lecturePlay($course_id, $lecture_id)
     {
-        $user = auth()->user();
-        $layout = Layout::whereUser_id($user->id)->first(['submit_btn']);
-        $chapters = Chapter::whereCourse_id($course_id)->get();
+        $user        = auth()->user();
+        $chapters    = Chapter::with('lectures')->whereCourse_id($course_id)->get();
         $lecturePlay = Lecture::whereId($lecture_id)->first();
-        // $chapters = Lect::whereCourse_id($id)->get();
-        return view('admin.lecture.lecture_play', compact('layout','chapters','lecturePlay'));
-    }
-
-    public function lectureComplete(Request $request)
-    {
-        return $request;
-        // return response()->json(['success'=>'Got Simple Ajax Request.']);
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return view('admin.lecture.lecture_play', compact('chapters','lecturePlay'));
     }
 
     public function chapter(Request $request)

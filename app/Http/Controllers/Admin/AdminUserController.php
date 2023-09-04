@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
-use App\Models\Layout;
 use App\Models\ModelHasRole;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -19,7 +18,6 @@ class AdminUserController extends Controller
             return $error;
         }
         $users = User::with(['modelHasRole','modelHasRole.role'])->wherePermission('1')->get();
-
         return view('admin.admin_user.index', compact('users'));
     }
 
@@ -38,15 +36,15 @@ class AdminUserController extends Controller
             return $error;
         }
         $data = $request->validate([
-            'name' => 'required|max:100',
-            'designation' => 'nullable',
+            'name'            => 'required|max:100',
+            'designation'     => 'nullable',
             'role_permission' => 'required',
-            'phone' => 'required|max:100',
-            'email' => 'required|email|unique:users,email',
-            'address' => 'required',
-            'd_o_b' => 'required|date',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:2048',
-            'password' => ['required', 'confirmed', Password::min(6)
+            'phone'           => 'required|max:100',
+            'email'           => 'required|email|unique:users,email',
+            'address'         => 'required',
+            'd_o_b'           => 'required|date',
+            'image'           => 'nullable|image|mimes:jpeg,png,jpg,svg|max:2048',
+            'password'        => ['required', 'confirmed', Password::min(6)
                                                             // ->letters()
                                                             // ->mixedCase()
                                                             // ->numbers()
@@ -92,16 +90,5 @@ class AdminUserController extends Controller
         $user = User::find($id);
         $roles = Role::all();
         return view('admin.admin_user.edit', compact('user','roles'));
-    }
-
-    public function update(Request $request)
-    {
-
-    }
-
-
-    public function destroy($id)
-    {
-
     }
 }

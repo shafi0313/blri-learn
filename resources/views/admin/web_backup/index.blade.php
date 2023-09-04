@@ -23,14 +23,14 @@
                                 <div style="display:inline-block" class="ml-auto mr-5">
                                     <form action="{{route('admin.backup.db')}}" method="POST">
                                         @csrf
-                                        <input onClick="return wait()" type="submit" class="btn btn-{{$layout->create_btn??'primary'}} btn-round ml-auto text-light" style="min-width: 200px" value="Backup Database">
+                                        <input onClick="return wait()" type="submit" class="btn btn-primary btn-round ml-auto text-light" style="min-width: 200px" value="Backup Database">
                                     </form>
                                 </div>
 
                                 <div style="display:inline-block">
                                     <form action="{{route('admin.backup.files')}}" method="POST">
                                         @csrf
-                                        <input onClick="return wait()" type="submit" class="btn btn-{{$layout->create_btn??'primary'}} btn-round ml-auto text-light" style="min-width: 200px" value="Backup Program File">
+                                        <input onClick="return wait()" type="submit" class="btn btn-primary btn-round ml-auto text-light" style="min-width: 200px" value="Backup Program File">
                                     </form>
                                 </div>
                             </div>

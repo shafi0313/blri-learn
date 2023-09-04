@@ -21,7 +21,7 @@
                         <div class="card-header">
                             <div class="d-flex align-items-center">
                                 <h4 class="card-title">Add Row</h4>
-                                <button hretype="button" class="btn btn-{{$layout->create_btn??'primary'}} btn-round ml-auto text-light"  data-toggle="modal" data-target="#chapterModal" style="min-width: 200px">
+                                <button hretype="button" class="btn btn-primary btn-round ml-auto text-light"  data-toggle="modal" data-target="#chapterModal" style="min-width: 200px">
                                     <i class="fa fa-plus"></i> Add New Chapter
                                 </button>
                             </div>
@@ -102,7 +102,7 @@
                                 </div>
                             </div>
                             <div class="text-center card-action">
-                                <button type="submit" class="btn btn-{{$layout->submit_btn??'primary'}}">Submit</button>
+                                <button type="submit" class="btn btn-primary">Submit</button>
                                 <button type="reset" class="btn btn-danger">Cancel</button>
                             </div>
                         </form>

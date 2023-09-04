@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Layout;
 use App\Models\Slider;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -16,9 +15,8 @@ class SliderController extends Controller
         if ($error = $this->authorize('slider-manage')) {
             return $error;
         }
-        $layout = Layout::where('user_id', auth()->user()->id)->first(['tbl','tbl_bg','tbl_text','create_btn']);
         $sliders = Slider::all();
-        return view('admin.slider.index', compact('layout','sliders'));
+        return view('admin.slider.index', compact('sliders'));
     }
 
     public function create()
@@ -26,8 +24,7 @@ class SliderController extends Controller
         if ($error = $this->authorize('slider-add')) {
             return $error;
         }
-        $layout = Layout::where('user_id', auth()->user()->id)->first(['submit_btn']);
-        return view('admin.slider.create', compact('layout'));
+        return view('admin.slider.create');
     }
 
     public function store(Request $request)
@@ -67,9 +64,8 @@ class SliderController extends Controller
         if ($error = $this->authorize('slider-edit')) {
             return $error;
         }
-        $layout = Layout::where('user_id', auth()->user()->id)->first(['submit_btn']);
         $slider = Slider::find($id);
-        return view('admin.slider.edit', compact('layout','slider'));
+        return view('admin.slider.edit', compact('slider'));
     }
 
     public function update(Request $request, $id)

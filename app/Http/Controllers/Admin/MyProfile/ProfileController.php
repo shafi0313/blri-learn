@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin\MyProfile;
 
 use App\Models\User;
-use App\Models\Layout;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -13,9 +12,8 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        $layout = Layout::whereUser_id(Auth::user()->id)->first(['submit_btn']);
         $user = User::whereId(Auth::user()->id)->first();
-        return view('admin.my_profile.profile.index', compact('user','layout'));
+        return view('admin.my_profile.profile.index', compact('user'));
     }
 
     public function update(Request $request)
@@ -34,20 +32,15 @@ class ProfileController extends Controller
         ]);
 
         $password = $request->password;
-
         $user = [
-            'name' => $request->name,
+            'name'        => $request->name,
             'designation' => $request->designation,
-            'd_o_b' => $request->d_o_b,
-            'address' => $request->address,
+            'd_o_b'       => $request->d_o_b,
+            'address'     => $request->address,
         ];
         if(!empty($password)){
             $user['password'] = $password;
         }
-
-
-
-        // User::whereId(Auth::user()->id)->update($user);
 
         try{
             User::whereId(Auth::user()->id)->update($user);

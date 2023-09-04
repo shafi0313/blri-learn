@@ -67,7 +67,7 @@
                                 </div> --}}
                                 <div class="text-center card-action">
                                     <button type="submit"
-                                        class="btn btn-{{$layout->submit_btn??'primary'}}">Submit</button>
+                                        class="btn btn-primary">Submit</button>
                                     {{-- <button type="reset" class="btn btn-danger">Cancel</button> --}}
                                 </div>
                             </form>
