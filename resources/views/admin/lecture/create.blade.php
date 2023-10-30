@@ -9,7 +9,7 @@
                 <ul class="breadcrumbs">
                     <li class="nav-home"><a href="{{ route('admin.dashboard') }}"><i class="flaticon-home"></i></a></li>
                     <li class="separator"><i class="flaticon-right-arrow"></i></li>
-                    <li class="nav-item"><a href="{{ route('course.index') }}">Course</a></li>
+                    <li class="nav-item"><a href="{{ route('admin.course.index') }}">Course</a></li>
                     <li class="separator"><i class="flaticon-right-arrow"></i></li>
                     <li class="nav-item">Create</li>
                 </ul>
@@ -26,7 +26,7 @@
                                 </button>
                             </div>
                         </div>
-                        <form action="{{ route('lecture.store') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('admin.lecture.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 @if ($errors->any())

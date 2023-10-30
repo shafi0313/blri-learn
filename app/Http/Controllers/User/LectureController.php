@@ -52,7 +52,7 @@ class LectureController extends Controller
         try {
             Lecture::create($data);
             toast('success', 'Success!');
-            return redirect()->route('lecture.index');
+            return redirect()->route('admin.lecture.index');
         } catch (\Exception $e) {
             return $e->getMessage();
             toast('error', 'Error');
@@ -104,7 +104,7 @@ class LectureController extends Controller
             ];
             CompletedCourse::updateOrCreate($complete);
         }
-        
+
         $nextLectureId = Lecture::where('id','>',$lectureId)->orderBy('id')->first(['id','course_id']);
         if($nextLectureId){
             toast('Success','success');

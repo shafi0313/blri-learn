@@ -9,7 +9,7 @@
                 <ul class="breadcrumbs">
                     <li class="nav-home"><a href="{{ route('admin.dashboard') }}"><i class="flaticon-home"></i></a></li>
                     <li class="separator"><i class="flaticon-right-arrow"></i></li>
-                    <li class="nav-item"><a href="{{ route('certificate-signature.index') }}">Certificate Signature</a></li>
+                    <li class="nav-item"><a href="{{ route('admin.certificate-signature.index') }}">Certificate Signature</a></li>
                     <li class="separator"><i class="flaticon-right-arrow"></i></li>
                     <li class="nav-item">Edit</li>
                 </ul>
@@ -20,7 +20,7 @@
                         <div class="card-header">
                             <div class="card-title">Edit Certificate Signature</div>
                         </div>
-                        <form action="{{ route('certificate-signature.update', $cerSignature->id) }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('admin.certificate-signature.update', $cerSignature->id) }}" method="post" enctype="multipart/form-data">
                             @csrf @method('PUT')
                             <div class="card-body">
                                 <div class="row">

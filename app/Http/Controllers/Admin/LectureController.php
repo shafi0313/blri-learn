@@ -55,7 +55,7 @@ class LectureController extends Controller
         }
         try {
             toast('Success!', 'success');
-            return redirect()->route('lecture.index');
+            return redirect()->route('admin.lecture.index');
         } catch (\Exception $e) {
             return $e->getMessage();
             toast('Error', 'error');

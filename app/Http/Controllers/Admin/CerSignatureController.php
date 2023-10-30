@@ -46,7 +46,7 @@ class CerSignatureController extends Controller
         try {
             CerSignature::create($data);
             toast('Success', 'success!');
-            return redirect()->route('certificate-signature.index');
+            return redirect()->route('admin.certificate-signature.index');
         } catch (\Exception $e) {
             return $e->getMessage();
             toast('error', 'Error');
@@ -81,7 +81,7 @@ class CerSignatureController extends Controller
         try {
             CerSignature::find($id)->update($data);
             toast('Success', 'success!');
-            return redirect()->route('certificate-signature.index');
+            return redirect()->route('admin.certificate-signature.index');
         } catch (\Exception $e) {
             return $e->getMessage();
             toast('Error', 'error');

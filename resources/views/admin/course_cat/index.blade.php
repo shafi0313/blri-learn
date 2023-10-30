@@ -20,7 +20,7 @@
                         <div class="card-header">
                             <div class="d-flex align-items-center">
                                 <h4 class="card-title">Add Row</h4>
-                                <a href="{{ route('admin.courseCat.create') }}" class="btn btn-primary btn-round ml-auto text-light" style="min-width: 200px">
+                                <a href="{{ route('admin.courser-categories.create') }}" class="btn btn-primary btn-round ml-auto text-light" style="min-width: 200px">
                                     <i class="fa fa-plus"></i> Add New
                                 </a>
                             </div>
@@ -51,10 +51,10 @@
                                             <td><img src="{{ asset('uploads/images/course/'.$courseCat->image) }}" alt="" width="100px"></td>
                                             <td>
                                                 <div class="form-button-action">
-                                                    <a href="{{ route('admin.courseCat.edit', $courseCat->id) }}" title="Edit" class="btn btn-link btn-primary btn-lg">
+                                                    <a href="{{ route('admin.courser-categories.edit', $courseCat->id) }}" title="Edit" class="btn btn-link btn-primary btn-lg">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
-                                                    <form action="{{ route('admin.courseCat.destroy', $courseCat->id) }}" method="post">
+                                                    <form action="{{ route('admin.courser-categories.destroy', $courseCat->id) }}" method="post">
                                                         @csrf @method('DELETE')
                                                         <button type="submit" title="Delete" class="btn btn-link btn-danger">
                                                             <i class="fa fa-times"></i>

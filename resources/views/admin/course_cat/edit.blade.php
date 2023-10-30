@@ -9,7 +9,7 @@
                 <ul class="breadcrumbs">
                     <li class="nav-home"><a href="{{ route('admin.dashboard') }}"><i class="flaticon-home"></i></a></li>
                     <li class="separator"><i class="flaticon-right-arrow"></i></li>
-                    <li class="nav-item"><a href="{{ route('admin.courseCat.index') }}">Course Categories</a></li>
+                    <li class="nav-item"><a href="{{ route('admin.courser-categories.index') }}">Course Categories</a></li>
                     <li class="separator"><i class="flaticon-right-arrow"></i></li>
                     <li class="nav-item">Edit</li>
                 </ul>
@@ -20,7 +20,7 @@
                         <div class="card-header">
                             <div class="card-title">Edit Course Categories</div>
                         </div>
-                        <form action="{{ route('admin.courseCat.update', $courseCat->id) }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('admin.courser-categories.update', $courseCat->id) }}" method="post" enctype="multipart/form-data">
                             @csrf @method('PUT')
                             <div class="card-body">
                                 <div class="row">

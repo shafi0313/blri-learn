@@ -20,7 +20,7 @@
                         <div class="card-header">
                             <div class="card-title">Add Certificate Signature</div>
                         </div>
-                        <form action="{{ route('certificate-signature.store') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('admin.certificate-signature.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <div class="row">

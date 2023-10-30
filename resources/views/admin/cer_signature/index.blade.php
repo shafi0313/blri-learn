@@ -20,7 +20,7 @@
                         <div class="card-header">
                             <div class="d-flex align-items-center">
                                 <h4 class="card-title">Add Row</h4>
-                                <a href="{{ route('certificate-signature.create') }}" class="btn btn-primary btn-round ml-auto text-light" style="min-width: 200px">
+                                <a href="{{ route('admin.certificate-signature.create') }}" class="btn btn-primary btn-round ml-auto text-light" style="min-width: 200px">
                                     <i class="fa fa-plus"></i> Add New
                                 </a>
                             </div>
@@ -55,7 +55,7 @@
                                             <td><img src="{{ asset('uploads/images/signature/'.$cerSignature->image) }}" alt="" height="50px"></td>
                                             <td>
                                                 <div class="form-button-action">
-                                                    <a href="{{ route('certificate-signature.edit', $cerSignature->id) }}" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
+                                                    <a href="{{ route('admin.certificate-signature.edit', $cerSignature->id) }}" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
                                                 </div>

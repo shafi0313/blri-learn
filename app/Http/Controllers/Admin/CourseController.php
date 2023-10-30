@@ -53,7 +53,7 @@ class CourseController extends Controller
         try {
             Course::create($data);
             toast('Success!', 'success');
-            return redirect()->route('course.index');
+            return redirect()->route('admin.course.index');
         } catch (\Exception $e) {
             return $e->getMessage();
             toast('error', 'Error');
@@ -96,7 +96,7 @@ class CourseController extends Controller
         try {
             Course::find($id)->update($data);
             toast('Success!', 'success');
-            return redirect()->route('course.index');
+            return redirect()->route('admin.course.index');
         } catch (\Exception $e) {
             return $e->getMessage();
             toast('error', 'Error');

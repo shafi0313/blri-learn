@@ -40,7 +40,7 @@ class CourseCatController extends Controller
         try {
             CourseCat::create($data);
             toast('Success!', 'success');
-            return redirect()->route('admin.courseCat.index');
+            return redirect()->route('admin.courser-categories.index');
         } catch (\Exception $e) {
             return $e->getMessage();
             toast('Error', 'error');
@@ -75,7 +75,7 @@ class CourseCatController extends Controller
         try {
             CourseCat::find($id)->update($data);
             toast('Success', 'success');
-            return redirect()->route('admin.courseCat.index');
+            return redirect()->route('admin.courser-categories.index');
         } catch (\Exception $e) {
             return $e->getMessage();
             toast('Error', 'error');

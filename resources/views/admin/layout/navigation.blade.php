@@ -1,3 +1,36 @@
+{{-- <li class="nav-item submenu">
+    <a data-toggle="collapse" href="#submenu" class="" aria-expanded="true">
+        <i class="fas fa-bars"></i>
+        <p>Menu Levels</p>
+        <span class="caret"></span>
+    </a>
+    <div class="collapse show" id="submenu" style="">
+        <ul class="nav nav-collapse">
+            <li>
+                <a data-toggle="collapse" href="#subnav1">
+                    <span class="sub-item">Level 1</span>
+                    <span class="caret"></span>
+                </a>
+                <div class="collapse" id="subnav1">
+                    <ul class="nav nav-collapse subnav">
+                        <li>
+                            <a href="#">
+                                <span class="sub-item">Level 2</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="sub-item">Level 2</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+</li> --}}
+
+
 <div class="sidebar"  data-background-color="white">
     <div class="sidebar-wrapper scrollbar scrollbar-inner">
         <div class="sidebar-content">
@@ -24,13 +57,16 @@
                     </a>
                     <div class="collapse {{ openNav(['admin.adminUser.*']) }}" id="base">
                         <ul class="nav nav-collapse">
-                            @can('user-manage')
-                            <li class="{{ activeSubNav(['admin.adminUser.*']) }}">
+                            <li class="{{ activeSubNav(['admin.adminUser.index']) }}">
                                 <a href="{{ route('admin.adminUser.index') }}">
-                                    <span class="sub-item">User</span>
+                                    <span class="sub-item">User Manage</span>
                                 </a>
                             </li>
-                            @endcan
+                            <li class="{{ activeSubNav(['admin.adminUser.*']) }}">
+                                <a href="{{ route('admin.adminUser.create') }}">
+                                    <span class="sub-item">User Add</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>
@@ -45,29 +81,50 @@
                     </a>
                     <div class="collapse {{ openNav(['admin.slider.*']) }}" id="frontend">
                         <ul class="nav nav-collapse">
-                            @can('slider-manage')
-                            <li class="{{ activeSubNav('admin.slider.*') }}">
+                            <li class="{{ activeSubNav(['admin.slider.index','admin.slider.edit']) }}">
                                 <a href="{{ route('admin.slider.index') }}">
-                                    <span class="sub-item">Slider</span>
+                                    <span class="sub-item">Slider Manage</span>
                                 </a>
                             </li>
-                            @endcan
+                            <li class="{{ activeSubNav('admin.slider.create') }}">
+                                <a href="{{ route('admin.slider.create') }}">
+                                    <span class="sub-item">Slider Add</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>
                 {{-- Frontend end --}}
-                @can('course-cat-manage')
-                <li class="nav-item {{ activeNav('admin.courseCat.*') }}">
-                    <a href="{{ route('admin.courseCat.index') }}">
-                        <i class="fas fa-database"></i>
+
+                {{-- Course Category start --}}
+                <li class="nav-item {{ activeNav(['admin.courser-categories.*'])}}">
+                    <a data-toggle="collapse" href="#courseCategory">
+                        <i class="fa-solid fa-eye"></i>
                         <p>Course Category</p>
+                        <span class="caret"></span>
                     </a>
+                    <div class="collapse {{ openNav(['admin.courser-categories.*']) }}" id="courseCategory">
+                        <ul class="nav nav-collapse">
+                            <li class="{{ activeSubNav(['admin.courser-categories.index','admin.courser-categories.edit']) }}">
+                                <a href="{{ route('admin.courser-categories.index') }}">
+                                    <span class="sub-item">Manage</span>
+                                </a>
+                            </li>
+                            <li class="{{ activeSubNav(['admin.courser-categories.create']) }}">
+                                <a href="{{ route('admin.courser-categories.create') }}">
+                                    <span class="sub-item">Add</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
-                @endcan
+                {{-- Course Category end --}}
+
+
 
                 @can('course-manage')
-                <li class="nav-item {{ activeNav('course.*') }}">
-                    <a href="{{ route('course.index') }}">
+                <li class="nav-item {{ activeNav('admin.course.*') }}">
+                    <a href="{{ route('admin.course.index') }}">
                         <i class="fas fa-book"></i>
                         <p>Course</p>
                     </a>
@@ -75,8 +132,8 @@
                 @endcan
 
                 @can('lecture-manage')
-                <li class="nav-item {{ activeNav('lecture.*') }}">
-                    <a href="{{ route('lecture.index') }}">
+                <li class="nav-item {{ activeNav('admin.lecture.*') }}">
+                    <a href="{{ route('admin.lecture.index') }}">
                         <i class="fas fa-book-open"></i>
                         <p>Lecture</p>
                     </a>
@@ -101,8 +158,8 @@
                 </li>
                 @endcan
 
-                <li class="nav-item {{ activeNav(['certificate-signature.*']) }}">
-                    <a href="{{ route('certificate-signature.index') }}">
+                <li class="nav-item {{ activeNav(['admin.certificate-signature.*']) }}">
+                    <a href="{{ route('admin.certificate-signature.index') }}">
                         <i class="fa-solid fa-file-signature"></i>
                         <p>Certificate Signature</p>
                     </a>
@@ -117,11 +174,11 @@
                     <div class="collapse {{openNav(['admin.role.*','admin.backup.*','admin.visitorInfo.*','admin.permission.*'])}}" id="settings">
                         <ul class="nav nav-collapse">
                             @canany('role-manage','permission-manage')
-                            <li class="{{ activeSubNav('admin.role.*','admin.permission.*')}}">
+                            {{-- <li class="{{ activeSubNav('admin.role.*','admin.permission.*')}}">
                                 <a href="{{ route('admin.role.index') }}">
                                     <span class="sub-item">Role & Permission</span>
                                 </a>
-                            </li>
+                            </li> --}}
                             @endcanany
                             @canany('backup-manage')
                             <li class="{{ activeSubNav('admin.backup.*')}}">

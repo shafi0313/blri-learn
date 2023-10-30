@@ -36,7 +36,7 @@ class SliderController extends Controller
             'title' => 'sometimes|max:80',
             'text' => 'sometimes',
             'link' => 'sometimes',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:1024',
             // 'image' => 'required|dimensions:max_width=1920,max_height=718',
         ]);
         if($request->hasFile('image')){

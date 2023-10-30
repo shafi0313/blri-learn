@@ -20,7 +20,7 @@
                         <div class="card-header">
                             <div class="d-flex align-items-center">
                                 <h4 class="card-title">Add Row</h4>
-                                <a href="{{ route('lecture.create') }}" class="btn btn-primary btn-round ml-auto text-light" style="min-width: 200px">
+                                <a href="{{ route('admin.lecture.create') }}" class="btn btn-primary btn-round ml-auto text-light" style="min-width: 200px">
                                     <i class="fa fa-plus"></i> Add New Lecture
                                 </a>
                             </div>
@@ -56,7 +56,7 @@
                                             <td>{{ $lec->course->skill_level }}</td>
                                             <td>{{ $lec->course->language }}</td>
                                             <td>{!! $lec->course->description !!}</td>
-                                            <td><a href="{{ route('lecture.show',$lec->course_id) }}">show</a></td>
+                                            <td><a href="{{ route('admin.lecture.show',$lec->course_id) }}">show</a></td>
                                         {{-- <td>{{ $course->chapter }}</td>
                                             <td>{{ $course->language }}</td>
                                             <td>{!! $course->description !!}</td>
@@ -64,10 +64,10 @@
                                             <td>{{ $course->alt }}</td>
                                             <td>
                                                 <div class="form-button-action">
-                                                    <a href="{{ route('course.edit', $course->id) }}" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
+                                                    <a href="{{ route('admin.course.edit', $course->id) }}" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
-                                                    <form action="{{ route('course.destroy', $course->id) }}" method="post">
+                                                    <form action="{{ route('admin.course.destroy', $course->id) }}" method="post">
                                                         @csrf @method('DELETE')
                                                         <button type="submit" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove" onClick="return confirm('Are you sure')">
                                                             <i class="fa fa-times"></i>

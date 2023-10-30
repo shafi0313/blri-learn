@@ -20,7 +20,7 @@
                         <div class="card-header">
                             <div class="d-flex align-items-center">
                                 <h4 class="card-title">Add Row</h4>
-                                <a href="{{ route('lecture.create') }}" class="btn btn-primary btn-round ml-auto text-light" style="min-width: 200px">
+                                <a href="{{ route('admin.lecture.create') }}" class="btn btn-primary btn-round ml-auto text-light" style="min-width: 200px">
                                     <i class="fa fa-plus"></i> Add New Lecture
                                 </a>
                             </div>
@@ -58,7 +58,7 @@
                                             <td>{{ $lec->course->skill_level }}</td>
                                             <td>{{ $lec->course->language }}</td>
                                             <td>{!! Str::limit($lec->course->description, 50) !!}</td>
-                                            <td><a href="{{ route('lecture.show',$lec->course_id) }}">show</a></td>
+                                            <td><a href="{{ route('admin.lecture.show',$lec->course_id) }}">show</a></td>
                                         </tr>
                                         @endforeach
                                     </tbody>

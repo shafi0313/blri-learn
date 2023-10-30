@@ -20,7 +20,7 @@
                         <div class="card-header">
                             <div class="d-flex align-items-center">
                                 <h4 class="card-title">Add Row</h4>
-                                <a href="{{ route('course.create') }}" class="btn btn-primary btn-round ml-auto text-light" style="min-width: 200px">
+                                <a href="{{ route('admin.course.create') }}" class="btn btn-primary btn-round ml-auto text-light" style="min-width: 200px">
                                     <i class="fa fa-plus"></i> Add New
                                 </a>
                             </div>
@@ -62,10 +62,10 @@
                                             <td><img src="{{ asset('uploads/images/course/'. $course->image) }}" alt="" width="80px"></td>
                                             <td>
                                                 <div class="form-button-action">
-                                                    <a href="{{ route('course.edit', $course->id) }}" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
+                                                    <a href="{{ route('admin.course.edit', $course->id) }}" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
-                                                    <form action="{{ route('course.destroy', $course->id) }}" method="post">
+                                                    <form action="{{ route('admin.course.destroy', $course->id) }}" method="post">
                                                         @csrf @method('DELETE')
                                                         <button type="submit" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove" onClick="return confirm('Are you sure')">
                                                             <i class="fa fa-times"></i>

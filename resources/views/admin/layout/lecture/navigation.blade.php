@@ -56,14 +56,14 @@
                 </li>
 
                 <li class="nav-item {{$m=='course'?'active':''}}">
-                    <a href="{{ route('course.index') }}">
+                    <a href="{{ route('admin.course.index') }}">
                         <i class="fas fa-book"></i>
                         <p>Course</p>
                     </a>
                 </li>
 
                 <li class="nav-item {{$m=='lecture'?'active':''}}">
-                    <a href="{{ route('lecture.index') }}">
+                    <a href="{{ route('admin.lecture.index') }}">
                         <i class="fas fa-book-open"></i>
                         <p>Lecture</p>
                     </a>

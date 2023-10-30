@@ -20,7 +20,7 @@
                         <div class="card-header">
                             <div class="d-flex align-items-center">
                                 <h4 class="card-title">কুইজের মূল্যায়ন সম্পন্ন হয়েছে!</h4>
-                                {{-- <a href="{{ route('lecture.create') }}" class="btn btn-primary btn-round ml-auto text-light" style="min-width: 200px">
+                                {{-- <a href="{{ route('admin.lecture.create') }}" class="btn btn-primary btn-round ml-auto text-light" style="min-width: 200px">
                                     <i class="fa fa-plus"></i> Add New Lecture
                                 </a> --}}
                             </div>
