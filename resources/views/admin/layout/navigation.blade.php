@@ -75,7 +75,7 @@
                 {{-- Frontend start --}}
                 <li class="nav-item {{ activeNav(['admin.slider.*'])}}">
                     <a data-toggle="collapse" href="#frontend">
-                        <i class="fa-solid fa-eye"></i>
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
                         <p>Frontend</p>
                         <span class="caret"></span>
                     </a>
@@ -120,16 +120,29 @@
                 </li>
                 {{-- Course Category end --}}
 
-
-
-                @can('course-manage')
-                <li class="nav-item {{ activeNav('admin.course.*') }}">
-                    <a href="{{ route('admin.course.index') }}">
-                        <i class="fas fa-book"></i>
+                {{-- Course Category start --}}
+                <li class="nav-item {{ activeNav(['admin.course.*'])}}">
+                    <a data-toggle="collapse" href="#course">
+                        <i class="fa-solid fa-eye"></i>
                         <p>Course</p>
+                        <span class="caret"></span>
                     </a>
+                    <div class="collapse {{ openNav(['admin.course.*']) }}" id="course">
+                        <ul class="nav nav-collapse">
+                            <li class="{{ activeSubNav(['admin.course.index','admin.course.edit']) }}">
+                                <a href="{{ route('admin.course.index') }}">
+                                    <span class="sub-item">Manage</span>
+                                </a>
+                            </li>
+                            <li class="{{ activeSubNav(['admin.course.create']) }}">
+                                <a href="{{ route('admin.course.create') }}">
+                                    <span class="sub-item">Add</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
-                @endcan
+                {{-- Course Category end --}}
 
                 @can('lecture-manage')
                 <li class="nav-item {{ activeNav('admin.lecture.*') }}">

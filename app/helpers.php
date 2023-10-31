@@ -5,6 +5,106 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use RealRashid\SweetAlert\Facades\Alert;
 
+if (!function_exists('bdDate')) {
+    function bdDate($date)
+    {
+        return Carbon::parse($date)->format('d/m/Y');
+    }
+}
+
+if (!function_exists('ageWithDays')) {
+    function ageWithDays($d_o_b)
+    {
+        return Carbon::parse($d_o_b)->diff(Carbon::now())->format('%y years, %m months and %d days');
+    }
+}
+if (!function_exists('ageWithMonths')) {
+    function ageWithMonths($d_o_b)
+    {
+        return Carbon::parse($d_o_b)->diff(Carbon::now())->format('%y years, %m months');
+    }
+}
+
+if (!function_exists('fileStore')) {
+    function fileStore(Request $request, $requestName, string $name, string $path)
+    {
+        if ($request->hasFile($requestName)) {
+            $pathCreate = public_path() . $path;
+            !file_exists($pathCreate) ?? File::makeDirectory($pathCreate, 0777, true, true);
+
+            $image = $request->file($requestName);
+            $image_name = $name . uniqueId(10) . '.' . $image->getClientOriginalExtension();
+            if ($image->isValid()) {
+                $request->image->move($path, $image_name);
+
+                return $image_name;
+            }
+        }
+    }
+}
+
+/************************** Image **************************/
+if (!function_exists('imageStore')) {
+    function imageStore(Request $request, $request_name, string $name, string $path)
+    {
+        if ($request->hasFile($request_name)) {
+            $pathCreate = public_path() . '/uploads/images/' . $path . '/';
+            !file_exists($pathCreate) ?? File::makeDirectory($pathCreate, 0777, true, true);
+
+            $image = $request->file($request_name);
+            $imageName = $name . uniqueId(10) . '.' . $image->getClientOriginalExtension();
+            if ($image->isValid()) {
+                $request->$request_name->move(public_path() . '/uploads/images/' . $path . '/', $imageName);
+                return $imageName;
+            }
+        }
+    }
+}
+
+if (!function_exists('imageUpdate')) {
+    function imageUpdate(Request $request, $request_name, string $name, string $path, $old_image)
+    {
+        if ($request->hasFile($request_name)) {
+            $deletePath =  public_path() . '/uploads/images/' . $path . '/' . $old_image;
+            if (file_exists($deletePath) && $old_image != '') {
+                unlink($deletePath);
+            }
+            $createPath = public_path() . '/' . $path;
+            !file_exists($createPath) ?? File::makeDirectory($createPath, 0777, true, true);
+
+            $image = $request->file($request_name);
+            $imageName = $name . '_' . uniqueId(10) . '.' . $image->getClientOriginalExtension();
+            if ($image->isValid()) {
+                $request->$request_name->move(public_path() . '/uploads/images/' . $path . '/', $imageName);
+                return $imageName;
+            }
+        }
+    }
+}
+
+if (!function_exists('profileImg')) {
+    function profileImg()
+    {
+        if (file_exists(asset('uploads/images/user/' . user()->image))) {
+            return asset('uploads/images/user/' . user()->image);
+        } else {
+            return asset('backend/images/brand/soft-giant-bd.svg');
+        }
+    }
+}
+
+if (!function_exists('imagePath')) {
+    function imagePath($folder, $image)
+    {
+        $path = 'uploads/images/' . $folder . '/' . $image;
+        if (file_exists($path) && @getimagesize($path)) {
+            return asset($path);
+        } else {
+            // return setting('app_logo');
+        }
+    }
+}
+
 if (!function_exists('devAdminEmail')) {
     function devAdminEmail()
     {
@@ -12,22 +112,6 @@ if (!function_exists('devAdminEmail')) {
     }
 }
 
-if(!function_exists('getDateAttribute')){
-    function getDateAttribute($date){
-        return $date->format('d/m/Y');
-    }
-}
-
-if(!function_exists('ageWithDays')){
-    function ageWithDays($d_o_b){
-        return Carbon::parse($d_o_b)->diff(Carbon::now())->format('%y years, %m months and %d days');
-    }
-}
-if(!function_exists('ageWithMonths')){
-    function ageWithMonths($d_o_b){
-        return Carbon::parse($d_o_b)->diff(Carbon::now())->format('%y years, %m months');
-    }
-}
 
 if (!function_exists('readableSize')) {
     function niceSize($bytes)
@@ -292,7 +376,7 @@ if (!function_exists('carbon')) {
 if (!function_exists('digitInBangla')) {
     function digitInBangla($data)
     {
-        for ($i = 0; $i < strlen($data); $i++) {             
+        for ($i = 0; $i < strlen($data); $i++) {
             $datum = match($data[$i]) {
                 '0' => '০',
                 '1' => '১',

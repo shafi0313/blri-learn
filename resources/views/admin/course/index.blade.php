@@ -27,54 +27,10 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="multi-filter-select" class="display table table-striped table-hover" >
+                                <table id="data_table" class="display table table-striped table-hover" >
                                     <thead class="bg-secondary thw">
-                                        <tr>
-                                            <th>SL</th>
-                                            <th>Name</th>
-                                            <th>Skill level</th>
-                                            <th>Language</th>
-                                            <th>Description</th>
-                                            <th>Image</th>
-                                            {{-- <th>Image name</th> --}}
-                                            <th class="no-sort" width="40px">Action</th>
-                                        </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                        </tr>
-                                    </tfoot>
                                     <tbody>
-                                        @php $x = 1; @endphp
-                                        @foreach ($courses as $course)
-                                        <tr>
-                                            <td class="text-center">{{ $x++ }}</td>
-                                            <td>{{ $course->name }}</td>
-                                            <td>{{ $course->skill_level }}</td>
-                                            <td>{{ $course->language }}</td>
-                                            <td>{!! Str::limit($course->description, 50) !!}</td>
-                                            <td><img src="{{ asset('uploads/images/course/'. $course->image) }}" alt="" width="80px"></td>
-                                            <td>
-                                                <div class="form-button-action">
-                                                    <a href="{{ route('admin.course.edit', $course->id) }}" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
-                                                        <i class="fa fa-edit"></i>
-                                                    </a>
-                                                    <form action="{{ route('admin.course.destroy', $course->id) }}" method="post">
-                                                        @csrf @method('DELETE')
-                                                        <button type="submit" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove" onClick="return confirm('Are you sure')">
-                                                            <i class="fa fa-times"></i>
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -90,6 +46,70 @@
 @push('custom_scripts')
     <!-- Datatables -->
     @include('include.data_table_js')
+    <script>
+        $(function() {
+            $('#data_table').DataTable({
+                processing: true,
+                serverSide: true,
+                deferRender: true,
+                ordering: true,
+                responsive: true,
+                scrollY: 400,
+                ajax: "{{ route('admin.course.index') }}",
+                columns: [{
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex',
+                        title: 'SL',
+                        className: "text-center",
+                        width: "50px",
+                        searchable: false,
+                        orderable: false,
+                    },
+                    {
+                        data: 'name',
+                        name: 'name',
+                        title: 'Name',
+                    },
+                    {
+                        data: 'skill_level',
+                        name: 'skill_level',
+                        title: 'Skill Level',
+                    },
+                    {
+                        data: 'description',
+                        name: 'description',
+                        title: 'Description',
+                    },
+                    {
+                        data: 'language',
+                        name: 'language',
+                        title: 'Language',
+                    },
+                    {
+                        data: 'image',
+                        name: 'image',
+                        title: 'Image',
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        title: 'Action',
+                        className: "text-center",
+                        width: "100px",
+                        orderable: false,
+                        searchable: false
+                    },
+                ],
+                // fixedColumns: false,
+                scroller: {
+                    loadingIndicator: true
+                },
+                // order: [
+                //     [1, 'asc']
+                // ]
+            });
+        });
+    </script>
 @endpush
 @endsection
 
