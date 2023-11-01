@@ -88,8 +88,8 @@ class LectureController extends Controller
         if ($error = $this->authorize('lecture-edit')) {
             return $error;
         }
-        $user    = auth()->user();
-        $courses = Course::whereUser_id($user->id)->get();
+        $user     = auth()->user();
+        $courses  = Course::whereUser_id($user->id)->get();
         $chapters = Chapter::whereCourse_id($lecture->course_id)->get();
         return view('admin.lecture.edit', compact('lecture', 'courses', 'chapters'));
     }

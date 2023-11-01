@@ -99,7 +99,7 @@
                 {{-- Course Category start --}}
                 <li class="nav-item {{ activeNav(['admin.courser-categories.*'])}}">
                     <a data-toggle="collapse" href="#courseCategory">
-                        <i class="fa-solid fa-eye"></i>
+                        <i class="fa-solid fa-bars-staggered"></i>
                         <p>Course Category</p>
                         <span class="caret"></span>
                     </a>
@@ -123,7 +123,7 @@
                 {{-- Course Category start --}}
                 <li class="nav-item {{ activeNav(['admin.course.*'])}}">
                     <a data-toggle="collapse" href="#course">
-                        <i class="fa-solid fa-eye"></i>
+                        <i class="fa-solid fa-book"></i>
                         <p>Course</p>
                         <span class="caret"></span>
                     </a>

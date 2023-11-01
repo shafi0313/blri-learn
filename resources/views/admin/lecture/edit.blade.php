@@ -27,6 +27,7 @@
                             <form action="{{ route('admin.lecture.update', $lecture->id) }}" method="post"
                                 enctype="multipart/form-data">
                                 @csrf @method('PUT')
+                                <input type="hidden" name="type" value="{{ $lecture->type }}">
                                 <div class="card-body">
                                     @if ($errors->any())
                                         <div class="alert alert-danger">
@@ -80,7 +81,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group col-md-6">
+                                        {{-- <div class="form-group col-md-6">
                                             <label for="type">Lecture Type <span class="t_r">*</span></label>
                                             <select name="type" class="form-control @error('type') is-invalid @enderror"
                                                 id="type" @selected('type' == old('type'))>
@@ -92,7 +93,7 @@
                                             @error('type')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
-                                        </div>
+                                        </div> --}}
 
                                         {{-- <div class="col-md-6 video_div" style="display: none">
                                             <div class="form-group">
