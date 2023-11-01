@@ -14,7 +14,6 @@
                     <ul class="breadcrumbs">
                         <li class="nav-home"><a href="{{ route('admin.dashboard') }}"><i class="flaticon-home"></i></a></li>
                         <li class="separator"><i class="flaticon-right-arrow"></i></li>
-                        {{-- <li class="nav-item"><a href="{{ route('admin.adminUser.index') }}">Amdmin User</a></li> --}}
                         <li class="separator"><i class="flaticon-right-arrow"></i></li>
                         <li class="nav-item">Create</li>
                     </ul>
