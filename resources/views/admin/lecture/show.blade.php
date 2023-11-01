@@ -31,15 +31,25 @@
                                 <p class="chapter">{{ $chapter->name }}</p>
                                 @foreach ($chapter->lectures as $lecture)
                                 @if ($lecture->type == 1)
+                                <div class="d-flex justify-content-between">
+                                    <a href="{{ route('admin.lecture.lecturePlay',[$lecture->course_id, $lecture->id]) }}" >
+                                        <div class="lecture">
+                                            <p class="title"><i class="fas fa-file icon"></i> {{ $lecture->name }}</p>
+                                            {{-- <p class="timeIcon">
+                                                <i class="{{$lecture->enroll->status==0?'far fa-circle':'far fa-check-circle tIconD'}} tIcon"></i> </span>
+                                            </p> --}}
 
-                                <a href="{{ route('admin.lecture.lecturePlay',[$lecture->course_id, $lecture->id]) }}">
-                                    <div class="lecture">
-                                        <p class="title"><i class="fas fa-file icon"></i> {{ $lecture->name }}</p>
-                                        {{-- <p class="timeIcon">
-                                            <i class="{{$lecture->enroll->status==0?'far fa-circle':'far fa-check-circle tIconD'}} tIcon"></i> </span>
-                                        </p> --}}
+                                        </div>
+                                    </a>
+                                    <div class="mr-3 mt-2" style="z-index: 9999">
+                                        <a href="{{ route('admin.lecture.edit', $lecture->id) }}" class="btn btn-warning btn-sm"><i class='fa fa-edit'></i></a>
+                                        <a href="{{ route('admin.lecture.destroy', $lecture->id) }}" onclick="return(confirm('Are you sure?'))" class="btn btn-danger btn-sm">
+                                            <i class='fa fa-trash'></i>
+                                        </a>
                                     </div>
-                                </a>
+                                </div>
+
+
                                 @elseif ($lecture->type == 2)
                                 <a href="{{ route('admin.lecture.lecturePlay',[$lecture->course_id, $lecture->id]) }}">
                                     <div class="lecture">
@@ -72,14 +82,14 @@
                                     <div class="col-md-2">By the numbers</div>
                                     <div class="col-md-5">
                                         <ul>
-                                            <li>Skill level: {{ $chapters->first()->course->skill_level }}</li>
+                                            <li>Skill level: {{ $chapters->first()?->course?->skill_level }}</li>
                                             <li>Students part:</li>
-                                            <li>Language part: {{ $chapters->first()->course->language }}</li>
+                                            <li>Language part: {{ $chapters->first()?->course?->language }}</li>
                                         </ul>
                                     </div>
                                     <div class="col-md-5">
                                         <ul>
-                                            <li>Lectures part: {{ $chapters->first()->course->skill_level }}</li>
+                                            <li>Lectures part: {{ $chapters->first()?->course?->skill_level }}</li>
                                             <li>Add Video: </li>
                                         </ul>
                                     </div>
@@ -89,7 +99,7 @@
                             <div class="description">
                                 <div class="row">
                                     <div class="col-md-2">Descriptions</div>
-                                    <div class="col-md-10">{!! $chapters->first()->course->description !!}</div>
+                                    <div class="col-md-10">{!! $chapters->first()?->course->description !!}</div>
                                     <div class="col-md-5"></div>
                                 </div>
                             </div>

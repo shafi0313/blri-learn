@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-    @php
+@php
     $user = auth()->user();
-    @endphp
+@endphp
+
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>@yield('title') | {{config('app.name')}}</title>
+    <meta content="{{ csrf_token() }}" name="csrf-token" />
+    <title>@yield('title') | {{ config('app.name') }}</title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
     <link rel="icon" href="../assets/img/icon.ico" type="image/x-icon" />
 
     {{-- <!-- Fonts and icons --> --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="{{ asset('backend/js/plugin/webfont/webfont.min.js') }}"></script>
     <script>
         WebFont.load({
@@ -21,9 +25,9 @@
                 "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular",
                     "Font Awesome 5 Brands", "simple-line-icons"
                 ],
-                urls: ['{{ asset("backend/css/fonts.min.css" )}}']
+                urls: ['{{ asset('backend/css/fonts.min.css') }}']
             },
-            active: function () {
+            active: function() {
                 sessionStorage.fonts = true;
             }
         });
@@ -40,8 +44,9 @@
         <div class="main-header">
             {{-- <!-- Logo Header --> --}}
             <div class="logo-header" data-background-color="blue">
-                <a href="{{ route('index') }}" class="logo"> <h4 class="display:4 text-light" style="margin-top: 20px">BLRI e-Learning</h4>
-				</a>
+                <a href="{{ route('index') }}" class="logo">
+                    <h4 class="display:4 text-light" style="margin-top: 20px">BLRI e-Learning</h4>
+                </a>
                 <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
                     data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon">
@@ -81,13 +86,14 @@
     {{-- <script src="{{ asset('backend/js/plugin/sweetalert/sweetalert.min.js') }}"></script> --}}
     {{-- <!-- Atlantis JS --> --}}
     <script src="{{ asset('backend/js/atlantis.min.js') }}"></script>
+    <script {{ asset('backend/js/custom.js') }}></script>
     <script>
-        $("form").on('submit', function(e){
+        $("form").on('submit', function(e) {
             $(this).find('button[type="submit"]').attr('disabled', 'disabled');
         });
     </script>
     @include('sweetalert::alert')
-	@stack('custom_scripts')
+    @stack('custom_scripts')
 </body>
 
 </html>

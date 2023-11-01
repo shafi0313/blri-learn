@@ -8,6 +8,7 @@ use App\Models\Lecture;
 use App\Models\LectureText;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class LectureController extends Controller
 {
@@ -47,7 +48,7 @@ class LectureController extends Controller
         $data['user_id'] = auth()->user()->id;
         $data['type'] = $request->type;
         $lecture = Lecture::create($data);
-        if($request->filled('lectureText')){
+        if ($request->filled('lectureText')) {
             LectureText::create([
                 'lecture_id' => $lecture->id,
                 'text' => $request->lectureText,
@@ -75,17 +76,46 @@ class LectureController extends Controller
         $user        = auth()->user();
         $chapters    = Chapter::with('lectures')->whereCourse_id($course_id)->get();
         $lecturePlay = Lecture::whereId($lecture_id)->first();
-        return view('admin.lecture.lecture_play', compact('chapters','lecturePlay'));
+        return view('admin.lecture.lecture_play', compact('chapters', 'lecturePlay'));
     }
 
-    public function chapter(Request $request)
+    public function getChapter(Request $request)
     {
-        $chapters = Chapter::where('course_id', $request->courseId)->get();
-        $chapterName = '';
-        $chapterName .= '<option selected value disable>Select</option>';
-        foreach ($chapters as $chapter) {
-            $chapterName .= '<option value="'.$chapter->id.'">'.$chapter->name.'</option>';
+        if ($request->ajax()) {
+            $chapters = Chapter::where('course_id', $request->course_id)->get();
+            return response()->json(['chapters' => $chapters, 'status' => 200]);
         }
-        return json_encode(['chapterName'=>$chapterName]);
+        return response()->json(['error' => 'Invalid request'], 400);
+    }
+
+
+    public function edit(Lecture $lecture)
+    {
+        if ($error = $this->authorize('lecture-edit')) {
+            return $error;
+        }
+        $user    = auth()->user();
+        $courses = Course::whereUser_id($user->id)->get();
+        $chapters = Chapter::whereCourse_id($lecture->course_id)->get();
+        return view('admin.lecture.edit', compact('lecture', 'courses', 'chapters'));
+    }
+
+    public function destroy(Lecture $lecture)
+    {
+        // return 'ok';
+        if ($error = $this->authorize('lecture-delete')) {
+            return $error;
+        }
+        // $path = public_path('uploads/images/lecture/'.$lecture->video);
+        // $path = public_path('uploads/pdf/'.$lecture->video);
+        // if()
+        try {
+            $lecture->delete();
+            Alert::success('Success', 'Lecture Deleted Successfully');
+            return back();
+        } catch (\Exception $e) {
+            Alert::error('Error', 'Something Went Wrong, Please Try Again');
+            return back();
+        }
     }
 }

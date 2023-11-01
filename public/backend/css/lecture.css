@@ -45,8 +45,8 @@
     margin-right: 5px;
 }
 .title {
-    width: 80%;
-    display: inline-block;
+    /* width: 80%;
+    display: inline-block; */
     font-weight: 400;
     color: black;
     vertical-align: middle;

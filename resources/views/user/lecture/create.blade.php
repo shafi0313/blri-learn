@@ -174,7 +174,7 @@
     $('#course_id').on('change',function(e) {
         var courseId = $('#course_id').val();
         $.ajax({
-            url:'{{ route("get.chapter") }}',
+            url:'{{ route("lecture.get.chapter") }}',
             type:"get",
             data: {
                 courseId: courseId

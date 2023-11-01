@@ -88,10 +88,17 @@ Route::resource('/courser-categories', CourseCatController::class)->except(['sho
 Route::resource('/course', CourseController::class);
 Route::resource('/certificate-signature', CerSignatureController::class);
 Route::resource('/chapter', ChapterController::class)->only(['store']);
-Route::resource('/lecture', LectureController::class);
-Route::get('/get-chapter', [LectureController::class, 'chapter'])->name('get.chapter');
-Route::get('/lecture-play/{course_id}/{lecture_id}', [LectureController::class, 'lecturePlay'])->name('lecture.lecturePlay');
-Route::post('/lectureComplete', [LectureController::class, 'lectureComplete'])->name('lecture.lectureComplete');
+
+// Lecture
+Route::resource('/lecture', LectureController::class)->except(['destroy']);
+Route::controller(LectureController::class)->prefix('/lectures')->name('lecture.')->group(function () {
+    Route::get('/get-chapter', 'getChapter')->name('get.chapter');
+    Route::get('/lecture-play/{course_id}/{lecture_id}', 'lecturePlay')->name('lecturePlay');
+    Route::post('/lectureComplete', 'lectureComplete')->name('lectureComplete');
+    Route::get('/destroy/{lecture}', 'destroy')->name('destroy');
+});
+
+
 
 Route::controller(QuizController::class)->prefix('quiz')->group(function () {
     Route::get('/course', 'course')->name('quiz.course');
