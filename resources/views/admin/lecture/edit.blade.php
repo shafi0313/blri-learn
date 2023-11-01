@@ -27,7 +27,7 @@
                             </div>
                             <form action="{{ route('admin.lecture.update', $lecture->id) }}" method="post"
                                 enctype="multipart/form-data">
-                                @csrf
+                                @csrf @method('PUT')
                                 <div class="card-body">
                                     @if ($errors->any())
                                         <div class="alert alert-danger">

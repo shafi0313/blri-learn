@@ -73,7 +73,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="name">Name <span class="t_r">*</span></label>
-                                                <input type="text" name="name" class="form-control" required>
+                                                <input type="text" name="name" class="form-control" value="{{ old('name') }}" required>
                                                 @if ($errors->has('name'))
                                                     <div class="alert alert-danger">{{ $errors->first('name') }}</div>
                                                 @endif
@@ -82,16 +82,16 @@
 
                                         <div class="form-group col-md-6">
                                             <label for="type">Lecture Type <span class="t_r">*</span></label>
-                                            <select name="type" class="form-control @error('type') is-invalid @enderror"
-                                                id="type" @selected('type' == old('type'))>
+                                            <select name="type" class="form-control"
+                                                id="type" @selected('type' == old('type')) required>
                                                 <option value="">Select</option>
                                                 <option value="1">Text</option>
                                                 <option value="2">Video</option>
                                                 <option value="3">PDF</option>
                                             </select>
-                                            @error('type')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
+                                            @if ($errors->has('type'))
+                                                    <div class="alert alert-danger">{{ $errors->first('type') }}</div>
+                                                @endif
                                         </div>
 
                                         <div class="col-md-6 video_div" style="display: none">

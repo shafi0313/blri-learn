@@ -9,6 +9,8 @@ use App\Models\LectureText;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Http\Requests\StoreLectureRequest;
+use App\Http\Requests\UpdateLectureRequest;
 
 class LectureController extends Controller
 {
@@ -32,34 +34,26 @@ class LectureController extends Controller
         return view('admin.lecture.create', compact('courses'));
     }
 
-    public function store(Request $request)
+    public function store(StoreLectureRequest $request)
     {
         if ($error = $this->authorize('lecture-add')) {
             return $error;
         }
-        $data = $this->validate($request, [
-            'course_id'  => 'required',
-            'chapter_id' => 'required',
-            'type'       => 'required',
-            'name'       => 'required',
-            'text'       => 'required',
-            'time'       => 'required_if:type,==,2',
-        ]);
+        $data = $request->validated();
         $data['user_id'] = auth()->user()->id;
         $data['type'] = $request->type;
         $lecture = Lecture::create($data);
         if ($request->filled('lectureText')) {
             LectureText::create([
                 'lecture_id' => $lecture->id,
-                'text' => $request->lectureText,
+                'text'       => $request->lectureText,
             ]);
         }
         try {
-            toast('Success!', 'success');
-            return redirect()->route('admin.lecture.index');
+            Alert::success('Success', 'Lecture Added Successfully');
+            return back();
         } catch (\Exception $e) {
-            return $e->getMessage();
-            toast('Error', 'error');
+            Alert::error('Error', 'Something Went Wrong, Please Try Again');
             return back();
         }
     }
@@ -98,6 +92,30 @@ class LectureController extends Controller
         $courses = Course::whereUser_id($user->id)->get();
         $chapters = Chapter::whereCourse_id($lecture->course_id)->get();
         return view('admin.lecture.edit', compact('lecture', 'courses', 'chapters'));
+    }
+
+    public function update(UpdateLectureRequest $request, Lecture $lecture)
+    {
+        if ($error = $this->authorize('lecture-add')) {
+            return $error;
+        }
+        $data = $request->validated();
+        $data['user_id'] = auth()->user()->id;
+        $data['type'] = $request->type;
+        $lecture->update($data);
+        if ($request->filled('lectureText')) {
+            LectureText::updateOrCreate(['lecture_id' => $lecture->id], [
+                'lecture_id' => $lecture->id,
+                'text'       => $request->lectureText,
+            ]);
+        }
+        try {
+            Alert::success('Success', 'Lecture Updated Successfully');
+            return back();
+        } catch (\Exception $e) {
+            Alert::error('Error', 'Something Went Wrong, Please Try Again');
+            return back();
+        }
     }
 
     public function destroy(Lecture $lecture)
