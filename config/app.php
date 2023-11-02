@@ -186,6 +186,7 @@ return [
          * Package Service Providers...
          */
         // Barryvdh\DomPDF\ServiceProvider::class,
+        // Mccarlosen\LaravelMpdf\LaravelMpdfServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -212,7 +213,7 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'GeoIP' => \Torann\GeoIP\Facades\GeoIP::class,
-        // 'PDF' => Barryvdh\DomPDF\Facade::class,
+        // 'PDF' => Mccarlosen\LaravelMpdf\Facades\LaravelMpdf::class,
 
     ])->toArray(),
 
