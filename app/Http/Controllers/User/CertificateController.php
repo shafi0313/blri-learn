@@ -14,15 +14,15 @@ class CertificateController extends Controller
 {
     public function index()
     {
-        // $ansSheets = AnsSheet::whereUser_id(user()->id)->where('mark','>=',4)->get();
-        $ansSheets = AnsSheet::whereUser_id(user()->id)->get();
+        $ansSheets = AnsSheet::whereUser_id(user()->id)->where('mark','>=',4)->get();
+        // $ansSheets = AnsSheet::whereUser_id(user()->id)->get();
         return view('user.certificate.index', compact('ansSheets'));
     }
     public function show($courseId)
     {
         // $data=[];
-        
-        
+
+
         $ansSheet = AnsSheet::with('course')->whereUser_id(user()->id)->whereCourse_id($courseId)->first();
         $signatures = CerSignature::all();
         return view('user.certificate.certificate', compact('ansSheet', 'signatures'));
@@ -31,19 +31,19 @@ class CertificateController extends Controller
     public function pdf($courseId)
     {
         $ansSheet = AnsSheet::whereUser_id(user()->id)->whereCourse_id($courseId)->first();
-        // if(!$ansSheet->name_cer){
-        //     Alert::info('Goto profile and input certificate name');
-        //     return back();
-        // }else if(!$ansSheet->fa_name){
-        //     Alert::info('Goto profile and input father name');
-        //     return back();
-        // }else if(!$ansSheet->mo_name){
-        //     Alert::info('Goto profile and input mother name');
-        //     return back();
-        // }else if(!$ansSheet->text){
-        //     Alert::info('Goto profile and input address');
-        //     return back();
-        // }
+        if(!user()->name_cer){
+            Alert::info('Goto profile and input certificate name');
+            return back();
+        }else if(!user()->fa_name){
+            Alert::info('Goto profile and input father name');
+            return back();
+        }else if(!user()->mo_name){
+            Alert::info('Goto profile and input mother name');
+            return back();
+        }else if(!user()->text){
+            Alert::info('Goto profile and input address');
+            return back();
+        }
         $signatures = CerSignature::all();
         $pdf = PDF::loadView('user.certificate.pdf', compact('ansSheet', 'signatures'), [], [
             'title' => 'Certificate',

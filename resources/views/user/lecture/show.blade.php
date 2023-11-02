@@ -44,7 +44,7 @@
                                                             {{ $lecture->name }}</p>
                                                         <p class="timeIcon">
                                                             <i
-                                                                class="{{ $lecture->enroll->status == 0 ? 'far fa-circle' : 'far fa-check-circle tIconD' }} tIcon"></i>
+                                                                class="{{ $lecture->enroll?->status == 0 ? 'far fa-circle' : 'far fa-check-circle tIconD' }} tIcon"></i>
                                                             </span>
                                                         </p>
                                                     </div>

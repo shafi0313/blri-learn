@@ -103,7 +103,7 @@ background: linear-gradient(90deg, rgba(107,110,255,1) 0%, rgba(233,233,233,1) 1
 
 
 
-/* .chapter_div {
+.chapter_div {
     margin: 25px 0;
     background-color: #fff;
     border: 1px solid #ddd;
@@ -163,4 +163,5 @@ background: linear-gradient(90deg, rgba(107,110,255,1) 0%, rgba(233,233,233,1) 1
     font-size: 25px;
     padding:10px 0 15px 0;
     border-top: 1px solid rgb(218, 218, 218);
-} */
+}
+

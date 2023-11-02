@@ -29,7 +29,7 @@
                                             <p class="title"><i class="fas fa-file icon"></i> {{ $lecture->name }}</p>
                                             <p class="timeIcon">
                                                 <i
-                                                    class="{{ $lecture->enroll->status == 0 ? 'far fa-circle' : 'far fa-check-circle tIconD' }} tIcon"></i>
+                                                    class="{{ $lecture->enroll?->status == 0 ? 'far fa-circle' : 'far fa-check-circle tIconD' }} tIcon"></i>
                                                 </span>
                                             </p>
                                         </div>
@@ -41,7 +41,7 @@
                                             <p class="timeIcon">
                                                 <span class="time riT">{{ $lecture->time }}
                                                     <i
-                                                        class="{{ $lecture->enroll->status == 0 ? 'far fa-circle' : 'far fa-check-circle tIconD' }} tIcon"></i>
+                                                        class="{{ $lecture->enroll?->status == 0 ? 'far fa-circle' : 'far fa-check-circle tIconD' }} tIcon"></i>
                                                 </span>
                                             </p>
 
@@ -54,7 +54,7 @@
                                             </p>
                                             <p class="timeIcon">
                                                 <i
-                                                    class="{{ $lecture->enroll->status == 0 ? 'far fa-circle' : 'far fa-check-circle tIconD' }} tIcon"></i>
+                                                    class="{{ $lecture->enroll?->status == 0 ? 'far fa-circle' : 'far fa-check-circle tIconD' }} tIcon"></i>
                                                 </span>
                                             </p>
                                         </div>
@@ -140,7 +140,7 @@
                                         value="{{ $lecturePlay->course_id }}">
                                     <input type="hidden" name="lecture_id" class="form-control"
                                         value="{{ $lecturePlay->id }}">
-                                    @if ($courseEnroll->status != 1 || empty($courseEnroll))
+                                    @if ($courseEnroll?->status != 1 || empty($courseEnroll))
                                         <button type="submit" class="btn btn-sm btn-primary"><i
                                                 class="fas fa-check-circle"></i> সমাপ্ত হিসাবে চিহ্নিত করুন</button>
                                     @else
