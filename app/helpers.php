@@ -85,7 +85,7 @@ if (!function_exists('imageUpdate')) {
 if (!function_exists('profileImg')) {
     function profileImg()
     {
-        if (file_exists(asset('uploads/images/user/' . user()->image))) {
+        if (!empty(user()->image) && file_exists(asset('uploads/images/user/' . user()->image))) {
             return asset('uploads/images/user/' . user()->image);
         } else {
             return asset('backend/images/brand/soft-giant-bd.svg');
@@ -94,7 +94,7 @@ if (!function_exists('profileImg')) {
 }
 
 if (!function_exists('imagePath')) {
-    function imagePath($folder, $image='')
+    function imagePath($folder, $image = '')
     {
         $path = 'uploads/images/' . $folder . '/' . $image;
         if (file_exists($path) && @getimagesize($path)) {
@@ -124,9 +124,10 @@ if (!function_exists('readableSize')) {
     }
 }
 
-if(!function_exists('permissionText')){
-    function permissionText($permission){
-        switch($permission){
+if (!function_exists('permissionText')) {
+    function permissionText($permission)
+    {
+        switch ($permission) {
             case 0;
                 $permission = 'No Login Permission';
                 break;
@@ -147,11 +148,12 @@ if(!function_exists('permissionText')){
     }
 }
 
-if(!function_exists('profileImg')){
-    function profileImg($img){
-        if(file_exists(asset('uploads/images/users/'.$img))){
-            return asset('uploads/images/users/'.$img);
-        }else{
+if (!function_exists('profileImg')) {
+    function profileImg($img)
+    {
+        if (file_exists(asset('uploads/images/users/' . $img))) {
+            return asset('uploads/images/users/' . $img);
+        } else {
             return asset('uploads/images/users/logo.png');
         }
     }
@@ -282,14 +284,14 @@ if (!function_exists('uniqueId')) {
 if (!function_exists('imageStore')) {
     function imageStore(Request $request, string $name, string $path)
     {
-        if($request->hasFile('image')){ // next time dinamic this
-            $pathCreate = public_path().$path;
+        if ($request->hasFile('image')) { // next time dinamic this
+            $pathCreate = public_path() . $path;
             !file_exists($pathCreate) ?? File::makeDirectory($pathCreate, 0777, true, true);
 
             $image = $request->file('image');
-            $image_name = $name . uniqueId(10).'.'.$image->getClientOriginalExtension();
+            $image_name = $name . uniqueId(10) . '.' . $image->getClientOriginalExtension();
             if ($image->isValid()) {
-                $request->image->move($path,$image_name);
+                $request->image->move($path, $image_name);
                 return $image_name;
             }
         }
@@ -299,19 +301,19 @@ if (!function_exists('imageStore')) {
 if (!function_exists('imageUpdate')) {
     function imageUpdate(Request $request, string $name, string $path, $image)
     {
-        if($request->hasFile('image')){
-            $deletePath =  public_path($path.$image);
-            if(file_exists($deletePath) && $image != ''){
+        if ($request->hasFile('image')) {
+            $deletePath =  public_path($path . $image);
+            if (file_exists($deletePath) && $image != '') {
                 unlink($deletePath);
             }
             // file_exists($deletePath) ? unlink($deletePath) : false;
-            $createPath = public_path().$path;
+            $createPath = public_path() . $path;
             !file_exists($createPath) ?? File::makeDirectory($createPath, 0777, true, true);
 
             $image = $request->file('image');
-            $image_name = $name . uniqueId(20).'.'.$image->getClientOriginalExtension();
+            $image_name = $name . uniqueId(20) . '.' . $image->getClientOriginalExtension();
             if ($image->isValid()) {
-                $request->image->move($path,$image_name);
+                $request->image->move($path, $image_name);
                 return $image_name;
             }
         }
@@ -321,11 +323,11 @@ if (!function_exists('imageUpdate')) {
 if (!function_exists('destroy')) {
     function destroy($data)
     {
-        try{
+        try {
             $data->delete();
-            Alert::success('Success','Successfully Deleted');
-        }catch (\Exception $ex) {
-            Alert::error('Oops...','Delete Failed');
+            Alert::success('Success', 'Successfully Deleted');
+        } catch (\Exception $ex) {
+            Alert::error('Oops...', 'Delete Failed');
         }
     }
 }
@@ -333,15 +335,15 @@ if (!function_exists('destroy')) {
 if (!function_exists('fileDestroy')) {
     function fileDestroy(string $path, $data)
     {
-        $checkPath =  public_path($path.$data->image);
-        try{
-            if(file_exists($checkPath)){
+        $checkPath =  public_path($path . $data->image);
+        try {
+            if (file_exists($checkPath)) {
                 unlink($checkPath);
             }
             $data->delete();
-            Alert::success('Success','Successfully Deleted');
-        }catch (\Exception $ex) {
-            Alert::error('Oops...','Delete Failed');
+            Alert::success('Success', 'Successfully Deleted');
+        } catch (\Exception $ex) {
+            Alert::error('Oops...', 'Delete Failed');
         }
     }
 }
@@ -349,7 +351,7 @@ if (!function_exists('fileDestroy')) {
 if (!function_exists('monthInBangla')) {
     function monthInBangla($month)
     {
-        return match($month) {
+        return match ($month) {
             '1'  => 'জানুয়ারি',
             '2'  => 'ফেব্রুয়ারি',
             '3'  => 'মার্চ',
@@ -377,7 +379,7 @@ if (!function_exists('digitInBangla')) {
     function digitInBangla($data)
     {
         for ($i = 0; $i < strlen($data); $i++) {
-            $datum = match($data[$i]) {
+            $datum = match ($data[$i]) {
                 '0' => '০',
                 '1' => '১',
                 '2' => '২',
@@ -393,7 +395,3 @@ if (!function_exists('digitInBangla')) {
         }
     }
 }
-
-
-
-

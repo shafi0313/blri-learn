@@ -10,7 +10,7 @@
                 <img class="img-fluid" src="{{ asset('uploads/images/icon/blri_learning_logo.png') }}" alt="BLRI">
             </a>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav m-auto">
                     <li class="nav-item active"><a class="nav-link" href="{{ route('index') }}">Home</a></li>
                     <li class="dropdown nav-item">
                         <a class="nav-link" href="javascript:void(0)" data-bs-toggle="dropdown">Course Categories<i
@@ -18,7 +18,7 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             @foreach (App\Models\CourseCat::all(['id','name']) as $courseCat)
                             <li>
-                                <a class="{{ route('courseByCat',$courseCat->id) }}" href="classic-full-width.html">
+                                <a class="dropdown-item" href="{{ route('courseByCat',$courseCat->id) }}">
                                     <span>{{ $courseCat->name }}</span>
                                 </a>
                             </li>
