@@ -40,29 +40,6 @@
                                     style="text-align: right !important">@lang('global.forgetPass')</a>
                             </div>
                         </form>
-                        {{-- <div class="login-social-media border ps-4 pe-4 pb-4 pt-0 rounded-sm">
-                            <div class="mb-4 d-block text-center"><b class="bg-white ps-2 pe-2 mt-3 d-block">Login or
-                                    Sign in with</b></div>
-                            <form class="row">
-                                <div class="col-sm-6">
-                                    <a class="btn facebook-bg social-bg-hover d-block mb-3" href="#"><span><i
-                                                class="fab fa-facebook-f me-2"></i>Login with Facebook</span></a>
-                                </div>
-                                <div class="col-sm-6">
-                                    <a class="btn twitter-bg social-bg-hover d-block mb-3" href="#"><span><i
-                                                class="fab fa-twitter me-2"></i>Login with Twitter</span></a>
-                                </div>
-                                <div class="col-sm-6">
-                                    <a class="btn instagram-bg social-bg-hover d-block mb-3 mb-sm-0"
-                                        href="#"><span><i class="fab fa-instagram me-2"></i>Login with
-                                            Instagram</span></a>
-                                </div>
-                                <div class="col-sm-6">
-                                    <a class="btn linkedin-bg social-bg-hover d-block" href="#"><span><i
-                                                class="fab fa-linkedin-in me-2"></i>Login with Linkedin</span></a>
-                                </div>
-                            </form>
-                        </div> --}}
                     </div>
                     <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
                         <form class="row my-4 align-items-center" method="post" action="{{ route('registerStore') }}">
@@ -125,29 +102,6 @@
                                 </button>
                             </div>
                         </form>
-                        {{-- <div class="login-social-media border ps-4 pe-4 pb-4 pt-0 rounded-sm">
-                            <div class="mb-4 d-block text-center"><b class="bg-white ps-2 pe-2 mt-3 d-block">Login or
-                                    Sign in with</b></div>
-                            <form class="row">
-                                <div class="col-sm-6">
-                                    <a class="btn facebook-bg social-bg-hover d-block mb-3" href="#"><span><i
-                                                class="fab fa-facebook-f me-2"></i>Login with Facebook</span></a>
-                                </div>
-                                <div class="col-sm-6">
-                                    <a class="btn twitter-bg social-bg-hover d-block mb-3" href="#"><span><i
-                                                class="fab fa-twitter me-2"></i>Login with Twitter</span></a>
-                                </div>
-                                <div class="col-sm-6">
-                                    <a class="btn instagram-bg social-bg-hover d-block mb-3 mb-sm-0"
-                                        href="#"><span><i class="fab fa-instagram me-2"></i>Login with
-                                            Instagram</span></a>
-                                </div>
-                                <div class="col-sm-6">
-                                    <a class="btn linkedin-bg social-bg-hover d-block" href="#"><span><i
-                                                class="fab fa-linkedin-in me-2"></i>Login with Linkedin</span></a>
-                                </div>
-                            </form>
-                        </div> --}}
                     </div>
                 </div>
             </div>
