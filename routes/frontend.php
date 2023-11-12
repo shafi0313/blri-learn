@@ -21,6 +21,10 @@ Route::get('/', [IndexController::class, 'index'])->name('index');
 Route::get('/course-details/{id}', [IndexController::class, 'courseDetails'])->name('courseDetails');
 Route::resource('/course-review', CourseReviewController::class);
 
+Route::get('/contact', function () {
+    return view('frontend.contact');
+})->name('contact');
+
 Route::controller(CourseByCatController::class)->prefix('course-by-cat')->group(function(){
     Route::get('/{id}','index')->name('courseByCat');
 });

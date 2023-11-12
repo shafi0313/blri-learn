@@ -35,7 +35,7 @@
                             <li><a class="dropdown-item" href="shop-single.html"><span>Shop single</span></a></li>
                         </ul>
                     </li> --}}
-                    <li><a class="nav-link" href="contact-us.html">Contact us</a></li>
+                    <li><a class="nav-link" href="{{ route('contact') }}">Contact us</a></li>
                 </ul>
             </div>
             <div class="search-category ms-auto">
