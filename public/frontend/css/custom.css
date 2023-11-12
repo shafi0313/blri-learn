@@ -24,7 +24,7 @@
     line-height: 1.3;
 }
 .slider-01 .swiper-slide {
-    height: 400px !important;
+    height: 500px !important;
 }
 .slider-01:before {
     background: none;
@@ -101,6 +101,12 @@
 }
 ._user .name p {
     margin: 0 !important;
+}
+
+.course .course-img img {
+    /* width: 575px !important; */
+    height: 150px !important;
+    margin: 0 auto !important;
 }
 
 /* Footer */
