@@ -88,11 +88,11 @@
             <div class="woo-action">
                 <ul class="list-unstyled">
                     @guest
-                     <li class="user"><a data-bs-toggle="modal" data-bs-target="#loginModal"
-                        href="#">{{__('global.signIn')}}<i class="fa fa-user ps-2 text-primary"></i></a></li>
-                        <li class="user"><a data-bs-toggle="modal" data-bs-target="#registerMo"
+                     <li class="user"><a data-bs-toggle="modal" data-bs-target="#loginModal" style="color:white"
+                        href="#">{{__('global.signIn')}}/{{__('global.register')}}<i class="fa fa-user ps-2 text-primary"></i></a></li>
+                        {{-- <li class="user"><a data-bs-toggle="modal" data-bs-target="#registerMo"
                                 href="#">{{__('global.register')}}<i class="fas fa-user-plus ps-2 text-primary"></i></a>
-                        </li>
+                        </li> --}}
                      @endguest
                     {{-- @guest
                         <li class="user">

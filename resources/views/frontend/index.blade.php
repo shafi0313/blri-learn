@@ -162,22 +162,22 @@
                                 <div class="course">
                                     <div class="course-img">
                                         <img class="img-fluid" src="{{ imagePath('course', $course->image) }}" alt="{{ $course->category->name }}">
-                                        <a href="#" class="course-category"><i
+                                        <a href="{{ route('courseDetails', $course->id) }}" class="course-category"><i
                                                 class="far fa-bookmark"></i>{{ $course->name }}</a>
                                     </div>
                                     <div class="course-info">
                                         <div class="course-title">
-                                            <a href="#">Basic web development & coding online course</a>
+                                            <a href="{{ route('courseDetails', $course->id) }}">{!! Str::limit($course->description, 30, '...') !!}</a>
                                         </div>
                                         <div class="course-instructor">by
-                                            <a href="#">Alice Williams</a>
+                                            <a href="#">{{ $course->user->name }}</a>
                                         </div>
                                         <div class="course-rate-price">
                                             <div class="rating">
-                                                <span>4.4</span>
-                                                <a href="#">578 Ratings</a>
+                                                <span><i class="fas fa-user-graduate"></i> {{ $course->enrollCounts->groupBy('course_id')->count() }}</span>মোট অংশগ্রহণকারী
+                                                {{-- <a href="#">578 Ratings</a> --}}
                                             </div>
-                                            <div class="price">$59</div>
+                                            {{-- <div class="price">{{ $course->enrollCounts->groupBy('course_id')->count() }}</div> --}}
                                         </div>
                                     </div>
                                 </div>

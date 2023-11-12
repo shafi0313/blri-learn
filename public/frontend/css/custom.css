@@ -1,20 +1,17 @@
-.header.default-transparent {
-    /* margin-bottom: 200px; */
-}
+
 .header .navbar {
     background: black;
-    color: white;
-    padding: 6px 0px;
+    padding: 10px 0px;
 }
 
 .header.is-sticky .navbar {
-    padding: 6px 0px;
+    padding: 10px 0px;
 }
 
-.nav li a {
+.navbar-nav>li>a {
     color: white !important;
 }
-.nav-item li a {
+.nav-item>li> a {
     color: black !important;
 }
 
@@ -65,10 +62,10 @@
 ._user {
     float: right;
     position: relative;
-    padding: 10px;
+    padding: 0px 10px;
 }
 ._user > i {
-    font-size: 25px;
+    font-size: 22px;
     padding: 10px;
     background: white;
     border-radius: 50px;
@@ -77,7 +74,7 @@
 ._user ul {
     display: none;
     position: absolute;
-    top: 55px;
+    top: 42px;
     right: 0;
     z-index: 9999999;
     background: rgb(243, 243, 243);
