@@ -14,7 +14,7 @@
                 <div class="footer_icon align-item-center">
                     <a href=""><i class="fab fa-facebook-f"></i></a>
                     <a href=""><i class="fab fa-twitter"></i></a>
-                    <a href=""><i class="fab fa-youtube"></i></a>
+                    <a href="{{ URL::to('https://www.youtube.com/@-sj5nt') }}" target="_blank"><i class="fab fa-youtube"></i></a>
                 </div>
                 <div class="dev">
                     <div class="implement">পরিকল্পনা ও বাস্তবায়নে: <img src="{{ asset('uploads/images/icon/breeding_logo.png') }}" height="50px" alt=""></div>
