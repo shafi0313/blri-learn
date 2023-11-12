@@ -1,3 +1,13 @@
+/*
+
+Template: Guruma - Online Course & Education HTML Template
+Version: 2.0.0
+Author: potenzaglobalsolutions
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This is main stylesheet of template, This file contains the styling for the actual Template.
+
+*/
 /*================================================
 [  Table of contents  ]
 ================================================
@@ -43,8 +53,6 @@
 ======================================
 [ End table content ]
 ======================================*/
-
-
 /*****************************
   Typography
 *****************************/
@@ -2088,7 +2096,7 @@ ul.list {
     z-index: 1; }
   .categories .categories-title {
     position: absolute;
-    min-width: 100%;
+    width: 100%;
     bottom: 0;
     padding: 10px;
     margin-bottom: 0;
@@ -3530,7 +3538,7 @@ ul.list {
 *****************************/
 /* Header */
 .header .navbar {
-  padding: 6px 0px; }
+  padding: 30px 0px; }
   .header .navbar .navbar-nav {
     -webkit-box-align: center;
         -ms-flex-align: center;
@@ -3555,7 +3563,7 @@ ul.list {
     .header .navbar .navbar-nav .nav-link {
       font-weight: 600;
       font-size: 14px;
-      padding: 12px 40px 12px 0;
+      padding: 12px 8px 12px 0;
       color: #666666;
       text-transform: capitalize;
       position: relative;
@@ -3583,12 +3591,12 @@ ul.list {
   color: #ffffff;
   text-align: left;
   -webkit-box-flex: 0;
-      -ms-flex: 0 0 230px;
-          flex: 0 0 230px;
+      -ms-flex: 0 0 190px;
+          flex: 0 0 190px;
   -webkit-transition: none;
   transition: none; }
   .header .navbar-brand img {
-    height: 65px; }
+    height: 48px; }
 
 .header.default-transparent {
   position: absolute;
@@ -3708,7 +3716,7 @@ ul.list {
   .header.is-sticky .topbar {
     display: none; }
   .header.is-sticky .navbar {
-    padding: 6px 0px; }
+    padding: 25px 0px; }
     .header.is-sticky .navbar .navbar-brand-sticky {
       display: block; }
 
@@ -3989,8 +3997,7 @@ ul.list {
     margin-bottom: 0;
     border: none;
     cursor: pointer;
-    /* border-right: 2px solid rgba(172, 154, 154, 0.2);  */
-}
+    border-right: 2px solid rgba(172, 154, 154, 0.2); }
     .header .search-category .course-category .select2-container--default .select2-selection--single {
       background: transparent;
       color: #ffffff;
@@ -4209,8 +4216,8 @@ ul.list {
 @media (max-width: 1199px) {
   .header .navbar-brand {
     -webkit-box-flex: 0;
-        -ms-flex: 0 0 300px;
-            flex: 0 0 300px; }
+        -ms-flex: 0 0 200px;
+            flex: 0 0 200px; }
   .header .navbar .nav-item .shop-bg {
     background-image: inherit;
     border: none; }
@@ -4270,7 +4277,7 @@ ul.list {
     .header .navbar .woo-action {
       margin-right: 40px; }
   .header .navbar-brand img {
-    height: 68px; }
+    height: 40px; }
   .header.default-transparent .navbar .navbar-nav .nav-link {
     color: #1c1a1f; }
   .header.is-sticky .navbar {

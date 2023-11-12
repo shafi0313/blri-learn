@@ -11,6 +11,11 @@ class Course extends Model
     use HasFactory, Searchable;
     protected $guarded = ['id'];
 
+    public function category()
+    {
+        return $this->hasOne(CourseCat::class, 'id','course_cat_id');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

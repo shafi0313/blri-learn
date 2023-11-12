@@ -1,3 +1,23 @@
+.header.default-transparent {
+    /* margin-bottom: 200px; */
+}
+.header .navbar {
+    background: black;
+    color: white;
+    padding: 6px 0px;
+}
+
+.header.is-sticky .navbar {
+    padding: 6px 0px;
+}
+
+.nav li a {
+    color: white !important;
+}
+.nav-item li a {
+    color: black !important;
+}
+
 .content h1 {
     font-size: 40px;
     line-height: 1.3;
@@ -13,13 +33,12 @@
     background: none;
 }
 
-
 /* Select2 */
-.select2-container{
-    z-index:100000;
+.select2-container {
+    z-index: 100000;
 }
 
-.district_id>.select2 {
+.district_id > .select2 {
     width: 100% !important;
 }
 
@@ -28,12 +47,11 @@
     border-bottom: 2px solid rgb(204, 204, 204);
 }
 .nav-pills .nav-link.active {
-
     background: transparent;
-    border-bottom: 3px solid #21C87A;
+    border-bottom: 3px solid #21c87a;
     color: black;
 }
-.nav-item button{
+.nav-item button {
     border-radius: 0px !important;
 }
 
@@ -44,20 +62,19 @@
 }
 
 /* Navigation User */
-._user{
+._user {
     float: right;
     position: relative;
     padding: 10px;
-
 }
-._user>i{
+._user > i {
     font-size: 25px;
     padding: 10px;
     background: white;
     border-radius: 50px;
-
+    color: black;
 }
-._user ul{
+._user ul {
     display: none;
     position: absolute;
     top: 55px;
@@ -69,24 +86,23 @@
     border-radius: 5px;
 }
 
-._user:hover ul{
+._user:hover ul {
     display: block;
-
 }
-._user .name{
+._user .name {
     display: flex;
     align-items: center;
 }
 
-._user .name i{
+._user .name i {
     font-size: 20px;
     padding-right: 8px;
 }
-._user .name h5{
+._user .name h5 {
     margin: 0 !important;
     line-height: 14px;
 }
-._user .name p{
+._user .name p {
     margin: 0 !important;
 }
 
@@ -112,7 +128,7 @@
     padding-top: 10px;
     font-size: 16px;
     background: rgb(235, 235, 235);
-    border-radius: 50%
+    border-radius: 50%;
 }
 .dev {
     display: flex;

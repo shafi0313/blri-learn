@@ -94,7 +94,7 @@ if (!function_exists('profileImg')) {
 }
 
 if (!function_exists('imagePath')) {
-    function imagePath($folder, $image)
+    function imagePath($folder, $image='')
     {
         $path = 'uploads/images/' . $folder . '/' . $image;
         if (file_exists($path) && @getimagesize($path)) {
