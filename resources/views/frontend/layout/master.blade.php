@@ -55,10 +55,12 @@
     <script src="{{ asset('frontend/js/bootstrap/bootstrap.min.js') }}"></script>
     <script src="{{ asset('frontend/js/select2/select2.full.js') }}"></script>
     <script src="{{ asset('frontend/js/owl-carousel/owl.carousel.min.js') }}"></script>
-    {{-- <script src="{{ asset('frontend/js/swiper/swiper.min.js') }}"></script>
+
+    <script src="{{ asset('frontend/js/swiper/swiper.min.js') }}"></script>
     <script src="{{ asset('frontend/js/swiperanimation/SwiperAnimation.min.js') }}"></script>
     <script src="{{ asset('frontend/js/shuffle/shuffle.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/jarallax/jarallax.min.js') }}"></script> --}}
+    <script src="{{ asset('frontend/js/jarallax/jarallax.min.js') }}"></script>
+    
     {{-- <script src="{{ asset('frontend/js/magnific-popup/jquery.magnific-popup.min.js') }}"></script> --}}
     {{-- <!-- Template Scripts (Do not remove)--> --}}
     <script src="{{ asset('frontend/js/custom.js') }}"></script>
