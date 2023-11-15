@@ -16,7 +16,7 @@ class CourseController extends Controller
         if ($error = $this->authorize('course-manage')) {
             return $error;
         }
-        $courses = Course::whereUser_id(auth()->user()->id)->get();
+        $courses = Course::whereUser_id(auth()->user()->id);
         if ($request->ajax()) {
             return DataTables::of($courses)
                 ->addIndexColumn()
