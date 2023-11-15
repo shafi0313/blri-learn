@@ -16,28 +16,28 @@ class CourseController extends Controller
         // if ($error = $this->authorize('course-manage')) {
         //     return $error;
         // }
-        $courses = Course::whereUser_id(auth()->user()->id);
-        if ($request->ajax()) {
-            return DataTables::of($courses)
-                ->addIndexColumn()
-                ->addColumn('description', function ($row) {
-                    return Str::limit($row->description, 50);
-                })
-                ->addColumn('image', function ($row) {
-                    return '<img src="'.imagePath('course',$row->image).'" width="60px">';
-                })
-                ->addColumn('created_at', function ($row) {
-                    return $row->created_at->diffForHumans();
-                })
-                ->addColumn('action', function ($row) {
-                    $btn = '';
-                    $btn .= view('button', ['type' => 'edit', 'route' => 'admin.course', 'row' => $row]);
-                    $btn .= view('button', ['type' => 'ajax-delete', 'route' => route('admin.course.destroy', $row->id), 'row' => $row, 'src' => 'dt']);
-                    return $btn;
-                })
-                ->rawColumns(['description','image','created_at', 'action'])
-                ->make(true);
-        }
+        $courses = Course::whereUser_id(auth()->user()->id)->get();
+        // if ($request->ajax()) {
+        //     return DataTables::of($courses)
+        //         ->addIndexColumn()
+        //         ->addColumn('description', function ($row) {
+        //             return Str::limit($row->description, 50);
+        //         })
+        //         ->addColumn('image', function ($row) {
+        //             return '<img src="'.imagePath('course',$row->image).'" width="60px">';
+        //         })
+        //         ->addColumn('created_at', function ($row) {
+        //             return $row->created_at->diffForHumans();
+        //         })
+        //         ->addColumn('action', function ($row) {
+        //             $btn = '';
+        //             $btn .= view('button', ['type' => 'edit', 'route' => 'admin.course', 'row' => $row]);
+        //             $btn .= view('button', ['type' => 'ajax-delete', 'route' => route('admin.course.destroy', $row->id), 'row' => $row, 'src' => 'dt']);
+        //             return $btn;
+        //         })
+        //         ->rawColumns(['description','image','created_at', 'action'])
+        //         ->make(true);
+        // }
 
         return view('admin.course.index', compact('courses'));
     }
