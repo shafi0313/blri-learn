@@ -367,11 +367,12 @@
                             <h6 class="widget-title"></h6>
                             <div class="widget-content">
                                 @auth
-                                    @php$courseEnroll = \App\Models\CourseEnroll::where('user_id', auth()->user()->id)
+                                    @php
+                                    $courseEnroll = \App\Models\CourseEnroll::where('user_id', auth()->user()->id)
                                             ->where('course_id', $course->id)
                                             ->count();
                                     @endphp
-                                    @if ($courseEnroll < 1)
+                                    @if ($courseEnroll && $courseEnroll < 1)
                                         <form action="{{ route('user.courseEnroll') }}" method="post">
                                             @csrf
                                             <input type="hidden" name="course_id" value="{{ $course->id }}">
