@@ -187,6 +187,7 @@ return [
          */
         // Barryvdh\DomPDF\ServiceProvider::class,
         // Mccarlosen\LaravelMpdf\LaravelMpdfServiceProvider::class,
+        Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -210,10 +211,10 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // 'ExampleClass' => App\Example\ExampleClass::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'GeoIP' => \Torann\GeoIP\Facades\GeoIP::class,
         // 'PDF' => Mccarlosen\LaravelMpdf\Facades\LaravelMpdf::class,
+        'SEO' => Artesaos\SEOTools\Facades\SEOTools::class,
 
     ])->toArray(),
 
