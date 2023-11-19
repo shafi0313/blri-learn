@@ -120,13 +120,9 @@ class LectureController extends Controller
 
     public function destroy(Lecture $lecture)
     {
-        // return 'ok';
         if ($error = $this->authorize('lecture-delete')) {
             return $error;
         }
-        // $path = public_path('uploads/images/lecture/'.$lecture->video);
-        // $path = public_path('uploads/pdf/'.$lecture->video);
-        // if()
         try {
             $lecture->delete();
             Alert::success('Success', 'Lecture Deleted Successfully');

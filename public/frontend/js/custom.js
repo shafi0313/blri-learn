@@ -111,17 +111,17 @@ NOTE: This file contains all scripts for the actual Template.
     var owlslider = jQuery("div.owl-carousel");
     if (owlslider.length > 0) {
       owlslider.each(function () {
-        var $this = $(this),
-          $items = ($this.data('items')) ? $this.data('items') : 1,
-          $loop = ($this.attr('data-loop')) ? $this.data('loop') : true,
-          $navdots = ($this.data('nav-dots')) ? $this.data('nav-dots') : false,
-          $navarrow = ($this.data('nav-arrow')) ? $this.data('nav-arrow') : false,
-          $autoplay = ($this.attr('data-autoplay')) ? $this.data('autoplay') : true,
-          $autospeed = ($this.attr('data-autospeed')) ? $this.data('autospeed') : 5000,
-          $smartspeed = ($this.attr('data-smartspeed')) ? $this.data('smartspeed') : 1000,
-          $autohgt = ($this.data('autoheight')) ? $this.data('autoheight') : false,
-          $space = ($this.attr('data-space')) ? $this.data('space') : 30,
-          $animateOut = ($this.attr('data-animateOut')) ? $this.data('animateOut') : false;
+        var $this       = $(this),
+            $items      = ($this.data('items')) ? $this.data('items') : 1,
+            $loop       = ($this.attr('data-loop')) ? $this.data('loop') : true,
+            $navdots    = ($this.data('nav-dots')) ? $this.data('nav-dots') : false,
+            $navarrow   = ($this.data('nav-arrow')) ? $this.data('nav-arrow') : false,
+            $autoplay   = ($this.attr('data-autoplay')) ? $this.data('autoplay') : true,
+            $autospeed  = ($this.attr('data-autospeed')) ? $this.data('autospeed') : 5000,
+            $smartspeed = ($this.attr('data-smartspeed')) ? $this.data('smartspeed') : 1000,
+            $autohgt    = ($this.data('autoheight')) ? $this.data('autoheight') : false,
+            $space      = ($this.attr('data-space')) ? $this.data('space') : 30,
+            $animateOut = ($this.attr('data-animateOut')) ? $this.data('animateOut') : false;
 
         $(this).owlCarousel({
           loop: $loop,
@@ -143,14 +143,14 @@ NOTE: This file contains all scripts for the actual Template.
               items: $items
             }
           },
-          dots: $navdots,
-          autoplayTimeout: $autospeed,
-          smartSpeed: $smartspeed,
-          autoHeight: $autohgt,
-          margin: $space,
-          nav: $navarrow,
-          navText: ["<i class='fas fa-arrow-left'></i>", "<i class='fas fa-arrow-right'></i>"],
-          autoplay: $autoplay,
+          dots              : $navdots,
+          autoplayTimeout   : $autospeed,
+          smartSpeed        : $smartspeed,
+          autoHeight        : $autohgt,
+          margin            : $space,
+          nav               : $navarrow,
+          navText           : ["<i class='fas fa-arrow-left'></i>", "<i class='fas fa-arrow-right'></i>"],
+          autoplay          : $autoplay,
           autoplayHoverPause: true
         });
       });

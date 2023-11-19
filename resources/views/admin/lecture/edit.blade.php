@@ -81,7 +81,7 @@
                                             </div>
                                         </div>
 
-                                        {{-- <div class="form-group col-md-6">
+                                        <div class="form-group col-md-6">
                                             <label for="type">Lecture Type <span class="t_r">*</span></label>
                                             <select name="type" class="form-control @error('type') is-invalid @enderror"
                                                 id="type" @selected('type' == old('type'))>
@@ -93,9 +93,9 @@
                                             @error('type')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
-                                        </div> --}}
+                                        </div>
 
-                                        {{-- <div class="col-md-6 video_div" style="display: none">
+                                        <div class="col-md-6 video_div" style="display: none">
                                             <div class="form-group">
                                                 <label for="time">Time <span class="t_r">*</span></label>
                                                 <input type="text" name="time" class="form-control video"
@@ -104,56 +104,51 @@
                                                     <div class="alert alert-danger">{{ $errors->first('time') }}</div>
                                                 @endif
                                             </div>
-                                        </div> --}}
+                                        </div>
 
-                                        @if ($lecture->type == 1)
-                                            <div class="col-md-12" id="text_div">
-                                                <div class="form-group">
-                                                    <label for="text">text </label>
-                                                    <textarea name="text" class="form-control" id="text" rows="2" id="text">{!! $lecture->text !!}</textarea>
-                                                    @if ($errors->has('text'))
-                                                        <div class="alert alert-danger">{{ $errors->first('text') }}</div>
-                                                    @endif
-                                                </div>
+                                        <div class="col-md-12" id="text_div" style="display: none">
+                                            <div class="form-group">
+                                                <label for="text">Content </label>
+                                                <textarea name="text" class="form-control" id="text" rows="2" id="text">{!! $lecture->text !!}</textarea>
+                                                @if ($errors->has('text'))
+                                                    <div class="alert alert-danger">{{ $errors->first('text') }}</div>
+                                                @endif
                                             </div>
-                                        @endif
+                                        </div>
 
-                                        @if ($lecture->type == 2)
-                                            <div class="col-md-12 video_div">
-                                                <div class="form-group">
-                                                    <label for="text">Video link <span class="t_r">*</span></label>
-                                                    <input type="text" name="text" class="form-control" id="video"
-                                                        value="{!! $lecture->text !!}">
-                                                    @if ($errors->has('text'))
-                                                        <div class="alert alert-danger">{{ $errors->first('text') }}</div>
-                                                    @endif
-                                                </div>
+                                        <div class="col-md-12 video_div" style="display: none">
+                                            <div class="form-group">
+                                                <label for="text">Video link <span class="t_r">*</span></label>
+                                                <input type="text" name="text" class="form-control" id="video"
+                                                    value="{!! $lecture->text !!}">
+                                                @if ($errors->has('text'))
+                                                    <div class="alert alert-danger">{{ $errors->first('text') }}</div>
+                                                @endif
                                             </div>
-                                            <div class="col-md-12" id="lectureDiv">
-                                                <div class="form-group">
-                                                    <label for="lectureText">text </label>
-                                                    <textarea name="lectureText" class="form-control" id="lectureText" rows="2">{!! $lecture->text !!}</textarea>
-                                                    @if ($errors->has('lectureText'))
-                                                        <div class="alert alert-danger">{{ $errors->first('lectureText') }}
-                                                        </div>
-                                                    @endif
-                                                </div>
+                                        </div>
+                                        <div class="col-md-12" id="lectureDiv" style="display: none">
+                                            <div class="form-group">
+                                                <label for="lectureText">Content </label>
+                                                <textarea name="lectureText" class="form-control" id="lectureText" rows="2">{!! $lecture->text !!}</textarea>
+                                                @if ($errors->has('lectureText'))
+                                                    <div class="alert alert-danger">{{ $errors->first('lectureText') }}
+                                                    </div>
+                                                @endif
                                             </div>
-                                        @endif
+                                        </div>
 
-                                        @if ($lecture->type == 3)
-                                            <div class="col-md-12" id="pdf_div">
-                                                <div class="form-group">
-                                                    <label for="text">PDF <span class="t_r">*</span></label>
-                                                    <input type="text" name="text" class="form-control" id="pdf"
-                                                        value="{!! $lecture->text !!}"
-                                                        placeholder="https://drive.google.com/file/d/1MkmX8AcvT7lv-_ljlN4zQ0wpL2yM-mJD/view?usp=sharing">
-                                                    @if ($errors->has('text'))
-                                                        <div class="alert alert-danger">{{ $errors->first('text') }}</div>
-                                                    @endif
-                                                </div>
+                                        <div class="col-md-12" id="pdf_div" style="display: none">
+                                            <div class="form-group">
+                                                <label for="text">PDF <span class="t_r">*</span></label>
+                                                <input type="text" name="text" class="form-control" id="pdf"
+                                                    value="{!! $lecture->text !!}"
+                                                    placeholder="https://drive.google.com/file/d/1MkmX8AcvT7lv-_ljlN4zQ0wpL2yM-mJD/view?usp=sharing">
+                                                @if ($errors->has('text'))
+                                                    <div class="alert alert-danger">{{ $errors->first('text') }}</div>
+                                                @endif
                                             </div>
-                                        @endif
+                                        </div>
+
 
                                     </div>
                                 </div>
@@ -173,6 +168,37 @@
         <script>
             CKEDITOR.replace('text');
             CKEDITOR.replace('lectureText');
+            $(document).ready(function() {
+                let type = $('#type').val();
+                if (type == 1) {
+                    $(".video_div").hide()
+                    $("#pdf_div").hide()
+                    $("#text_div").show()
+                    $("#lectureDiv").hide()
+
+                    $("#text").attr("disabled", false)
+                    $("#video").attr("disabled", true)
+                    $("#pdf").attr("disabled", true)
+                } else if (type == 2) {
+                    $(".video_div").show()
+                    $("#lectureDiv").show()
+                    $("#pdf_div").hide()
+                    $("#text_div").hide()
+
+                    $("#video").attr("disabled", false)
+                    $("#text").attr("disabled", true)
+                    $("#pdf").attr("disabled", true)
+                } else {
+                    $(".video_div").hide()
+                    $("#pdf_div").show()
+                    $("#text_div").hide()
+                    $("#lectureDiv").hide()
+
+                    $("#pdf").attr("disabled", false)
+                    $("#video").attr("disabled", true)
+                    $("#text").attr("disabled", true)
+                }
+            })
             $("#type").change(function() {
                 var type = $(this).val()
                 if (type == 1) {

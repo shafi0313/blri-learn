@@ -24,7 +24,7 @@ class UpdateLectureRequest extends FormRequest
         return [
             'course_id'  => ['required', 'exists:courses,id'],
             'chapter_id' => ['required', 'exists:chapters,id'],
-            'type'       => ['required', 'boolean'],
+            'type'       => ['required', 'in:1,2,3'],
             'name'       => ['required', 'string', 'min:1', 'max:255'],
             'text'       => ['required'],
             'time'       => ['required_if:type,==,2']
