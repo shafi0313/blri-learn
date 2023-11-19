@@ -21,7 +21,7 @@
                     .option {
                         border: 1px solid rgb(218, 218, 218);
                         padding: 5px 10px 7px 29px;
-                        margin: 0 0px 10px 0;                        
+                        margin: 0 0px 10px 0;
                         border-radius: 3px;
                     }
 
@@ -35,7 +35,7 @@
                     .option .form-check-label {
                         padding-left: 5px !important;
                         font-weight: 400 !important;
-                    }                    
+                    }
                 </style>
 
                 <div class="row justify-content-center">
@@ -59,13 +59,23 @@
                                                 @if ($quiz->options->count() > 0)
                                                     <div class="row" style="margin-bottom: 20px">
                                                         @foreach ($quiz->options as $option)
-                                                            <input type="hidden" value="{{ $option->id }}" name="option_id">
-                                                            <div class="col-md-6 " >
-                                                                <div class="option">                                                                    
-                                                                    <input class="form-check-input" type="radio" name="qz_{{ $quiz->id }}" id="exampleRadios{{ $option->id }}" value="{{ $option->id }}">                                                                    
-                                                                    <label class="form-check-label" Style="" for="exampleRadios{{ $option->id }}">{{ $option->option }}</label>
-                                                                </div>
+                                                        <input type="hidden" value="{{ $option->id }}" name="option_id">
+                                                        @if ($quiz->correct_options_count >= 2)
+                                                        <div class="col-md-6">
+                                                            <div class="option">
+                                                                <input class="form-check-input" type="checkbox" name="qz_{{ $quiz->id }}" id="quiz{{ $option->id }}" value="{{ $option->id }}">
+                                                                <label class="form-check-label" for="quiz{{ $option->id }}">{{ $option->option }}</label>
                                                             </div>
+                                                        </div>
+                                                        @else
+                                                        <div class="col-md-6">
+                                                            <div class="option">
+                                                                <input class="form-check-input" type="radio" name="qz_{{ $quiz->id }}" id="quiz{{ $option->id }}" value="{{ $option->id }}">
+                                                                <label class="form-check-label" for="quiz{{ $option->id }}">{{ $option->option }}</label>
+                                                            </div>
+                                                        </div>
+                                                        @endif
+
                                                         @endforeach
                                                     </div>
                                                 @endif
@@ -80,7 +90,7 @@
                             </div> --}}
                                 <div class="text-center card-action">
                                     <button type="submit"
-                                        class="btn btn-{{ $layout->submit_btn ?? 'primary' }}">Submit</button>
+                                        class="btn btn-primary">Submit</button>
                                     {{-- <button type="reset" class="btn btn-danger">Cancel</button> --}}
                                 </div>
                             </form>
@@ -93,34 +103,32 @@
     </div>
 
     @push('custom_scripts')
-        <!-- Datatables -->
-        {{-- @include('include.data_table_js') --}}
         <meta name="csrf-token" content="{{ csrf_token() }}" />
         <script>
-            window.onload = function() {
-                //    var hour = 4;
-                let minute = 10;
-                let sec = 00;
-                setInterval(function() {
-                    document.getElementById("timer").innerHTML = minute + " : " + sec;
-                    if (minute >= 0 && sec >= 1) {
-                        sec--;
-                    }
-                    if (sec == 00) {
-                        if (minute > 0) {
-                            minute--;
-                            sec = 60;
-                        }
-                        //  if (minute >= 0) {
-                        //     minute = 0;
-                        //  }
-                    }
-                    if (minute >= 0 && sec == 0) {
-                        minute--
-                        lectureComplete();
-                    }
-                }, 1000);
-            };
+            // window.onload = function() {
+            //     //    var hour = 4;
+            //     let minute = 10;
+            //     let sec = 00;
+            //     setInterval(function() {
+            //         document.getElementById("timer").innerHTML = minute + " : " + sec;
+            //         if (minute >= 0 && sec >= 1) {
+            //             sec--;
+            //         }
+            //         if (sec == 00) {
+            //             if (minute > 0) {
+            //                 minute--;
+            //                 sec = 60;
+            //             }
+            //             //  if (minute >= 0) {
+            //             //     minute = 0;
+            //             //  }
+            //         }
+            //         if (minute >= 0 && sec == 0) {
+            //             minute--
+            //             lectureComplete();
+            //         }
+            //     }, 1000);
+            // };
         </script>
 
 

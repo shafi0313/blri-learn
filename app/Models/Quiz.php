@@ -13,4 +13,7 @@ class Quiz extends Model
     public function options(){
         return $this->hasMany(QuizOption::class, 'quiz_id');
     }
+    public function correctOptions(){
+        return $this->hasMany(QuizOption::class, 'quiz_id')->where('correct', 1);
+    }
 }
