@@ -11,11 +11,13 @@ use App\Models\CourseCat;
 use App\Models\CourseReview;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Artesaos\SEOTools\Facades\SEOTools;
 
 class IndexController extends Controller
 {
     public function index()
     {
+        SEOTools::setTitle('BLRI E-Learning Platform | Livestock Management & Agriculture Courses');
         $courses    = Course::with(['category','user','courseReviews','enrollCounts'])->get();
         $sliders    = Slider::whereStatus(1)->get();
         $student    = User::wherePermission(2)->count();

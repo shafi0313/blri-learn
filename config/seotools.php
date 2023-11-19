@@ -3,19 +3,21 @@
  * @see https://github.com/artesaos/seotools
  */
 
+$description = "Elevate your expertise in livestock management and agriculture with the Bangladesh Livestock Research Institute E-Learning Platform. Explore specialized courses, led by industry experts, offering interactive and flexible learning paths. Dive into a wealth of multimedia resources, engage in a supportive community, and earn certifications to enhance your professional profile. Stay ahead in the evolving field of livestock research – enroll today for a dynamic and enriching educational experience.";
+$keyword = "livestock management, agriculture education, sustainable farming, animal nutrition, livestock health, agricultural research, e-learning courses, BLRI certifications, livestock innovation, farming practices";
 return [
     'meta' => [
         /*
          * The default configurations to be used by the meta generator.
          */
         'defaults'       => [
-            'title'        => "It's Over 9000!", // set false to total remove
+            'title'        => "Bangladesh Livestock Research Institute E-Learning Platform", // set false to total remove
             'titleBefore'  => false, // Put defaults.title before page title, like 'It's Over 9000! - Dashboard'
-            'description'  => 'For those who helped create the Genki Dama', // set false to total remove
+            'description'  => $description, // set false to total remove
             'separator'    => ' - ',
-            'keywords'     => [],
-            'canonical'    => false, // Set to null or 'full' to use Url::full(), set to 'current' to use Url::current(), set false to total remove
-            'robots'       => false, // Set to 'all', 'none' or any combination of index/noindex and follow/nofollow
+            'keywords'     => [$keyword], // set false to total remove
+            'canonical'    => 'full', // Set to null or 'full' to use Url::full(), set to 'current' to use Url::current(), set false to total remove
+            'robots'       => 'all', // Set to 'all', 'none' or any combination of index/noindex and follow/nofollow
         ],
         /*
          * Webmaster tags are always added.
@@ -37,10 +39,10 @@ return [
          */
         'defaults' => [
             'title'       => 'Over 9000 Thousand!', // set false to total remove
-            'description' => 'For those who helped create the Genki Dama', // set false to total remove
+            'description' => $description, // set false to total remove
             'url'         => false, // Set null for using Url::current(), set false to total remove
             'type'        => false,
-            'site_name'   => false,
+            'site_name'   => 'WebPage',
             'images'      => [],
         ],
     ],
@@ -59,7 +61,7 @@ return [
          */
         'defaults' => [
             'title'       => 'Over 9000 Thousand!', // set false to total remove
-            'description' => 'For those who helped create the Genki Dama', // set false to total remove
+            'description' => $description, // set false to total remove
             'url'         => false, // Set to null or 'full' to use Url::full(), set to 'current' to use Url::current(), set false to total remove
             'type'        => 'WebPage',
             'images'      => [],
