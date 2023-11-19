@@ -109,6 +109,15 @@
     margin: 0 auto !important;
 }
 
+.testimonial .testimonial-item {
+    padding: 0 20px;
+    margin-top: 20px;
+}
+
+.testimonial .testimonial-item .testimonial-content {
+    margin-bottom: 18px;
+}
+
 /* Footer */
 .footer_menu_area {
     margin-top: 30px;

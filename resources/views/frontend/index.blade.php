@@ -1,7 +1,7 @@
 @extends('frontend.layouts.app')
 @section('content')
     <!--=================================
-                            Banner -->
+                                Banner -->
     <section class="slider-01">
         <div class="container-fluid px-0">
             <div id="main-slider" class="swiper-container">
@@ -39,10 +39,10 @@
         </div>
     </section>
     <!--=================================
-                              Banner -->
+                                  Banner -->
 
     <!--=================================
-                              info box -->
+                                  info box -->
     <section class="bg-primary">
         <div class="container">
             <div class="row feature-info-02">
@@ -65,7 +65,7 @@
         </div>
     </section>
     <!--=================================
-                              info box -->
+                                  info box -->
 
 
     {{-- <section class="space-ptb">
@@ -131,7 +131,7 @@
         </div>
     </section> --}}
     <!--=================================
-                Course -->
+                    Course -->
     <section class="space-ptb bg-light overflow-hidden">
         <div class="container-fluid">
             <div class="row">
@@ -180,11 +180,11 @@
         </div>
     </section>
     <!--=================================
-                  Course -->
+                      Course -->
 
 
     <!--=================================
-                      How It Works -->
+                          How It Works -->
     <section class="space-pt" style="background: #dcfaec">
         <div class="container">
             <div class="row justify-content-center">
@@ -233,12 +233,12 @@
         </div>
     </section>
     <!--=================================
-                      How It Works -->
+                          How It Works -->
 
 
 
     <!--=================================
-                              Course -->
+                                  Course -->
     <section class="space-ptb">
         <div class="container">
             <div class="row justify-content-center">
@@ -298,10 +298,10 @@
         </div>
     </section>
     <!--=================================
-                              Course -->
+                                  Course -->
 
     <!--=================================
-                              Action box -->
+                                  Action box -->
     <section class="space-ptb bg-overlay-theme-90" data-jarallax='{"speed": 0.5}'
         style="background-image: url('images/bg/01.jpg'); background-size: cover;">
         <div class="container">
@@ -318,122 +318,142 @@
         </div>
     </section>
     <!--=================================
-                              Action box -->
+                                  Action box -->
 
     <!--=================================
-                              Testimonial and Brands -->
+                                  Testimonial and Brands -->
     <section class="space-ptb">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-6 col-xl-7 text-center">
+                <div class="col-lg-12 col-xl-12 text-center">
                     <div class="owl-carousel testimonial" data-nav-arrow="true" data-nav-dots="false" data-items="1"
                         data-lg-items="1" data-md-items="1" data-sm-items="1" data-space="0" data-autoheight="true">
                         <div class="item">
-                            <div class="video-image">
-                                <img class="img-fluid w-100" src="{{ imagePath('static', 'video-1.jpg') }}"
-                                    alt="">
-                                <a class="popup-icon popup-youtube" href="https://www.youtube.com/watch?v=L83evm5SQSw">
-                                    <i class="fa fa-play"></i>
-                                    <!-- svg start -->
-                                    <div class="svg-item">
-                                        <svg version="1.1" id="Layer_2" xmlns="http://www.w3.org/2000/svg"
-                                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" height="48px"
-                                            viewBox="0 0 1920 48" style="enable-background:new 0 0 1920 48;"
-                                            xml:space="preserve">
-                                            <polygon id="XMLID_1_" class="st0" fill="#ffffff"
-                                                points="1920,48 0,48 0,48 1920,0 " />
-                                        </svg>
-                                    </div>
-                                    <!-- svg end -->
-                                </a>
-                            </div>
-                            <div class="testimonial-item">
-                                <div class="testimonial-content">
-                                    <h6 class="text-dark">গরু হৃষ্টপুষ্ট করণ গুরুত্বের উপর মহাপরিচালক ড. এস এম জাহাঙ্গীর
-                                        হোসেন এর বক্তব্য ।</h6>
-                                </div>
-                                <div class="testimonial-author">
-                                    <div class="testimonial-name">
-                                        <p class="mb-0 text-primary fw-bold">ড. এস এম জাহাঙ্গীর হোসেন</p>
-                                        <small class="fw-bold">মহাপরিচালক</small>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="video-image">
+                                        <img class="img-fluid w-100" src="{{ imagePath('static', 'video-1.jpg') }}"
+                                            alt="">
+                                        <a class="popup-icon popup-youtube"
+                                            href="https://www.youtube.com/watch?v=L83evm5SQSw">
+                                            <i class="fa fa-play"></i>
+                                            <!-- svg start -->
+                                            <div class="svg-item">
+                                                <svg version="1.1" id="Layer_2" xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                    height="48px" viewBox="0 0 1920 48"
+                                                    style="enable-background:new 0 0 1920 48;" xml:space="preserve">
+                                                    <polygon id="XMLID_1_" class="st0" fill="#ffffff"
+                                                        points="1920,48 0,48 0,48 1920,0 " />
+                                                </svg>
+                                            </div>
+                                            <!-- svg end -->
+                                        </a>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="video-image">
-                                <img class="img-fluid w-100" src="{{ imagePath('static', 'video-2.jpg') }}"
-                                    alt="">
-                                <a class="popup-icon popup-youtube" href="https://www.youtube.com/watch?v=ZMnmwNT1Maw">
-                                    <i class="fa fa-play"></i>
-                                    <!-- svg start -->
-                                    <div class="svg-item">
-                                        <svg version="1.1" id="Layer_2" xmlns="http://www.w3.org/2000/svg"
-                                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" height="48px"
-                                            viewBox="0 0 1920 48" style="enable-background:new 0 0 1920 48;"
-                                            xml:space="preserve">
-                                            <polygon id="XMLID_1_" class="st0" fill="#ffffff"
-                                                points="1920,48 0,48 0,48 1920,0 " />
-                                        </svg>
-                                    </div>
-                                    <!-- svg end -->
-                                </a>
-                            </div>
-                            <div class="testimonial-item">
-                                <div class="testimonial-content">
-                                    <h6 class="text-dark">বিএলআরআই প্রশিক্ষণ জানালায় জনপ্রিয় প্রযুক্তি সমূহ অন্তর্ভুক্তি
-                                        করণ।</h6>
-                                </div>
-                                <div class="testimonial-author">
-                                    <div class="testimonial-name">
-                                        <p class="mb-0 text-primary fw-bold">ড. নাসরিন সুলতানা এর বক্তব্য</p>
-                                        <small class="fw-bold">পরিচালক (গবেষণা)</small>
+                                <div class="col-md-6 my-auto">
+                                    <div class="testimonial-item">
+                                        <div class="testimonial-content">
+                                            <h6 class="text-dark">গরু হৃষ্টপুষ্ট করণ গুরুত্বের উপর মহাপরিচালক ড. এস এম
+                                                জাহাঙ্গীর
+                                                হোসেন এর বক্তব্য ।</h6>
+                                        </div>
+                                        <div class="testimonial-author">
+                                            <div class="testimonial-name">
+                                                <p class="mb-0 text-primary fw-bold">ড. এস এম জাহাঙ্গীর হোসেন</p>
+                                                <small class="fw-bold">মহাপরিচালক</small>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="item">
-                            <div class="video-image">
-                                <img class="img-fluid w-100" src="{{ imagePath('static', 'video-3.jpg') }}"
-                                    alt="">
-                                <a class="popup-icon popup-youtube" href="https://www.youtube.com/watch?v=kZ4_AwyJGc8">
-                                    <i class="fa fa-play"></i>
-                                    <!-- svg start -->
-                                    <div class="svg-item">
-                                        <svg version="1.1" id="Layer_2" xmlns="http://www.w3.org/2000/svg"
-                                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" height="48px"
-                                            viewBox="0 0 1920 48" style="enable-background:new 0 0 1920 48;"
-                                            xml:space="preserve">
-                                            <polygon id="XMLID_1_" class="st0" fill="#ffffff"
-                                                points="1920,48 0,48 0,48 1920,0 " />
-                                        </svg>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="video-image">
+                                        <img class="img-fluid w-100" src="{{ imagePath('static', 'video-2.jpg') }}"
+                                            alt="">
+                                        <a class="popup-icon popup-youtube" href="https://www.youtube.com/watch?v=ZMnmwNT1Maw">
+                                            <i class="fa fa-play"></i>
+                                            <!-- svg start -->
+                                            <div class="svg-item">
+                                                <svg version="1.1" id="Layer_2" xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" height="48px"
+                                                    viewBox="0 0 1920 48" style="enable-background:new 0 0 1920 48;"
+                                                    xml:space="preserve">
+                                                    <polygon id="XMLID_1_" class="st0" fill="#ffffff"
+                                                        points="1920,48 0,48 0,48 1920,0 " />
+                                                </svg>
+                                            </div>
+                                            <!-- svg end -->
+                                        </a>
                                     </div>
-                                    <!-- svg end -->
-                                </a>
-                            </div>
-                            <div class="testimonial-item">
-                                <div class="testimonial-content">
-                                    <h6 class="text-dark">অনলাইনে বিএলআরআই এর প্রযুক্তি সমূহের প্রশিক্ষণের অগ্রযাত্রা।</h6>
                                 </div>
-                                <div class="testimonial-author">
-                                    <div class="testimonial-name">
-                                        <p class="mb-0 text-primary fw-bold">ড. কামরুন নাহার মনিরা</p>
-                                        <small class="fw-bold">ইনোভেটর</small>
+                                <div class="col-md-6 my-auto">
+                                    <div class="testimonial-item">
+                                        <div class="testimonial-content">
+                                            <h6 class="text-dark">বিএলআরআই প্রশিক্ষণ জানালায় জনপ্রিয় প্রযুক্তি সমূহ অন্তর্ভুক্তি
+                                                করণ।</h6>
+                                        </div>
+                                        <div class="testimonial-author">
+                                            <div class="testimonial-name">
+                                                <p class="mb-0 text-primary fw-bold">ড. নাসরিন সুলতানা এর বক্তব্য</p>
+                                                <small class="fw-bold">পরিচালক (গবেষণা)</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="video-image">
+                                        <img class="img-fluid w-100" src="{{ imagePath('static', 'video-3.jpg') }}"
+                                            alt="">
+                                        <a class="popup-icon popup-youtube" href="https://www.youtube.com/watch?v=kZ4_AwyJGc8">
+                                            <i class="fa fa-play"></i>
+                                            <!-- svg start -->
+                                            <div class="svg-item">
+                                                <svg version="1.1" id="Layer_2" xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" height="48px"
+                                                    viewBox="0 0 1920 48" style="enable-background:new 0 0 1920 48;"
+                                                    xml:space="preserve">
+                                                    <polygon id="XMLID_1_" class="st0" fill="#ffffff"
+                                                        points="1920,48 0,48 0,48 1920,0 " />
+                                                </svg>
+                                            </div>
+                                            <!-- svg end -->
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 my-auto">
+                                    <div class="testimonial-item">
+                                        <div class="testimonial-content">
+                                            <h6 class="text-dark">অনলাইনে বিএলআরআই এর প্রযুক্তি সমূহের প্রশিক্ষণের অগ্রযাত্রা।</h6>
+                                        </div>
+                                        <div class="testimonial-author">
+                                            <div class="testimonial-name">
+                                                <p class="mb-0 text-primary fw-bold">ড. কামরুন নাহার মনিরা</p>
+                                                <small class="fw-bold">ইনোভেটর</small>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-xl-5 align-self-center ps-0 ps-lg-5 mt-5 mt-lg-0">
+                {{-- <div class="col-lg-6 col-xl-5 align-self-center ps-0 ps-lg-5 mt-5 mt-lg-0">
                     <div class="ps-3 ps-lg-4">
                         <div class="section-title">
                             <h2 class="mb-4 mb-lg-5">Don’t change your learning just change a way of learning</h2>
-                        </div>
-                        {{-- <a href="#" class="btn btn-primary">More our customers</a> --}}
-                        <hr class="my-5">
-                        {{-- <h5 class="text-primary mt-md-4 mt-lg-5 mb-3">Everything you need to build an amazing online education website.</h5> --}}
-                        {{-- <div class="row">
+                        </div> --}}
+                {{-- <a href="#" class="btn btn-primary">More our customers</a> --}}
+                {{-- <hr class="my-5"> --}}
+                {{-- <h5 class="text-primary mt-md-4 mt-lg-5 mb-3">Everything you need to build an amazing online education website.</h5> --}}
+                {{-- <div class="row">
                             <div class="col-lg-6 col-sm-3 col-6 mb-3 mb-sm-0"><img class="img-fluid grayscale pt-4 w-75"
                                     src="images/award-logo/01.svg" alt=""></div>
                             <div class="col-lg-6 col-sm-3 col-6 mb-3 mb-sm-0"><img class="img-fluid grayscale pt-4 w-75"
@@ -443,14 +463,14 @@
                             <div class="col-lg-6 col-sm-3 col-6 "><img class="img-fluid grayscale pt-4 pt-lg-5 w-75"
                                     src="images/award-logo/04.svg" alt=""></div>
                         </div> --}}
-                    </div>
-                </div>
+                {{-- </div>
+                </div> --}}
             </div>
         </div>
     </section>
 
     <!--=================================
-            Testimonial -->
+                Testimonial -->
     <section class="space-ptb bg-primary" data-jarallax='{"speed": 0.5}'
         style="background-image: url({{ asset('frontend/images/bg/09.png') }}); background-size: cover;">
         <div class="container">
@@ -473,7 +493,9 @@
                                         <i class="text-white opacity-5 flaticon-quote"></i>
                                     </div>
                                     <div class="testimonial-content">
-                                        এটা চমৎকার অ্যাপ। এটি শিক্ষার্থীদের জন্যও কার্যকর। তাছাড়া এটা খুবই উপকারী। সুতরাং, শিক্ষার্থীদের এই অ্যাপটি ব্যবহার করা উচিত এবং কোনো চার্জ ছাড়াই বিভিন্ন কোর্সে অংশগ্রহণ করা উচিত & আমরা নতুন তথ্যও পেতে পারি।
+                                        এটা চমৎকার অ্যাপ। এটি শিক্ষার্থীদের জন্যও কার্যকর। তাছাড়া এটা খুবই উপকারী। সুতরাং,
+                                        শিক্ষার্থীদের এই অ্যাপটি ব্যবহার করা উচিত এবং কোনো চার্জ ছাড়াই বিভিন্ন কোর্সে
+                                        অংশগ্রহণ করা উচিত & আমরা নতুন তথ্যও পেতে পারি।
                                     </div>
                                     <div class="testimonial-author">
                                         <div class="avatar avatar-md">
@@ -541,5 +563,5 @@
         </div>
     </section>
     <!--=================================
-              Testimonial -->
+                  Testimonial -->
 @endsection
