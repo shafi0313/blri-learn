@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\CourseCat;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 use App\Http\Controllers\Controller;
 
 class CourseCatController extends Controller
@@ -31,11 +32,23 @@ class CourseCatController extends Controller
             return $error;
         }
         $data = $request->validate([
-            'name' => 'required|max:191',
-            'image' => 'nullable|image|mimes:png|max:500',
+            'name'  => 'required|max:191',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp',
         ]);
 
-        $data['image'] = imageStore($request, 'course_cat', 'uploads/images/course/');
+        if ($request->hasFile('image')) {
+            $image = Image::make($request->file('image'));
+            if ($image->width() > 140 || $image->height() > 140) {
+                $image->fit(140, 140);
+            }
+            $dir = public_path('/uploads/images/course');
+            if (!is_dir($dir)) {
+                mkdir($dir, 0777, true);
+            }
+            $imageName = 'course-cat-' . uniqueId(10) . '.webp';
+            $image->encode('webp', 80)->save($dir . '/' . $imageName);
+            $data['image'] = $imageName;
+        }
 
         try {
             CourseCat::create($data);
@@ -67,9 +80,24 @@ class CourseCatController extends Controller
             'image' => 'nullable|image|mimes:png|max:500',
         ]);
 
-        $image = CourseCat::find($id)->image;
+        $oldImage = CourseCat::find($id)->image;
         if ($request->hasFile('image')) {
-            $data['image'] = imageUpdate($request, 'course_cat', 'uploads/images/course/', $image);
+            $image = Image::make($request->file('image'));
+            if ($image->width() > 140 || $image->height() > 140) {
+                $image->fit(140, 140);
+            }
+            $dir = public_path('/uploads/images/course');
+            if (!is_dir($dir)) {
+                mkdir($dir, 0777, true);
+            }
+            $imageName = 'course-cat-' . uniqueId(10) . '.webp';
+            $image->encode('webp', 80)->save($dir . '/' . $imageName);
+
+            $checkPath = public_path("uploads/images/course/{$oldImage}");
+            if ($oldImage && $checkPath) {
+                unlink($checkPath);
+            }
+            $data['image'] = $imageName;
         }
 
         try {

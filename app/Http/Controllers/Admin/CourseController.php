@@ -7,6 +7,7 @@ use App\Models\CourseCat;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Intervention\Image\Facades\Image;
 use Yajra\DataTables\Facades\DataTables;
 
 class CourseController extends Controller
@@ -58,24 +59,32 @@ class CourseController extends Controller
         }
         $data = $this->validate($request, [
             'course_cat_id' => 'required',
-            'name' => 'required',
-            'description' => 'required',
-            'video_des' => 'nullable',
-            'skill_level' => 'required',
-            'language' => 'required',
-            'status' => 'nullable',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:1000',
+            'name'          => 'required',
+            'description'   => 'required',
+            'video_des'     => 'nullable',
+            'skill_level'   => 'required',
+            'language'      => 'required',
+            'status'        => 'nullable',
+            'image'         => 'required|image|mimes:jpeg,png,jpg,webp',
         ]);
-        if($request->hasFile('image')){
-            $image = $request->file('image');
-            $imageName = "course".rand(0, 1000000).'.'.$image->getClientOriginalExtension();
-            $request->image->move('uploads/images/course/', $imageName);
-        }
         $data['user_id'] = auth()->user()->id;
-        $data['image'] = $imageName;
+        if ($request->hasFile('image')) {
+            $image = Image::make($request->file('image'));
+            if ($image->width() > 270 || $image->height() > 180) {
+                $image->fit(270, 180);
+            }
+            $dir = public_path('/uploads/images/course');
+            if (!is_dir($dir)) {
+                mkdir($dir, 0777, true);
+            }
+            $imageName = 'course-' . uniqueId(10) . '.webp';
+            $image->encode('webp', 80)->save($dir . '/' . $imageName);
+            $data['image'] = $imageName;
+        }
 
         try {
             Course::create($data);
+
             toast('Success!', 'success');
             return redirect()->route('admin.course.index');
         } catch (\Exception $e) {
@@ -91,9 +100,9 @@ class CourseController extends Controller
         if ($error = $this->authorize('course-edit')) {
             return $error;
         }
-        $course = Course::find($id);
+        $course     = Course::find($id);
         $courseCats = CourseCat::all();
-        return view('admin.course.edit', compact('course','courseCats'));
+        return view('admin.course.edit', compact('course', 'courseCats'));
     }
 
     public function update(Request $request, $id)
@@ -103,18 +112,33 @@ class CourseController extends Controller
         }
         $data = $request->validate([
             'course_cat_id' => 'required',
-            'name' => 'required',
-            'description' => 'required',
-            'video_des' => 'nullable',
-            'skill_level' => 'required',
-            'language' => 'required',
-            'status' => 'nullable',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:1000',
+            'name'          => 'required',
+            'description'   => 'required',
+            'video_des'     => 'nullable',
+            'skill_level'   => 'required',
+            'language'      => 'required',
+            'status'        => 'nullable',
+            'image'         => 'nullable|image|mimes:jpeg,png,jpg,webp',
         ]);
         $data['user_id'] = auth()->user()->id;
-        $image = Course::find($id)->image;
-        if($request->hasFile('image')){
-            $data['image'] = imageUpdate($request, 'course', 'uploads/images/course/', $image);
+        $oldImage = Course::find($id)->image;
+        if ($request->hasFile('image')) {
+            $image = Image::make($request->file('image'));
+            if ($image->width() > 270 || $image->height() > 180) {
+                $image->fit(270, 180);
+            }
+            $dir = public_path('/uploads/images/course');
+            if (!is_dir($dir)) {
+                mkdir($dir, 0777, true);
+            }
+            $imageName = 'course-' . uniqueId(10) . '.webp';
+            $image->encode('webp', 80)->save($dir . '/' . $imageName);
+
+            $checkPath = public_path("uploads/images/course/{$oldImage}");
+            if ($oldImage && file_exists($checkPath)) {
+                unlink($checkPath);
+            }
+            $data['image'] = $imageName;
         }
 
         try {

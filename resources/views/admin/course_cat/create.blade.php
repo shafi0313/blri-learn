@@ -35,7 +35,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="image">Icon <span class="t_r">Format: PNG, Max Size: 500KB</span></label>
+                                            <label for="image">Icon <span class="t_r"></span></label>
                                             <input type="file" name="image" class="form-control">
                                             @if ($errors->has('image'))
                                                 <div class="alert alert-danger">{{ $errors->first('image') }}</div>
