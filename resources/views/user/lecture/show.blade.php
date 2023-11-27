@@ -36,7 +36,7 @@
                                     <div class="chapter_div">
                                         <p class="chapter">{{ $chapter->name }}</p>
                                         @foreach ($chapter->lectures as $lecture)
-                                            @if ($lecture->type == 1)
+                                            {{-- @if ($lecture->type == 1) --}}
                                                 <a
                                                     href="{{ route('user.lecture.lecturePlay', [$lecture->course_id, $lecture->id]) }}">
                                                     <div class="lecture">
@@ -49,7 +49,7 @@
                                                         </p>
                                                     </div>
                                                 </a>
-                                            @elseif ($lecture->type == 2)
+                                            {{-- @elseif ($lecture->type == 2)
                                                 <a
                                                     href="{{ route('user.lecture.lecturePlay', [$lecture->course_id, $lecture->id]) }}">
                                                     <div class="lecture">
@@ -78,7 +78,7 @@
                                                         </p>
                                                     </div>
                                                 </a>
-                                            @endif
+                                            @endif --}}
                                         @endforeach
                                     </div>
                                 @endforeach

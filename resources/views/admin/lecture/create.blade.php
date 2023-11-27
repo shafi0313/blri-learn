@@ -80,7 +80,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group col-md-6">
+                                        {{-- <div class="form-group col-md-6">
                                             <label for="type">Lecture Type <span class="t_r">*</span></label>
                                             <select name="type" class="form-control"
                                                 id="type" @selected('type' == old('type')) required>
@@ -92,11 +92,11 @@
                                             @if ($errors->has('type'))
                                                     <div class="alert alert-danger">{{ $errors->first('type') }}</div>
                                                 @endif
-                                        </div>
+                                        </div> --}}
 
-                                        <div class="col-md-6 video_div" style="display: none">
+                                        <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="time">Time <span class="t_r">*</span></label>
+                                                <label for="time">Time</label>
                                                 <input type="text" name="time" class="form-control video"
                                                     placeholder="1:30">
                                                 @if ($errors->has('time'))
@@ -105,45 +105,35 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-12 video_div" style="display: none">
+                                        <div class="col-md-12 video_div">
+                                            {{-- <div class="form-group"> --}}
+                                                <label for="video">Video link</label>
+                                                <textarea name="video" class="form-control" id="video" rows="3" placeholder='Youtube Video Embed Share Link. Ex: <iframe width="560" height="315" src="https://www.youtube.com/embed/c196ypgkeXc?si=ww4iXfz1W574XLOq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>'></textarea>
+                                                {{-- <input type="video" name="video" class="form-control" id="video"> --}}
+                                                @if ($errors->has('video'))
+                                                    <div class="alert alert-danger">{{ $errors->first('video') }}</div>
+                                                @endif
+                                            {{-- </div> --}}
+                                        </div>
+
+                                        <div class="col-md-12" id="pdf_div">
                                             <div class="form-group">
-                                                <label for="text">Video link <span class="t_r">*</span></label>
-                                                <input type="text" name="text" class="form-control" id="video">
-                                                @if ($errors->has('text'))
-                                                    <div class="alert alert-danger">{{ $errors->first('text') }}</div>
+                                                <label for="pdf">PDF</label>
+                                                <textarea name="pdf" class="form-control" id="pdf"
+                                                placeholder="Google Drive PDF Share Link. Ex: https://drive.google.com/file/d/1MkmX8AcvT7lv-_ljlN4zQ0wpL2yM-mJD/view?usp=sharing" rows="3"></textarea>
+                                                {{-- <input type="text" name="text" class="form-control" id="pdf"
+                                                    placeholder="https://drive.google.com/file/d/1MkmX8AcvT7lv-_ljlN4zQ0wpL2yM-mJD/view?usp=sharing"> --}}
+                                                @if ($errors->has('pdf'))
+                                                    <div class="alert alert-danger">{{ $errors->first('pdf') }}</div>
                                                 @endif
                                             </div>
                                         </div>
-
-                                        <div class="col-md-12" style="display: none" id="pdf_div">
+                                        <div class="col-md-12" id="text_div">
                                             <div class="form-group">
-                                                <label for="text">PDF <span class="t_r">*</span></label>
-                                                <input type="text" name="text" class="form-control" id="pdf"
-                                                    placeholder="https://drive.google.com/file/d/1MkmX8AcvT7lv-_ljlN4zQ0wpL2yM-mJD/view?usp=sharing">
+                                                <label for="text">Text </label>
+                                                <textarea name="text" class="form-control" id="text" id="text"></textarea>
                                                 @if ($errors->has('text'))
                                                     <div class="alert alert-danger">{{ $errors->first('text') }}</div>
-                                                @endif
-                                            </div>
-                                        </div>
-
-
-                                        <div class="col-md-12" style="display: none" id="text_div">
-                                            <div class="form-group">
-                                                <label for="text">text </label>
-                                                <textarea name="text" class="form-control" id="text" rows="2" id="text"></textarea>
-                                                @if ($errors->has('text'))
-                                                    <div class="alert alert-danger">{{ $errors->first('text') }}</div>
-                                                @endif
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-12" style="display: none" id="lectureDiv">
-                                            <div class="form-group">
-                                                <label for="lectureText">text </label>
-                                                <textarea name="lectureText" class="form-control" id="lectureText" rows="2"></textarea>
-                                                @if ($errors->has('lectureText'))
-                                                    <div class="alert alert-danger">{{ $errors->first('lectureText') }}
-                                                    </div>
                                                 @endif
                                             </div>
                                         </div>
@@ -212,38 +202,38 @@
     @push('custom_scripts')
         <script>
             CKEDITOR.replace('text');
-            CKEDITOR.replace('lectureText');
-            $("#type").change(function() {
-                var type = $(this).val()
-                if (type == 1) {
-                    $(".video_div").hide()
-                    $("#pdf_div").hide()
-                    $("#text_div").show()
-                    $("#lectureDiv").hide()
+            // CKEDITOR.replace('lectureText');
+            // $("#type").change(function() {
+            //     var type = $(this).val()
+            //     if (type == 1) {
+            //         $(".video_div").hide()
+            //         $("#pdf_div").hide()
+            //         $("#text_div").show()
+            //         $("#lectureDiv").hide()
 
-                    $("#text").attr("disabled", false)
-                    $("#video").attr("disabled", true)
-                    $("#pdf").attr("disabled", true)
-                } else if (type == 2) {
-                    $(".video_div").show()
-                    $("#lectureDiv").show()
-                    $("#pdf_div").hide()
-                    $("#text_div").hide()
+            //         $("#text").attr("disabled", false)
+            //         $("#video").attr("disabled", true)
+            //         $("#pdf").attr("disabled", true)
+            //     } else if (type == 2) {
+            //         $(".video_div").show()
+            //         $("#lectureDiv").show()
+            //         $("#pdf_div").hide()
+            //         $("#text_div").hide()
 
-                    $("#video").attr("disabled", false)
-                    $("#text").attr("disabled", true)
-                    $("#pdf").attr("disabled", true)
-                } else {
-                    $(".video_div").hide()
-                    $("#pdf_div").show()
-                    $("#text_div").hide()
-                    $("#lectureDiv").hide()
+            //         $("#video").attr("disabled", false)
+            //         $("#text").attr("disabled", true)
+            //         $("#pdf").attr("disabled", true)
+            //     } else {
+            //         $(".video_div").hide()
+            //         $("#pdf_div").show()
+            //         $("#text_div").hide()
+            //         $("#lectureDiv").hide()
 
-                    $("#pdf").attr("disabled", false)
-                    $("#video").attr("disabled", true)
-                    $("#text").attr("disabled", true)
-                }
-            })
+            //         $("#pdf").attr("disabled", false)
+            //         $("#video").attr("disabled", true)
+            //         $("#text").attr("disabled", true)
+            //     }
+            // })
 
             $('#course_id').on('change', function(e) {
                 var courseId = $('#course_id').val();

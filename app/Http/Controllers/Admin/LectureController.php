@@ -101,14 +101,16 @@ class LectureController extends Controller
         }
         $data = $request->validated();
         $data['user_id'] = auth()->user()->id;
-        $data['type'] = $request->type;
+        // $data['type'] = $request->type;
         $lecture->update($data);
-        if ($request->filled('lectureText')) {
-            LectureText::updateOrCreate(['lecture_id' => $lecture->id], [
-                'lecture_id' => $lecture->id,
-                'text'       => $request->lectureText,
-            ]);
-        }
+        // if ($request->filled('lectureText')) {
+        //     LectureText::updateOrCreate(['lecture_id' => $lecture->id], [
+        //         'lecture_id' => $lecture->id,
+        //         'text'       => $request->text,
+        //         'video'      => $request->video,
+        //         'pdf'        => $request->pdf,
+        //     ]);
+        // }
         try {
             Alert::success('Success', 'Lecture Updated Successfully');
             return back();

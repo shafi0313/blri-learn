@@ -30,7 +30,7 @@
                             <div class="chapter_div">
                                 <p class="chapter">{{ $chapter->name }}</p>
                                 @foreach ($chapter->lectures as $lecture)
-                                @if ($lecture->type == 1)
+                                {{-- @if ($lecture->type == 1) --}}
                                 <div class="d-flex justify-content-between">
                                     <a href="{{ route('admin.lecture.lecturePlay',[$lecture->course_id, $lecture->id]) }}" >
                                         <div class="lecture">
@@ -50,14 +50,10 @@
                                 </div>
 
 
-                                @elseif ($lecture->type == 2)
+                                {{-- @elseif ($lecture->type == 2)
                                 <a href="{{ route('admin.lecture.lecturePlay',[$lecture->course_id, $lecture->id]) }}">
                                     <div class="lecture">
                                         <p class="title"><i class="icon fab fa-youtube"></i>{{ $lecture->name }}</p>
-                                        {{-- <p class="timeIcon">
-                                            <span class="time riT">{{ $lecture->time }}
-                                            <i class="{{$lecture->enroll->status==0?'far fa-circle':'far fa-check-circle tIconD'}} tIcon"></i> </span>
-                                        </p> --}}
 
                                     </div>
                                 </a>
@@ -66,12 +62,9 @@
                                     <div class="lecture">
                                         <p class="title"><i class="fas fa-file-pdf icon"></i> {{ $lecture->name }}
                                         </p>
-                                        {{-- <p class="timeIcon">
-                                            <i class="{{$lecture->enroll->status==0?'far fa-circle':'far fa-check-circle tIconD'}} tIcon"></i> </span>
-                                        </p> --}}
                                     </div>
                                 </a>
-                                @endif
+                                @endif --}}
                                 @endforeach
                             </div>
                             @endforeach

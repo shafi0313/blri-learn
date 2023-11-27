@@ -3,7 +3,7 @@
 @section('content')
 
     <!--=================================
-        Course Details -->
+            Course Details -->
     @php
         $star5 = $coursesReviews
             ->where('course_id', $course->id)
@@ -157,7 +157,8 @@
                                 <div class="me-auto">
                                     <span>{{ $coursesReviews->count() }} Reviews</span>
                                     <ul class="list-unstyled d-flex mb-0">
-                                        <li><i class="{{ $avgRating >= 1 ? 'fas' : 'far' }} fa-star  text-warning"></i></li>
+                                        <li><i class="{{ $avgRating >= 1 ? 'fas' : 'far' }} fa-star  text-warning"></i>
+                                        </li>
                                         <li><i class="{{ $avgRating >= 2 ? 'fas' : 'far' }} fa-star text-warning"></i></li>
                                         <li><i class="{{ $avgRating >= 3 ? 'fas' : 'far' }} fa-star text-warning"></i></li>
                                         <li><i class="{{ $avgRating >= 4 ? 'fas' : 'far' }} fa-star text-warning"></i></li>
@@ -368,11 +369,11 @@
                             <div class="widget-content">
                                 @auth
                                     @php
-                                    $courseEnroll = \App\Models\CourseEnroll::where('user_id', auth()->user()->id)
+                                        $courseEnroll = \App\Models\CourseEnroll::where('user_id', auth()->user()->id)
                                             ->where('course_id', $course->id)
                                             ->count();
                                     @endphp
-                                    @if ($courseEnroll && $courseEnroll < 1)
+                                    @if (!$courseEnroll)
                                         <form action="{{ route('user.courseEnroll') }}" method="post">
                                             @csrf
                                             <input type="hidden" name="course_id" value="{{ $course->id }}">
@@ -392,7 +393,7 @@
 
 
                         <!--=================================
-        Modal login -->
+            Modal login -->
                         @php
                             $districts = App\Models\District::get(['id', 'name', 'bn_name']);
                         @endphp
@@ -533,7 +534,7 @@
                             </div>
                         </div>
                         <!--=================================
-          Modal login -->
+              Modal login -->
 
                         <div class="widget widget-course-instructor">
                             <h6 class="widget-title">Course Instructor</h6>
@@ -606,7 +607,7 @@
         </div>
     </section>
     <!--=================================
-          Course Details -->
+              Course Details -->
 
     @push('custom_scripts')
     @endpush

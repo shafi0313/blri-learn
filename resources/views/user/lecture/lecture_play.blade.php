@@ -23,18 +23,18 @@
                         <div class="chapter_div">
                             <p class="chapter">{{ $chapter->name }}</p>
                             @foreach ($chapter->lectures as $lecture)
-                                @if ($lecture->type == 1)
-                                    <a href="{{ route('user.lecture.lecturePlay', [$lecture->course_id, $lecture->id]) }}">
-                                        <div class="lecture {{ $lecturePlay->id == $lecture->id ? 'lec_active' : '' }}">
-                                            <p class="title"><i class="fas fa-file icon"></i> {{ $lecture->name }}</p>
-                                            <p class="timeIcon">
-                                                <i
-                                                    class="{{ $lecture->enroll?->status == 0 ? 'far fa-circle' : 'far fa-check-circle tIconD' }} tIcon"></i>
-                                                </span>
-                                            </p>
-                                        </div>
-                                    </a>
-                                @elseif ($lecture->type == 2)
+                                {{-- @if ($lecture->type == 1) --}}
+                                <a href="{{ route('user.lecture.lecturePlay', [$lecture->course_id, $lecture->id]) }}">
+                                    <div class="lecture {{ $lecturePlay->id == $lecture->id ? 'lec_active' : '' }}">
+                                        <p class="title"><i class="fas fa-file icon"></i> {{ $lecture->name }}</p>
+                                        <p class="timeIcon">
+                                            <i
+                                                class="{{ $lecture->enroll?->status == 0 ? 'far fa-circle' : 'far fa-check-circle tIconD' }} tIcon"></i>
+                                            </span>
+                                        </p>
+                                    </div>
+                                </a>
+                                {{-- @elseif ($lecture->type == 2)
                                     <a href="{{ route('user.lecture.lecturePlay', [$lecture->course_id, $lecture->id]) }}">
                                         <div class="lecture {{ $lecturePlay->id == $lecture->id ? 'lec_active' : '' }}">
                                             <p class="title"><i class="icon fab fa-youtube"></i>{{ $lecture->name }}</p>
@@ -59,7 +59,7 @@
                                             </p>
                                         </div>
                                     </a>
-                                @endif
+                                @endif --}}
                             @endforeach
                         </div>
                     @endforeach
@@ -98,31 +98,33 @@
                                     height: 600px !important;
                                 }
                             </style>
-                            @if ($lecturePlay->type == 1)
+                            @if ($lecturePlay->text)
                                 <div>
                                     {!! $lecturePlay->text !!}
                                 </div>
-                            @elseif ($lecturePlay->type == 2)
+                            @endif
+                            @if ($lecturePlay->video)
                                 <div class="lec_video">
-                                    {!! $lecturePlay->text !!}
+                                    {!! $lecturePlay->video !!}
                                 </div>
-                            @else
+                            @endif
+                            @if ($lecturePlay->pdf)
                                 <div>
-                                    @if (substr($lecturePlay->text, -1) == 'g')
-                                        @php $pdf = str_replace("view?usp=sharing", "preview", $lecturePlay->text) @endphp
+                                    @if (substr($lecturePlay->pdf, -1) == 'g')
+                                        @php $pdf = str_replace("view?usp=sharing", "preview", $lecturePlay->pdf) @endphp
                                     @else
-                                        @php $pdf = str_replace("view", "preview", $lecturePlay->text) @endphp
+                                        @php $pdf = str_replace("view", "preview", $lecturePlay->pdf) @endphp
                                     @endif
                                     {{-- <iframe src="http://docs.google.com/gview?url=http://infolab.stanford.edu/pub/papers/google.pdf&embedded=true" style="width:100%; height:500px;" frameborder="0"></iframe> --}}
                                     <iframe src="{{ $pdf }}" style="width:100%; height:500px;"
                                         frameborder="0"></iframe>
                                 </div>
                             @endif
-                            @if ($lecturePlay->lectureText)
+                            {{-- @if ($lecturePlay->lectureText)
                                 <div>
                                     <p>{!! $lecturePlay->lectureText->text !!}</p>
                                 </div>
-                            @endif
+                            @endif --}}
                             <br>
                             <br>
                             {{-- Time explode --}}
@@ -130,38 +132,37 @@
                                 $time = explode(':', $lecturePlay->time);
                             @endphp
                             {{-- @if ($courseEnroll->status != 1 || empty($courseEnroll)) --}}
-                            @if ($lecturePlay->type == 2)
+                            {{-- @if ($lecturePlay->type == 2)
                                 <h4>Registration closes in <span id="timer">{{ $lecturePlay->time }}<span> minutes!
                                 </h4>
-                            @else
-                                <form action="{{ route('user.lecture.lectureComplete') }}" method="post">
-                                    @csrf
-                                    <input type="hidden" name="course_id" class="form-control"
-                                        value="{{ $lecturePlay->course_id }}">
-                                    <input type="hidden" name="lecture_id" class="form-control"
-                                        value="{{ $lecturePlay->id }}">
-                                    @if ($courseEnroll?->status != 1 || empty($courseEnroll))
-                                        <button type="submit" class="btn btn-sm btn-primary"><i
-                                                class="fas fa-check-circle"></i> সমাপ্ত হিসাবে চিহ্নিত করুন</button>
-                                    @else
-                                        <span class="alert alert-success mr-3">উক্ত লেকচারটি সম্পন্ন করেছেন! </span>
-                                        <button type="submit" class="btn btn-sm btn-primary"><i
-                                                class="fas fa-check-circle"></i> পরবর্তী</button>
-                                    @endif
-                                </form>
-                            @endif
+                            @else --}}
+                            <form action="{{ route('user.lecture.lectureComplete') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="course_id" class="form-control"
+                                    value="{{ $lecturePlay->course_id }}">
+                                <input type="hidden" name="lecture_id" class="form-control"
+                                    value="{{ $lecturePlay->id }}">
+                                @if ($courseEnroll?->status != 1 || empty($courseEnroll))
+                                    <button type="submit" class="btn btn-sm btn-primary"><i
+                                            class="fas fa-check-circle"></i> সমাপ্ত হিসাবে চিহ্নিত করুন</button>
+                                @else
+                                    <span class="alert alert-success mr-3">উক্ত লেকচারটি সম্পন্ন করেছেন! </span>
+                                    <button type="submit" class="btn btn-sm btn-primary"><i
+                                            class="fas fa-check-circle"></i> পরবর্তী</button>
+                                @endif
+                            </form>
+                            {{-- @endif --}}
                             {{-- @else
                             <button class="btn btn-sm btn-primary"><i class="fas fa-check-circle"></i> সমাপ্ত</button>
                             @endif --}}
 
 
-                            <form id="lectureComplete">
-                                {{-- @csrf --}}
+                            {{-- <form id="lectureComplete">
                                 <input type="hidden" name="course_id" class="form-control"
                                     value="{{ $lecturePlay->course_id }}">
                                 <input type="hidden" name="lecture_id" class="form-control"
                                     value="{{ $lecturePlay->id }}">
-                            </form>
+                            </form> --}}
                         </div>
                     </div>
                 </div>
