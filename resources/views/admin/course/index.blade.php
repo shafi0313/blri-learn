@@ -29,16 +29,16 @@
                             <div class="table-responsive">
                                 <table id="data_table" class="display table table-striped table-hover" >
                                     <thead class="bg-secondary thw">
-                                        <tr>
+                                        {{-- <tr>
                                             <th>Name</th>
                                             <th>Skill Level</th>
                                             <th>Description</th>
                                             <th>Language</th>
                                             <th>Action</th>
-                                        </tr>
+                                        </tr> --}}
                                     </thead>
                                     <tbody>
-                                        @foreach ($courses as $course)
+                                        {{-- @foreach ($courses as $course)
                                         <tr>
                                             <td>{{ $course->name }}</td>
                                             <td>{{ $course->skill_level }}</td>
@@ -58,7 +58,7 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        @endforeach
+                                        @endforeach --}}
                                     </tbody>
                                 </table>
                             </div>
@@ -75,68 +75,68 @@
     <!-- Datatables -->
     @include('include.data_table_js')
     <script>
-        // $(function() {
-        //     $('#data_table').DataTable({
-        //         processing: true,
-        //         serverSide: true,
-        //         deferRender: true,
-        //         ordering: true,
-        //         responsive: true,
-        //         scrollY: 400,
-        //         ajax: "{{ route('admin.course.index') }}",
-        //         columns: [{
-        //                 data: 'DT_RowIndex',
-        //                 name: 'DT_RowIndex',
-        //                 title: 'SL',
-        //                 className: "text-center",
-        //                 width: "50px",
-        //                 searchable: false,
-        //                 orderable: false,
-        //             },
-        //             {
-        //                 data: 'name',
-        //                 name: 'name',
-        //                 title: 'Name',
-        //             },
-        //             {
-        //                 data: 'skill_level',
-        //                 name: 'skill_level',
-        //                 title: 'Skill Level',
-        //             },
-        //             {
-        //                 data: 'description',
-        //                 name: 'description',
-        //                 title: 'Description',
-        //             },
-        //             {
-        //                 data: 'language',
-        //                 name: 'language',
-        //                 title: 'Language',
-        //             },
-        //             {
-        //                 data: 'image',
-        //                 name: 'image',
-        //                 title: 'Image',
-        //             },
-        //             {
-        //                 data: 'action',
-        //                 name: 'action',
-        //                 title: 'Action',
-        //                 className: "text-center",
-        //                 width: "100px",
-        //                 orderable: false,
-        //                 searchable: false
-        //             },
-        //         ],
-        //         // fixedColumns: false,
-        //         scroller: {
-        //             loadingIndicator: true
-        //         },
-        //         // order: [
-        //         //     [1, 'asc']
-        //         // ]
-        //     });
-        // });
+        $(function() {
+            $('#data_table').DataTable({
+                processing: true,
+                serverSide: true,
+                deferRender: true,
+                ordering: true,
+                responsive: true,
+                scrollY: 400,
+                ajax: "{{ route('admin.course.index') }}",
+                columns: [{
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex',
+                        title: 'SL',
+                        className: "text-center",
+                        width: "50px",
+                        searchable: false,
+                        orderable: false,
+                    },
+                    {
+                        data: 'name',
+                        name: 'name',
+                        title: 'Name',
+                    },
+                    {
+                        data: 'skill_level',
+                        name: 'skill_level',
+                        title: 'Skill Level',
+                    },
+                    {
+                        data: 'description',
+                        name: 'description',
+                        title: 'Description',
+                    },
+                    {
+                        data: 'language',
+                        name: 'language',
+                        title: 'Language',
+                    },
+                    {
+                        data: 'image',
+                        name: 'image',
+                        title: 'Image',
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        title: 'Action',
+                        className: "text-center",
+                        width: "100px",
+                        orderable: false,
+                        searchable: false
+                    },
+                ],
+                // fixedColumns: false,
+                scroller: {
+                    loadingIndicator: true
+                },
+                // order: [
+                //     [1, 'asc']
+                // ]
+            });
+        });
     </script>
 @endpush
 @endsection

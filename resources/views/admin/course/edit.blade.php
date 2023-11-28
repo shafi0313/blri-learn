@@ -80,7 +80,7 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="image">Image <span class="t_r">* (Height: 310px, Width: 580px)</span></label>
+                                            <label for="image">Image <span class="t_r"></span></label>
                                             <input type="file" name="image" class="form-control">
                                             @if ($errors->has('image'))
                                                 <div class="alert alert-danger">{{ $errors->first('image') }}</div>
@@ -108,10 +108,10 @@
 
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="video_dis">Video Description  <span class="t_r">Put youtube iframe code</span></label>
-                                            <input type="text" name="video_dis" class="form-control" value="{{ $course->video_dis }}">
-                                            @if ($errors->has('video_dis'))
-                                                <div class="alert alert-danger">{{ $errors->first('video_dis') }}</div>
+                                            <label for="video_des">Video Description  <span class="t_r">Put youtube iframe code</span></label>
+                                            <input type="text" name="video_des" class="form-control" value="{{ $course->video_des }}">
+                                            @if ($errors->has('video_des'))
+                                                <div class="alert alert-danger">{{ $errors->first('video_des') }}</div>
                                             @endif
                                         </div>
                                     </div>
@@ -125,14 +125,11 @@
                                             @endif
                                         </div>
                                     </div>
-
-
-
                                 </div>
                             </div>
                             <div class="text-center card-action">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                                <button type="reset" class="btn btn-danger">Cancel</button>
+                                <button type="submit" class="btn btn-primary mr-3">Update</button>
+                                <button type="reset" class="btn btn-danger">Reset</button>
                             </div>
                         </form>
                     </div>

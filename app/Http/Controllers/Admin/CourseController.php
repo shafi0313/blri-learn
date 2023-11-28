@@ -7,6 +7,8 @@ use App\Models\CourseCat;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCourseRequest;
+use App\Http\Requests\UpdateCourseRequest;
 use Intervention\Image\Facades\Image;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -17,30 +19,31 @@ class CourseController extends Controller
         // if ($error = $this->authorize('course-manage')) {
         //     return $error;
         // }
-        $courses = Course::whereUser_id(auth()->user()->id)->get();
-        // if ($request->ajax()) {
-        //     return DataTables::of($courses)
-        //         ->addIndexColumn()
-        //         ->addColumn('description', function ($row) {
-        //             return Str::limit($row->description, 50);
-        //         })
-        //         ->addColumn('image', function ($row) {
-        //             return '<img src="'.imagePath('course',$row->image).'" width="60px">';
-        //         })
-        //         ->addColumn('created_at', function ($row) {
-        //             return $row->created_at->diffForHumans();
-        //         })
-        //         ->addColumn('action', function ($row) {
-        //             $btn = '';
-        //             $btn .= view('button', ['type' => 'edit', 'route' => 'admin.course', 'row' => $row]);
-        //             $btn .= view('button', ['type' => 'ajax-delete', 'route' => route('admin.course.destroy', $row->id), 'row' => $row, 'src' => 'dt']);
-        //             return $btn;
-        //         })
-        //         ->rawColumns(['description','image','created_at', 'action'])
-        //         ->make(true);
-        // }
+        // $courses = Course::whereUser_id(auth()->user()->id)->get();
+        if ($request->ajax()) {
+            $courses = Course::whereUser_id(auth()->user()->id);
+            return DataTables::of($courses)
+                ->addIndexColumn()
+                ->addColumn('description', function ($row) {
+                    return Str::limit($row->description, 50);
+                })
+                ->addColumn('image', function ($row) {
+                    return '<img src="'.imagePath('course',$row->image).'" width="60px">';
+                })
+                ->addColumn('created_at', function ($row) {
+                    return $row->created_at->diffForHumans();
+                })
+                ->addColumn('action', function ($row) {
+                    $btn = '';
+                    $btn .= view('button', ['type' => 'edit', 'route' => 'admin.course', 'row' => $row]);
+                    $btn .= view('button', ['type' => 'ajax-delete', 'route' => route('admin.course.destroy', $row->id), 'row' => $row, 'src' => 'dt']);
+                    return $btn;
+                })
+                ->rawColumns(['description','image','created_at', 'action'])
+                ->make(true);
+        }
 
-        return view('admin.course.index', compact('courses'));
+        return view('admin.course.index');
     }
 
     public function create()
@@ -52,22 +55,14 @@ class CourseController extends Controller
         return view('admin.course.create', compact('courseCats'));
     }
 
-    public function store(Request $request)
+    public function store(StoreCourseRequest $request)
     {
         if ($error = $this->authorize('course-add')) {
             return $error;
         }
-        $data = $this->validate($request, [
-            'course_cat_id' => 'required',
-            'name'          => 'required',
-            'description'   => 'required',
-            'video_des'     => 'nullable',
-            'skill_level'   => 'required',
-            'language'      => 'required',
-            'status'        => 'nullable',
-            'image'         => 'required|image|mimes:jpeg,png,jpg,webp',
-        ]);
-        $data['user_id'] = auth()->user()->id;
+        $data = $request->validated();
+        $data['user_id'] = user()->id;
+
         if ($request->hasFile('image')) {
             $image = Image::make($request->file('image'));
             if ($image->width() > 270 || $image->height() > 180) {
@@ -84,7 +79,6 @@ class CourseController extends Controller
 
         try {
             Course::create($data);
-
             toast('Success!', 'success');
             return redirect()->route('admin.course.index');
         } catch (\Exception $e) {
@@ -93,7 +87,6 @@ class CourseController extends Controller
             return back();
         }
     }
-
 
     public function edit($id)
     {
@@ -105,21 +98,12 @@ class CourseController extends Controller
         return view('admin.course.edit', compact('course', 'courseCats'));
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateCourseRequest $request, $id)
     {
         if ($error = $this->authorize('course-edit')) {
             return $error;
         }
-        $data = $request->validate([
-            'course_cat_id' => 'required',
-            'name'          => 'required',
-            'description'   => 'required',
-            'video_des'     => 'nullable',
-            'skill_level'   => 'required',
-            'language'      => 'required',
-            'status'        => 'nullable',
-            'image'         => 'nullable|image|mimes:jpeg,png,jpg,webp',
-        ]);
+        $data = $request->validated();
         $data['user_id'] = auth()->user()->id;
         $oldImage = Course::find($id)->image;
         if ($request->hasFile('image')) {
