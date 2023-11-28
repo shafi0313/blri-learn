@@ -144,14 +144,36 @@
                 </li>
                 {{-- Course Category end --}}
 
-                @can('lecture-manage')
-                <li class="nav-item {{ activeNav('admin.lecture.*') }}">
+                {{-- Course Category start --}}
+                <li class="nav-item {{ activeNav(['admin.lecture.*'])}}">
+                    <a data-toggle="collapse" href="#lecture">
+                        <i class="fa-solid fa-book"></i>
+                        <p>Lecture</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse {{ openNav(['admin.lecture.*']) }}" id="lecture">
+                        <ul class="nav nav-collapse">
+                            <li class="{{ activeSubNav(['admin.lecture.index','admin.lecture.edit','admin.lecture.show']) }}">
+                                <a href="{{ route('admin.lecture.index') }}">
+                                    <span class="sub-item">Manage</span>
+                                </a>
+                            </li>
+                            <li class="{{ activeSubNav(['admin.lecture.create']) }}">
+                                <a href="{{ route('admin.lecture.create') }}">
+                                    <span class="sub-item">Add</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                {{-- Course Category end --}}
+
+                {{-- <li class="nav-item {{ activeNav('admin.lecture.*') }}">
                     <a href="{{ route('admin.lecture.index') }}">
                         <i class="fas fa-book-open"></i>
                         <p>Lecture</p>
                     </a>
-                </li>
-                @endcan
+                </li> --}}
 
                 @can('quiz-manage')
                 <li class="nav-item {{ activeNav('admin.quiz.*') }}">

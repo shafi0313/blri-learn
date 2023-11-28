@@ -53,7 +53,7 @@
                                                     <td>{{ $lec->course->skill_level }}</td>
                                                     <td>{{ $lec->course->language }}</td>
                                                     <td>{!! Str::limit($lec->course->description, 50) !!}</td>
-                                                    <td><a href="{{ route('admin.lecture.show', $lec->course_id) }}">show</a>
+                                                    <td><a href="{{ route('admin.lecture.show', $lec->course_id) }}" class="btn btn-primary ">show</a>
                                                     </td>
                                                 </tr>
                                             @endforeach
