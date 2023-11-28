@@ -1,9 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-    @php
-    $user = auth()->user();
-    $layout = App\Models\Layout::where('user_id',$user->id)->first();
-    @endphp
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>@yield('title') | {{config('app.name')}}</title>

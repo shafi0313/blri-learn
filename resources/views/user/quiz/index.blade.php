@@ -26,11 +26,11 @@
                     }
 
                     /* .option input[type=checkbox],
-                    input[type=radio] {
-                        width: 16px;
-                        height: 16px;
-                        padding-top: 5px !important;
-                    } */
+                        input[type=radio] {
+                            width: 16px;
+                            height: 16px;
+                            padding-top: 5px !important;
+                        } */
 
                     .option .form-check-label {
                         padding-left: 5px !important;
@@ -59,23 +59,31 @@
                                                 @if ($quiz->options->count() > 0)
                                                     <div class="row" style="margin-bottom: 20px">
                                                         @foreach ($quiz->options as $option)
-                                                        <input type="hidden" value="{{ $option->id }}" name="option_id">
-                                                        @if ($quiz->correct_options_count >= 2)
-                                                        <div class="col-md-6">
-                                                            <div class="option">
-                                                                <input class="form-check-input" type="checkbox" name="qz_{{ $quiz->id }}" id="quiz{{ $option->id }}" value="{{ $option->id }}">
-                                                                <label class="form-check-label" for="quiz{{ $option->id }}">{{ $option->option }}</label>
-                                                            </div>
-                                                        </div>
-                                                        @else
-                                                        <div class="col-md-6">
-                                                            <div class="option">
-                                                                <input class="form-check-input" type="radio" name="qz_{{ $quiz->id }}" id="quiz{{ $option->id }}" value="{{ $option->id }}">
-                                                                <label class="form-check-label" for="quiz{{ $option->id }}">{{ $option->option }}</label>
-                                                            </div>
-                                                        </div>
-                                                        @endif
-
+                                                            <input type="hidden" value="{{ $option->id }}"
+                                                                name="option_id">
+                                                            @if ($quiz->correct_options_count >= 2)
+                                                                <div class="col-md-6">
+                                                                    <div class="option">
+                                                                        <input class="form-check-input" type="checkbox"
+                                                                            name="qz_{{ $quiz->id }}"
+                                                                            id="quiz{{ $option->id }}"
+                                                                            value="{{ $option->id }}">
+                                                                        <label class="form-check-label"
+                                                                            for="quiz{{ $option->id }}">{{ $option->option }}</label>
+                                                                    </div>
+                                                                </div>
+                                                            @else
+                                                                <div class="col-md-6">
+                                                                    <div class="option">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="qz_{{ $quiz->id }}"
+                                                                            id="quiz{{ $option->id }}"
+                                                                            value="{{ $option->id }}">
+                                                                        <label class="form-check-label"
+                                                                            for="quiz{{ $option->id }}">{{ $option->option }}</label>
+                                                                    </div>
+                                                                </div>
+                                                            @endif
                                                         @endforeach
                                                     </div>
                                                 @endif
@@ -89,8 +97,7 @@
                                 {!! $quizzes->links() !!}
                             </div> --}}
                                 <div class="text-center card-action">
-                                    <button type="submit"
-                                        class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
                                     {{-- <button type="reset" class="btn btn-danger">Cancel</button> --}}
                                 </div>
                             </form>
@@ -149,7 +156,7 @@
                         let url = '{{ route('user.quiz.result', [auth()->user()->id, $quiz->course_id]) }}';
                         window.location.replace(url);
                         // url = url.replace(':id', id);
-                        // toast('success', 'Success!');
+                        // Alert::success('Success', 'This information has been added successfully');
                         // clear();
                         // question()
                         // $(".trData").remove();

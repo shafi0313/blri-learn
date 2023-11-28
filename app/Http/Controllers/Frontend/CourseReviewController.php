@@ -22,11 +22,10 @@ class CourseReviewController extends Controller
 
         try {
             CourseReview::create($data);
-            toast('success', 'Success!');
+            Alert::success('Success', 'This information has been added successfully');
             return back();
         } catch (\Exception $e) {
-            return $e->getMessage();
-            toast('error', 'Error');
+            Alert::error('Error', 'Something went wrong, please try again later');
             return back();
         }
     }

@@ -28,7 +28,7 @@ class CourseController extends Controller
                     return Str::limit($row->description, 50);
                 })
                 ->addColumn('image', function ($row) {
-                    return '<img src="'.imagePath('course',$row->image).'" width="60px">';
+                    return '<img src="' . imagePath('course', $row->image) . '" width="60px">';
                 })
                 ->addColumn('created_at', function ($row) {
                     return $row->created_at->diffForHumans();
@@ -39,7 +39,7 @@ class CourseController extends Controller
                     $btn .= view('button', ['type' => 'ajax-delete', 'route' => route('admin.course.destroy', $row->id), 'row' => $row, 'src' => 'dt']);
                     return $btn;
                 })
-                ->rawColumns(['description','image','created_at', 'action'])
+                ->rawColumns(['description', 'image', 'created_at', 'action'])
                 ->make(true);
         }
 
@@ -82,8 +82,7 @@ class CourseController extends Controller
             toast('Success!', 'success');
             return redirect()->route('admin.course.index');
         } catch (\Exception $e) {
-            return $e->getMessage();
-            toast('error', 'Error');
+            Alert::error('Error', 'Something went wrong, please try again later');
             return back();
         }
     }
@@ -130,8 +129,7 @@ class CourseController extends Controller
             toast('Success!', 'success');
             return redirect()->route('admin.course.index');
         } catch (\Exception $e) {
-            return $e->getMessage();
-            toast('error', 'Error');
+            Alert::error('Error', 'Something went wrong, please try again later');
             return back();
         }
     }

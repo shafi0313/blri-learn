@@ -39,9 +39,9 @@ class LectureController extends Controller
             // 'text' => 'sometimes|mimes:pdf|max:4096',
         ]);
 
-        if($request->hasFile('text')){
+        if ($request->hasFile('text')) {
             $pdf     = $request->file('text');
-            $pdfName = "lecture".rand(0, 1000000).'.'.$pdf->getClientOriginalExtension();
+            $pdfName = "lecture" . rand(0, 1000000) . '.' . $pdf->getClientOriginalExtension();
             $request->text->move('uploads/pdf/lecture', $pdfName);
             $data['text'] = $pdfName;
         }
@@ -51,28 +51,27 @@ class LectureController extends Controller
 
         try {
             Lecture::create($data);
-            toast('success', 'Success!');
+            Alert::success('Success', 'This information has been added successfully');
             return redirect()->route('admin.lecture.index');
         } catch (\Exception $e) {
-            return $e->getMessage();
-            toast('error', 'Error');
+            Alert::error('Error', 'Something went wrong, please try again later');
             return back();
         }
     }
 
     public function show($id)
     {
-        $chapters = Chapter::with('lectures','lectures.enroll')->whereCourse_id($id)->get();
+        $chapters = Chapter::with('lectures', 'lectures.enroll')->whereCourse_id($id)->get();
         return view('user.lecture.show', compact('chapters'));
     }
 
     public function lecturePlay($course_id, $lecture_id)
     {
         $user         = auth()->user();
-        $chapters     = Chapter::with('lectures','lectures.enroll')->whereCourse_id($course_id)->get();
-        $lecturePlay  = Lecture::with(['enroll', 'lectureText'])->whereId($lecture_id)->whereCourse_id($course_id)->first();
+        $chapters     = Chapter::with('lectures', 'lectures.enroll')->whereCourse_id($course_id)->get();
+        $lecturePlay  = Lecture::with(['enroll'])->whereId($lecture_id)->whereCourse_id($course_id)->first();
         $courseEnroll = CourseEnroll::whereUser_id($user->id)->whereCourse_id($course_id)->whereLecture_id($lecture_id)->first();
-        return view('user.lecture.lecture_play', compact('chapters','lecturePlay','courseEnroll'));
+        return view('user.lecture.lecture_play', compact('chapters', 'lecturePlay', 'courseEnroll'));
     }
 
     public function lectureComplete(Request $request)
@@ -82,10 +81,10 @@ class LectureController extends Controller
         $courseId     = $request->course_id;
         $lectureId    = $request->lecture_id;
         $courseEnroll = CourseEnroll::whereUser_id($userId)->whereCourse_id($courseId)->whereLecture_id($lectureId)->first();
-        if($courseEnroll != null){
+        if ($courseEnroll != null) {
             // return 'd';
             $courseEnroll->update(['status' => 1]); // complete
-        }else{
+        } else {
             $data = [
                 'user_id'    => $userId,
                 'course_id'  => $courseId,
@@ -96,7 +95,7 @@ class LectureController extends Controller
         }
 
         $courseComplete = CourseEnroll::whereUser_id($userId)->whereCourse_id($courseId)->whereStatus(0)->get();
-        if($courseComplete->count() < 1){
+        if ($courseComplete->count() < 1) {
             $complete = [
                 'user_id'   => $userId,
                 'course_id' => $courseId,
@@ -105,11 +104,11 @@ class LectureController extends Controller
             CompletedCourse::updateOrCreate($complete);
         }
 
-        $nextLectureId = Lecture::where('id','>',$lectureId)->orderBy('id')->first(['id','course_id']);
-        if($nextLectureId){
-            toast('Success','success');
-            return redirect()->route('user.lecture.lecturePlay',[$nextLectureId->course_id, $nextLectureId->id]);
-        }else{
+        $nextLectureId = Lecture::where('id', '>', $lectureId)->orderBy('id')->first(['id', 'course_id']);
+        if ($nextLectureId) {
+            toast('Success', 'success');
+            return redirect()->route('user.lecture.lecturePlay', [$nextLectureId->course_id, $nextLectureId->id]);
+        } else {
             Alert::success('Success', 'Course Completed');
             // toast('Success','success');
             return back();
@@ -122,8 +121,8 @@ class LectureController extends Controller
         $chapterName  = '';
         $chapterName .= '<option selected value disable>Select</option>';
         foreach ($chapters as $chapter) {
-            $chapterName .= '<option value="'.$chapter->id.'">'.$chapter->name.'</option>';
+            $chapterName .= '<option value="' . $chapter->id . '">' . $chapter->name . '</option>';
         }
-        return json_encode(['chapterName'=>$chapterName]);
+        return json_encode(['chapterName' => $chapterName]);
     }
 }

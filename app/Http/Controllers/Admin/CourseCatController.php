@@ -55,8 +55,7 @@ class CourseCatController extends Controller
             toast('Success!', 'success');
             return redirect()->route('admin.courser-categories.index');
         } catch (\Exception $e) {
-            return $e->getMessage();
-            toast('Error', 'error');
+            Alert::error('Error', 'Something went wrong, please try again later');
             return back();
         }
     }
@@ -105,8 +104,7 @@ class CourseCatController extends Controller
             toast('Success', 'success');
             return redirect()->route('admin.courser-categories.index');
         } catch (\Exception $e) {
-            return $e->getMessage();
-            toast('Error', 'error');
+            Alert::error('Error', 'Something went wrong, please try again later');
             return back();
         }
     }

@@ -39,12 +39,12 @@ class SliderController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg|max:1024',
             // 'image' => 'required|dimensions:max_width=1920,max_height=718',
         ]);
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $imageName = "slider".rand(0, 10000).'.'.$image->getClientOriginalExtension();
+            $imageName = "slider" . rand(0, 10000) . '.' . $image->getClientOriginalExtension();
             $destinationPath = public_path('uploads/images/slider/');
             $img = Image::make($image->getRealPath());
-            $img->resize(1920, 1080)->save($destinationPath.'/'.$imageName);
+            $img->resize(1920, 1080)->save($destinationPath . '/' . $imageName);
             $data['image'] = $imageName;
         }
 
@@ -53,8 +53,7 @@ class SliderController extends Controller
             toast('Success!', 'success');
             return redirect()->route('admin.slider.index');
         } catch (\Exception $e) {
-            return $e->getMessage();
-            toast('error', 'Error');
+            Alert::error('Error', 'Something went wrong, please try again later');
             return back();
         }
     }
@@ -80,16 +79,16 @@ class SliderController extends Controller
             'image' => 'sometimes|image|mimes:jpeg,png,jpg|max:2048',
             // 'image' => 'required|dimensions:max_width=1920,max_height=718',
         ]);
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $files = Slider::where('id', $id)->first();
-            $path =  public_path('uploads/images/slider/'.$files->image);
-            file_exists($path)?unlink($path):false;
+            $path =  public_path('uploads/images/slider/' . $files->image);
+            file_exists($path) ? unlink($path) : false;
 
             $image = $request->file('image');
-            $imageName = "slider".rand(0, 10000).'.'.$image->getClientOriginalExtension();
+            $imageName = "slider" . rand(0, 10000) . '.' . $image->getClientOriginalExtension();
             $destinationPath = public_path('uploads/images/slider/');
             $img = Image::make($image->getRealPath());
-            $img->resize(1920, 718)->save($destinationPath.'/'.$imageName);
+            $img->resize(1920, 718)->save($destinationPath . '/' . $imageName);
             $data['image'] = $imageName;
         }
 
@@ -98,8 +97,7 @@ class SliderController extends Controller
             toast('Success!', 'success');
             return redirect()->route('admin.slider.index');
         } catch (\Exception $e) {
-            return $e->getMessage();
-            toast('Error', 'error');
+            Alert::error('Error', 'Something went wrong, please try again later');
             return back();
         }
     }
@@ -110,16 +108,16 @@ class SliderController extends Controller
             return $error;
         }
         $slider = Slider::find($id);
-        $path =  public_path('uploads/images/slider/'.$slider->image);
-        try{
-            if(file_exists($path)){
+        $path =  public_path('uploads/images/slider/' . $slider->image);
+        try {
+            if (file_exists($path)) {
                 unlink($path);
             }
             $slider->delete();
-            Alert::success('Success','Successfully Deleted');
+            Alert::success('Success', 'Successfully Deleted');
             return redirect()->back();
-        }catch (\Exception $ex) {
-            Alert::error('Oops...','Delete Failed');
+        } catch (\Exception $ex) {
+            Alert::error('Oops...', 'Delete Failed');
             return back();
         }
     }

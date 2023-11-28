@@ -23,7 +23,7 @@ class CerSignatureController extends Controller
         // if ($error = $this->authorize('course-cat-add')) {
         //     return $error;
         // }
-        if(CerSignature::count() >= 2){
+        if (CerSignature::count() >= 2) {
             Alert::info('You can add maximum two signature');
             return back();
         }
@@ -45,11 +45,10 @@ class CerSignatureController extends Controller
 
         try {
             CerSignature::create($data);
-            toast('Success', 'success!');
+            Alert::success('Success', 'This information has been added successfully');
             return redirect()->route('admin.certificate-signature.index');
         } catch (\Exception $e) {
-            return $e->getMessage();
-            toast('error', 'Error');
+            Alert::error('Error', 'Something went wrong, please try again later');
             return back();
         }
     }
@@ -75,16 +74,15 @@ class CerSignatureController extends Controller
         ]);
 
         $image = CerSignature::find($id)->image;
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $data['image'] = imageUpdate($request, 'signature', 'uploads/images/signature/', $image);
         }
         try {
             CerSignature::find($id)->update($data);
-            toast('Success', 'success!');
+            Alert::success('Success', 'This information has been added successfully');
             return redirect()->route('admin.certificate-signature.index');
         } catch (\Exception $e) {
-            return $e->getMessage();
-            toast('Error', 'error');
+            Alert::error('Error', 'Something went wrong, please try again later');
             return back();
         }
     }
@@ -95,15 +93,15 @@ class CerSignatureController extends Controller
             return $error;
         }
         $slider = Slider::find($id);
-        $path =  public_path('uploads/images/slider/'.$slider->image);
-        if(file_exists($path)){
+        $path =  public_path('uploads/images/slider/' . $slider->image);
+        if (file_exists($path)) {
             unlink($path);
             $slider->delete();
-            toast('Successfully Deleted','success');
+            toast('Successfully Deleted', 'success');
             return redirect()->back();
-        }else{
+        } else {
             $slider->delete();
-            toast('Successfully Deleted','success');
+            toast('Successfully Deleted', 'success');
             return redirect()->back();
         }
     }

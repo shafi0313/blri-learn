@@ -6,6 +6,7 @@ use App\Models\Course;
 use App\Models\Chapter;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ChapterController extends Controller
 {
@@ -21,11 +22,10 @@ class ChapterController extends Controller
 
         try {
             Chapter::create($data);
-            toast('success', 'Success!');
+            Alert::success('Success', 'This information has been added successfully');
             return back();
         } catch (\Exception $e) {
-            return $e->getMessage();
-            toast('error', 'Error');
+            Alert::error('Error', 'Something went wrong, please try again later');
             return back();
         }
     }
@@ -36,7 +36,7 @@ class ChapterController extends Controller
             return $error;
         }
         $courses = Course::all();
-        return view('admin.chapter.edit', compact('chapter','courses'));
+        return view('admin.chapter.edit', compact('chapter', 'courses'));
     }
 
     public function update(Request $request, Chapter $chapter)
@@ -51,11 +51,10 @@ class ChapterController extends Controller
 
         try {
             $chapter->update($data);
-            toast('success', 'Success!');
+            Alert::success('Success', 'This information has been updated successfully');
             return back();
         } catch (\Exception $e) {
-            return $e->getMessage();
-            toast('error', 'Error');
+            Alert::error('Error', 'Something went wrong, please try again later');
             return back();
         }
     }
