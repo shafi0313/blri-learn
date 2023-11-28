@@ -28,7 +28,13 @@
                         <div class="card-body">
                             @foreach ($chapters as $chapter)
                             <div class="chapter_div">
-                                <p class="chapter">{{ $chapter->name }}</p>
+                                    <p class="chapter">{{ $chapter->name }}
+                                        <span>
+                                            <a href="{{ route('admin.chapter.edit', $chapter->id) }}" class="btn btn-info btn-sm ml-5">
+                                                <i class='fa fa-edit'></i>
+                                            </a>
+                                        </span>
+                                    </p>
                                 @foreach ($chapter->lectures as $lecture)
                                 {{-- @if ($lecture->type == 1) --}}
                                 <div class="d-flex justify-content-between">

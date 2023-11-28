@@ -87,7 +87,7 @@ Route::resource('/courser-categories', CourseCatController::class)->except(['sho
 
 Route::resource('/course', CourseController::class);
 Route::resource('/certificate-signature', CerSignatureController::class);
-Route::resource('/chapter', ChapterController::class)->only(['store']);
+Route::resource('/chapter', ChapterController::class)->except(['index', 'create','show', 'destroy']);
 
 // Lecture
 Route::resource('/lecture', LectureController::class)->except(['destroy']);
