@@ -134,8 +134,8 @@
                                 </div>
                             </div>
                             <div class="text-center card-action">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                                <button type="reset" class="btn btn-danger">Cancel</button>
+                                <button type="submit" class="btn btn-primary mr-3">Update</button>
+                                <button type="reset" class="btn btn-danger">Reset</button>
                             </div>
                         </form>
                     </div>

@@ -12,9 +12,8 @@ class MyProfileController extends Controller
 {
     public function edit()
     {
-        $layout = Layout::where('user_id', auth()->user()->id)->first(['tbl','tbl_bg','tbl_text','create_btn']);
         $user = User::find(auth()->user()->id);
-        return view('user.my_profile.edit', compact('layout','user'));
+        return view('user.my_profile.edit', compact('user'));
     }
 
     public function update(Request $request)

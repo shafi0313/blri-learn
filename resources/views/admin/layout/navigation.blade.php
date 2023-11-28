@@ -57,12 +57,12 @@
                     </a>
                     <div class="collapse {{ openNav(['admin.adminUser.*']) }}" id="base">
                         <ul class="nav nav-collapse">
-                            <li class="{{ activeSubNav(['admin.adminUser.index']) }}">
+                            <li class="{{ activeSubNav(['admin.adminUser.index','admin.adminUser.edit']) }}">
                                 <a href="{{ route('admin.adminUser.index') }}">
                                     <span class="sub-item">User Manage</span>
                                 </a>
                             </li>
-                            <li class="{{ activeSubNav(['admin.adminUser.*']) }}">
+                            <li class="{{ activeSubNav(['admin.adminUser.create']) }}">
                                 <a href="{{ route('admin.adminUser.create') }}">
                                     <span class="sub-item">User Add</span>
                                 </a>

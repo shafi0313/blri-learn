@@ -112,30 +112,30 @@
     @push('custom_scripts')
         <meta name="csrf-token" content="{{ csrf_token() }}" />
         <script>
-            // window.onload = function() {
-            //     //    var hour = 4;
-            //     let minute = 10;
-            //     let sec = 00;
-            //     setInterval(function() {
-            //         document.getElementById("timer").innerHTML = minute + " : " + sec;
-            //         if (minute >= 0 && sec >= 1) {
-            //             sec--;
-            //         }
-            //         if (sec == 00) {
-            //             if (minute > 0) {
-            //                 minute--;
-            //                 sec = 60;
-            //             }
-            //             //  if (minute >= 0) {
-            //             //     minute = 0;
-            //             //  }
-            //         }
-            //         if (minute >= 0 && sec == 0) {
-            //             minute--
-            //             lectureComplete();
-            //         }
-            //     }, 1000);
-            // };
+            window.onload = function() {
+                //    var hour = 4;
+                let minute = 10;
+                let sec = 00;
+                setInterval(function() {
+                    document.getElementById("timer").innerHTML = minute + " : " + sec;
+                    if (minute >= 0 && sec >= 1) {
+                        sec--;
+                    }
+                    if (sec == 00) {
+                        if (minute > 0) {
+                            minute--;
+                            sec = 60;
+                        }
+                        //  if (minute >= 0) {
+                        //     minute = 0;
+                        //  }
+                    }
+                    if (minute >= 0 && sec == 0) {
+                        minute--
+                        lectureComplete();
+                    }
+                }, 1000);
+            };
         </script>
 
 
@@ -156,7 +156,7 @@
                         let url = '{{ route('user.quiz.result', [auth()->user()->id, $quiz->course_id]) }}';
                         window.location.replace(url);
                         // url = url.replace(':id', id);
-                        // Alert::success('Success', 'This information has been added successfully');
+                        //
                         // clear();
                         // question()
                         // $(".trData").remove();
