@@ -103,11 +103,17 @@
                                     {!! $lecturePlay->text !!}
                                 </div>
                             @endif
+                            <br>
+                            <hr>
+                            <br>
                             @if ($lecturePlay->video)
                                 <div class="lec_video">
                                     {!! $lecturePlay->video !!}
                                 </div>
                             @endif
+                            <br>
+                            <hr>
+                            <br>
                             @if ($lecturePlay->pdf)
                                 <div>
                                     @if (substr($lecturePlay->pdf, -1) == 'g')
