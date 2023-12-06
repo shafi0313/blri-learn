@@ -8,6 +8,7 @@ use App\Models\Lecture;
 use App\Models\LectureText;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Intervention\Image\Facades\Image;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\StoreLectureRequest;
 use App\Http\Requests\UpdateLectureRequest;
@@ -99,9 +100,40 @@ class LectureController extends Controller
         if ($error = $this->authorize('lecture-add')) {
             return $error;
         }
-        $data = $request->validated();
-        $data['user_id'] = auth()->user()->id;
-        $lecture->update($data);
+        $requestData = $request->validated();
+
+        $text = $request->text;
+        $dom = new \DomDocument();
+        $dom->loadHtml(mb_convert_encoding($text, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        $imageFile = $dom->getElementsByTagName('img');
+
+        foreach ($imageFile as $item => $image) {
+            $imageTag = $dom->saveHTML($image);
+            if (preg_match('/src="([^"]+)"/', $imageTag, $matches)) {
+                if (isset($matches[1])) {
+                    $srcAttribute = $matches[1];
+                    if (strpos($srcAttribute, 'data:image') === 0) {
+                        list($type, $data) = explode(';', $srcAttribute);
+                        list(, $data) = explode(',', $data);
+                        $imageData = base64_decode($data);
+                        $uniqueId = uniqueId(10);
+                        $image_name = $uniqueId . $item . '.webp';
+                        $webpPath = '/uploads/images/lecture/' . $image_name;
+                        if (file_put_contents(public_path($webpPath), $imageData)) {
+                            $webpImage = Image::make(public_path($webpPath));
+                            $webpImage->encode('webp', 80);
+                            $webpImage->save();
+                            $image->removeAttribute('src');
+                            $image->setAttribute('src', $webpPath);
+                        }
+                    }
+                }
+            }
+        }
+        $requestData['text'] = $dom->saveHTML();
+        $requestData['user_id'] = auth()->user()->id;
+        $lecture->update($requestData);
+
         try {
             Alert::success('Success', 'Lecture Updated Successfully');
             return back();

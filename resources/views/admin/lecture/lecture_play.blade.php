@@ -103,11 +103,19 @@
                                     <div>
                                         {!! $lecturePlay->text !!}
                                     </div>
-                                @elseif ($lecturePlay->video)
+                                @endif
+                                <br>
+                                <hr>
+                                <br>
+                                @if ($lecturePlay->video)
                                     <div class="lec_video">
                                         {!! $lecturePlay->video !!}
                                     </div>
-                                @elseif($lecturePlay->pdf)
+                                @endif
+                                <br>
+                                <hr>
+                                <br>
+                                @if($lecturePlay->pdf)
                                     <div>
                                         @if (substr($lecturePlay->pdf, -1) == 'g')
                                             @php $pdf = str_replace("view?usp=sharing", "preview", $lecturePlay->pdf) @endphp
