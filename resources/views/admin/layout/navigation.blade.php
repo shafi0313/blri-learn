@@ -184,12 +184,36 @@
                 </li>
                 @endcan
 
-                @can('student-history-manage')
+                {{-- @can('student-history-manage')
                 <li class="nav-item {{ activeNav('admin.studentHistory.*') }}">
                     <a href="{{ route('admin.studentHistory.index') }}">
                         <i class="fa-solid fa-users"></i>
                         <p>Student History</p>
                     </a>
+                </li>
+                @endcan --}}
+
+                @can('student-history-manage')
+                <li class="nav-item {{ activeNav(['admin.student.*']) }}">
+                    <a data-toggle="collapse" href="#student">
+                        <i class="fas fa-users-cog"></i>
+                        <p>Student</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse {{ openNav(['admin.student.*']) }}" id="student">
+                        <ul class="nav nav-collapse">
+                            <li class="{{ activeSubNav(['admin.student.lists']) }}">
+                                <a href="{{ route('admin.student.lists') }}">
+                                    <span class="sub-item">Student Lists</span>
+                                </a>
+                            </li>
+                            <li class="{{ activeSubNav(['admin.adminUser.create']) }}">
+                                <a href="{{ route('admin.adminUser.create') }}">
+                                    <span class="sub-item">User Add</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 @endcan
 

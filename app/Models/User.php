@@ -75,7 +75,9 @@ class User extends Authenticatable
         return $this->hasMany(CourseEnroll::class, );
     }
     public function district(){
-        return $this->belongsTo(District::class, );
+        return $this->belongsTo(District::class)->withDefault([
+            'name' => 'N/A',
+        ]);
     }
 }
 

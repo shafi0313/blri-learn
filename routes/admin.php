@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\ChapterController;
 use App\Http\Controllers\Admin\LectureController;
+use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Auth\Role\RoleController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\CourseCatController;
@@ -20,22 +21,6 @@ use App\Http\Controllers\Admin\MyProfile\ProfileController;
 use App\Http\Controllers\Auth\Permission\PermissionController;
 
 Route::prefix('my-profile')->group(function () {
-    // Route::prefix('layout')->group(function(){
-    //     Route::get('/', [LayoutController::class, 'create'])->name('layout.create');
-    //     Route::post('/dark', [LayoutController::class, 'layoutDark'])->name('layout.layoutDark');
-    //     Route::post('/light', [LayoutController::class, 'layoutLight'])->name('layout.layoutLight');
-    //     Route::post('/submit-button', [LayoutController::class, 'submitBtn'])->name('layout.submitBtn');
-    //     Route::post('/add-button', [LayoutController::class, 'createBtn'])->name('layout.createBtn');
-    //     Route::post('/table', [LayoutController::class, 'table'])->name('layout.table');
-    //     Route::post('/table-bg', [LayoutController::class, 'tableBg'])->name('layout.tableBg');
-    //     Route::post('/table-text', [LayoutController::class, 'tableText'])->name('layout.tableText');
-    //     Route::post('/logo-header', [LayoutController::class, 'logoHeaderStore'])->name('logoHeaderStore');
-    //     Route::post('/navbar-header', [LayoutController::class, 'navbarHeaderStore'])->name('navbarHeaderStore');
-    //     Route::post('/sidebar', [LayoutController::class, 'sidebarStore'])->name('sidebarStore');
-    //     Route::post('/background', [LayoutController::class, 'backgroundStore'])->name('backgroundStore');
-    // });
-
-
     Route::prefix('profile')->group(function () {
         Route::get('/', [ProfileController::class, 'index'])->name('myProfile.profile.index');
         Route::post('/update', [ProfileController::class, 'update'])->name('myProfile.profile.update');
@@ -110,6 +95,7 @@ Route::controller(QuizController::class)->prefix('quiz')->group(function () {
     Route::post('/option/update/{optionId}/{quizId}', 'optionUpdate')->name('quiz.optionUpdate');
     Route::delete('/option/destroy/{optionId}', 'optionDestroy')->name('quiz.optionDestroy');
 });
-Route::controller(StudentHistoryController::class)->prefix('student-history')->group(function () {
+Route::controller(StudentController::class)->prefix('student')->name('student.')->group(function () {
+    Route::get('/lists', 'list')->name('lists');
     Route::get('/', 'index')->name('studentHistory.index');
 });
