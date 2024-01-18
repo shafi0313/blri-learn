@@ -14,10 +14,23 @@ class StudentController extends Controller
         if ($request->ajax()) {
             $students = User::select('id', 'name', 'email', 'phone', 'gender', 'district_id', 'address')->with([
                 'district' => fn ($q) => $q->select('id', 'name')
-            ])->wherePermission('2')->get();
+            ])->wherePermission('2');
             return DataTables::eloquent($students)
                 ->addIndexColumn()
-                ->rawColumns(['status', 'action'])
+                ->addColumn('gender', function ($row) {
+                    return $row->gender == 1? 'Male':'Female';
+                })
+                // ->addColumn('action', function ($row) {
+                //     $btn = '';
+                //     if (userCan('class-name-edit')) {
+                //         $btn .= view('button', ['type' => 'ajax-edit', 'route' => route('admin.class-names.edit', $row->id), 'row' => $row]);
+                //     }
+                //     if (userCan('class-name-delete')) {
+                //         $btn .= view('button', ['type' => 'ajax-delete', 'route' => route('admin.class-names.destroy', $row->id), 'row' => $row, 'src' => 'dt']);
+                //     }
+                //     return $btn;
+                // })
+                ->rawColumns(['gender', 'action'])
                 ->make(true);
         }
         return view('admin.student.list');

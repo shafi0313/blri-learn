@@ -23,7 +23,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table id="multi-filter-select" class="display table table-striped table-hover">
+                                    <table id="data_table" class="display table table-striped table-hover">
                                         <thead class="bg-secondary thw">
                                             {{-- <tr>
                                                 <th>SL</th>
@@ -86,6 +86,31 @@
                             data: 'name',
                             name: 'name',
                             title: 'Student Name',
+                        },
+                        {
+                            data: 'email',
+                            name: 'email',
+                            title: 'Email',
+                        },
+                        {
+                            data: 'phone',
+                            name: 'phone',
+                            title: 'Phone',
+                        },
+                        {
+                            data: 'gender',
+                            name: 'gender',
+                            title: 'Gender',
+                        },
+                        {
+                            data: 'district.name',
+                            name: 'district.name',
+                            title: 'District',
+                        },
+                        {
+                            data: 'address',
+                            name: 'address',
+                            title: 'Address',
                         },
                     ],
                     scroller: {
