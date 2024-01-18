@@ -18,7 +18,7 @@ class StudentController extends Controller
             return DataTables::eloquent($students)
                 ->addIndexColumn()
                 ->addColumn('gender', function ($row) {
-                    return $row->gender == 1? 'Male':'Female';
+                    return $row->gender == 1 ? 'Male' : 'Female';
                 })
                 // ->addColumn('action', function ($row) {
                 //     $btn = '';
