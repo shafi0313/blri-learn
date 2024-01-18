@@ -207,9 +207,9 @@
                                     <span class="sub-item">Student Lists</span>
                                 </a>
                             </li>
-                            <li class="{{ activeSubNav(['admin.adminUser.create']) }}">
-                                <a href="{{ route('admin.adminUser.create') }}">
-                                    <span class="sub-item">User Add</span>
+                            <li class="{{ activeSubNav(['admin.student.location_wise_lists']) }}">
+                                <a href="{{ route('admin.student.location_wise_lists') }}">
+                                    <span class="sub-item">Location Wise Lists</span>
                                 </a>
                             </li>
                         </ul>

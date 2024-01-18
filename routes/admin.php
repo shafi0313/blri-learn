@@ -97,5 +97,5 @@ Route::controller(QuizController::class)->prefix('quiz')->group(function () {
 });
 Route::controller(StudentController::class)->prefix('student')->name('student.')->group(function () {
     Route::get('/lists', 'list')->name('lists');
-    Route::get('/', 'index')->name('studentHistory.index');
+    Route::get('/location-wise-lists', 'locationWiseList')->name('location_wise_lists');
 });

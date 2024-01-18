@@ -27,27 +27,17 @@
                                     <thead class="bg-secondary thw">
                                         <tr>
                                             <th>SL</th>
-                                            <th>Student Name</th>
                                             <th>District</th>
-                                            <th>Total</th>
+                                            <th>No. of Students</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                        </tr>
-                                    </tfoot>
                                     <tbody>
                                         @php $x = 1; @endphp
-                                        @foreach ($students as $student)
+                                        @foreach ($districts as $district)
                                         <tr>
                                             <td class="text-center">{{ $x++ }}</td>
-                                            <td>{{ $student->name }}</td>
-                                            <td>{{ $student->district->name ?? '' }}</td>
-                                            <td>{{ $student->courseEnrolls->count() }}</td>
+                                            <td>{{ $district->name }}</td>
+                                            <td>{{ $district->users_count }}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>

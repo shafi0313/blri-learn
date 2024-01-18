@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\District;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\DataTables\Facades\DataTables;
@@ -20,19 +21,15 @@ class StudentController extends Controller
                 ->addColumn('gender', function ($row) {
                     return $row->gender == 1 ? 'Male' : 'Female';
                 })
-                // ->addColumn('action', function ($row) {
-                //     $btn = '';
-                //     if (userCan('class-name-edit')) {
-                //         $btn .= view('button', ['type' => 'ajax-edit', 'route' => route('admin.class-names.edit', $row->id), 'row' => $row]);
-                //     }
-                //     if (userCan('class-name-delete')) {
-                //         $btn .= view('button', ['type' => 'ajax-delete', 'route' => route('admin.class-names.destroy', $row->id), 'row' => $row, 'src' => 'dt']);
-                //     }
-                //     return $btn;
-                // })
                 ->rawColumns(['gender', 'action'])
                 ->make(true);
         }
         return view('admin.student.list');
+    }
+
+    public function locationWiseList()
+    {
+        $districts = District::select('id', 'name')->withCount(['users' => fn ($q) => $q->wherePermission('2')])->orderBy('name')->get();
+        return view('admin.student.location-wise-list', compact('districts'));
     }
 }
