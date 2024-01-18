@@ -80,7 +80,7 @@
     <script src="{{ asset('frontend/js/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
     {{-- Cute Alert --}}
     <script src="{{ asset('backend/plugins/cute-alert/cute-alert.js') }}"></script>
-    <!-- Template Scripts (Do not remove)-->
+    @include('sweetalert::alert')
     <script src="{{ asset('frontend/js/custom.js') }}"></script>
     @stack('custom_scripts')
 </body>
