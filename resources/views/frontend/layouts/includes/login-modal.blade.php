@@ -6,21 +6,30 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header border-0">
-                <h5 class="modal-title" id="loginModalLabel">{{__('global.signIn')}}/{{__('global.register')}}</h5>
+                <h5 class="modal-title" id="loginModalLabel">{{ __('global.signIn') }}/{{ __('global.register') }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <ul class="nav nav-tabs nav-tabs-02 justify-content-center" id="myTab" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active " id="login-tab" data-bs-toggle="tab" href="#login" role="tab"
-                            aria-controls="login" aria-selected="false"> <span>{{__('global.signIn')}}</span></a>
+                            aria-controls="login" aria-selected="false"> <span>{{ __('global.signIn') }}</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="register-tab" data-bs-toggle="tab" href="#register" role="tab"
-                            aria-controls="register" aria-selected="true"><span>{{__('global.register')}}</span></a>
+                            aria-controls="register" aria-selected="true"><span>{{ __('global.register') }}</span></a>
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
                         <form method="POST" action="{{ route('loginProcess') }}" class="row my-4 align-items-center">
                             @csrf

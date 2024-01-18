@@ -34,15 +34,16 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-            if(Auth::user()->permission == 1){
+            if (Auth::user()->permission == 1) {
                 $request->session()->regenerate();
                 return redirect()->route('admin.dashboard');
-            }elseif(Auth::user()->permission == 2){
+            } elseif (Auth::user()->permission == 2) {
                 $request->session()->regenerate();
                 return redirect()->route('user.dashboard');
             }
         }
 
+        Alert::warning('Invalid email or password');
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ]);
@@ -56,14 +57,14 @@ class AuthController extends Controller
         ]);
         // return $request->email;
 
-        $user = User::wherePermission('2')->where('email',$request->email)->first('id');
-        if(is_null($user)){
+        $user = User::wherePermission('2')->where('email', $request->email)->first('id');
+        if (is_null($user)) {
             Alert::warning('Invalid email');
             return back();
         }
         $courseId = $request->course_id;
-        $lectures = Lecture::whereCourse_id($courseId)->get(['id','course_id']);
-        foreach($lectures as $key => $lecture){
+        $lectures = Lecture::whereCourse_id($courseId)->get(['id', 'course_id']);
+        foreach ($lectures as $key => $lecture) {
             $data = [
                 'user_id' => $user->id,
                 'course_id' => $lecture->course_id,
@@ -87,13 +88,14 @@ class AuthController extends Controller
         $this->validate($request, [
             'name' => 'required|max:100',
             'email' => 'required|email|unique:users,email',
-            'password' => ['required', 'confirmed', Password::min(6)
-                                                            // ->letters()
-                                                            // ->mixedCase()
-                                                            // ->numbers()
-                                                            // ->symbols()
-                                                            // ->uncompromised()
-                                                        ],
+            'password' => [
+                'required', 'confirmed', Password::min(6)
+                // ->letters()
+                // ->mixedCase()
+                // ->numbers()
+                // ->symbols()
+                // ->uncompromised()
+            ],
         ]);
 
         $user = User::create([
@@ -108,8 +110,8 @@ class AuthController extends Controller
         ]);
 
         $courseId = $request->course_id;
-        $lectures = Lecture::whereCourse_id($courseId)->get(['id','course_id']);
-        foreach($lectures as $key => $lecture){
+        $lectures = Lecture::whereCourse_id($courseId)->get(['id', 'course_id']);
+        foreach ($lectures as $key => $lecture) {
             $data = [
                 'user_id' => $user->id,
                 'course_id' => $lecture->course_id,
@@ -120,10 +122,10 @@ class AuthController extends Controller
 
         // Mail::to($user->email)->send(new EmailVerification($user));
 
-        try{
+        try {
             return redirect()->route('login');
             // return redirect()->route('verifyNotification');
-        }catch(\Exception $ex){
+        } catch (\Exception $ex) {
             return redirect()->back();
         }
     }
@@ -141,13 +143,14 @@ class AuthController extends Controller
             'profession' => 'sometimes',
             'district_id' => 'required',
             'gender' => 'required',
-            'password' => ['required', 'confirmed', Password::min(8)
-                                                            // ->letters()
-                                                            // ->mixedCase()
-                                                            // ->numbers()
-                                                            // ->symbols()
-                                                            // ->uncompromised()
-                                                        ],
+            'password' => [
+                'required', 'confirmed', Password::min(8)
+                // ->letters()
+                // ->mixedCase()
+                // ->numbers()
+                // ->symbols()
+                // ->uncompromised()
+            ],
         ]);
 
         User::create([
@@ -163,25 +166,25 @@ class AuthController extends Controller
 
         // Mail::to($user->email)->send(new EmailVerification($user));
 
-        try{
+        try {
             // return redirect()->route('verifyNotification');
             Alert::success(trans('global.success'));
             return redirect()->back();
-        }catch(\Exception $ex){
+        } catch (\Exception $ex) {
             return redirect()->back();
         }
     }
 
     public function registerVerify($token)
     {
-        $user = User::where('remember_token',$token)->first();
-        if($token == null){
+        $user = User::where('remember_token', $token)->first();
+        if ($token == null) {
             session()->flash('type', 'warning');
             session()->flash('message', 'Invalid token');
             return redirect()->route('login');
         }
 
-        if($user == null){
+        if ($user == null) {
             session()->flash('type', 'warning');
             session()->flash('message', 'You are not register');
             return redirect()->route('login');
@@ -204,8 +207,8 @@ class AuthController extends Controller
 
     public function verifyResend(Request $request)
     {
-        $user = User::where('email',$request->email)->first();
-        if($user == null){
+        $user = User::where('email', $request->email)->first();
+        if ($user == null) {
             session()->flash('type', 'danger');
             session()->flash('message', 'Invalid email');
             return redirect()->back();
@@ -225,7 +228,7 @@ class AuthController extends Controller
     public function forgetPasswordProcess(Request $request)
     {
         $user = User::where('email', $request->email)->first();
-        if($user == null){
+        if ($user == null) {
             session()->flash('type', 'danger');
             session()->flash('message', 'Invalid email');
             return redirect()->back();
@@ -241,20 +244,21 @@ class AuthController extends Controller
 
     public function resetPassword($token)
     {
-        $user = PasswordReset::where('token',$token)->first();
+        $user = PasswordReset::where('token', $token)->first();
         return view('auth.reset_password', compact('user'));
     }
 
     public function resetPasswordProcess(Request $request)
     {
         $this->validate($request, [
-            'password' => ['required', 'confirmed', Password::min(6)
-            // ->letters()->numbers()->symbols()->uncompromised()
-        ],
+            'password' => [
+                'required', 'confirmed', Password::min(6)
+                // ->letters()->numbers()->symbols()->uncompromised()
+            ],
         ]);
 
         $data = [
-            'password' =>bcrypt($request->get('password'))
+            'password' => bcrypt($request->get('password'))
         ];
 
         User::where('email', $request->email)->update($data);

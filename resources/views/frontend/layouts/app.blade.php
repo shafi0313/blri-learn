@@ -28,6 +28,8 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}" />
 
+    <link href="{{ asset('backend/plugins/cute-alert/cute-alert.css') }}" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -37,8 +39,8 @@
     @include('frontend.layouts.includes.navigation')
     <!--=================================
       Header -->
-<br>
-<br>
+    <br>
+    <br>
 
     <!--=================================
     Modal login -->
@@ -76,7 +78,8 @@
     <script src="{{ asset('frontend/js/shuffle/shuffle.min.js') }}"></script>
     <script src="{{ asset('frontend/js/jarallax/jarallax.min.js') }}"></script>
     <script src="{{ asset('frontend/js/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
-
+    {{-- Cute Alert --}}
+    <script src="{{ asset('backend/plugins/cute-alert/cute-alert.js') }}"></script>
     <!-- Template Scripts (Do not remove)-->
     <script src="{{ asset('frontend/js/custom.js') }}"></script>
     @stack('custom_scripts')
